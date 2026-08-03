@@ -1,0 +1,76 @@
+<!doctype html>
+<!--
+  PROTOTYPE — 선택 후 삭제하거나 결정만 제품 코드에 다시 구현합니다.
+  iPhone 연결 UX:
+  ?variant=a|b|c|d&state=ready|empty|pairing|multiple|error|scanning
+  &tailscale=installed|missing
+  실행: open docs/simple-workspace-iphone-connection-prototype.html
+-->
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SideRefresh · iPhone 연결 UX 비교</title>
+  <link rel="stylesheet" href="iphone-connection-prototype/tokens.css">
+  <link rel="stylesheet" href="iphone-connection-prototype/shell.css">
+  <link rel="stylesheet" href="iphone-connection-prototype/components.css">
+  <link rel="stylesheet" href="iphone-connection-prototype/layouts.css">
+  <link rel="stylesheet" href="iphone-connection-prototype/states.css">
+  <link rel="stylesheet" href="iphone-connection-prototype/responsive.css">
+</head>
+<body>
+  <main class="prototype-shell">
+    <header class="prototype-header">
+      <div>
+        <p class="eyebrow">THROWAWAY PROTOTYPE</p>
+        <h1>iPhone 연결은 어디까지 보여줘야 할까?</h1>
+        <p class="subtitle">
+          같은 상태를 네 가지 구조로 비교합니다.
+          실제 설정은 변경되지 않습니다.
+        </p>
+      </div>
+      <div class="prototype-controls">
+        <label class="state-control" for="state-select">
+          <span>비교할 상태</span>
+          <select id="state-select">
+            <option value="ready">Xcode 기기 확인됨</option>
+            <option value="empty">iPhone 없음</option>
+            <option value="pairing">처음 연결 필요</option>
+            <option value="multiple">여러 대 발견</option>
+            <option value="error">확인 오류</option>
+            <option value="scanning">찾는 중</option>
+          </select>
+        </label>
+        <label class="state-control" for="tailscale-select" id="tailscale-control">
+          <span>Mac의 Tailscale</span>
+          <select id="tailscale-select">
+            <option value="installed">설치됨</option>
+            <option value="missing">미설치</option>
+          </select>
+        </label>
+      </div>
+    </header>
+    <section class="mac-window" aria-label="SideRefresh iPhone 연결 프로토타입">
+      <div class="titlebar">
+        <div class="traffic" aria-hidden="true"><i></i><i></i><i></i></div>
+        <strong>SideRefresh</strong>
+        <span>Simple workspace</span>
+      </div>
+      <div id="variant-root" class="variant-stage" tabindex="-1"></div>
+    </section>
+  </main>
+  <nav class="prototype-switcher" aria-label="디자인 안 전환">
+    <button id="previous-variant" type="button" aria-label="이전 디자인 안">←</button>
+    <span id="variant-label" aria-live="off"></span>
+    <button id="next-variant" type="button" aria-label="다음 디자인 안">→</button>
+  </nav>
+  <div id="announcement" class="announcement" role="status" aria-atomic="true"></div>
+  <script src="iphone-connection-prototype/state.js"></script>
+  <script src="iphone-connection-prototype/actions.js"></script>
+  <script src="iphone-connection-prototype/variant-a.js"></script>
+  <script src="iphone-connection-prototype/variant-b.js"></script>
+  <script src="iphone-connection-prototype/variant-c.js"></script>
+  <script src="iphone-connection-prototype/variant-d.js"></script>
+  <script src="iphone-connection-prototype/prototype.js"></script>
+</body>
+</html>

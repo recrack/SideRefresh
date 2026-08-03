@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-15
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Install asset validation tools
+        run: brew install ripgrep tesseract
+
+      - name: Install Python test tools
+        run: |
+          python3 -m venv "$RUNNER_TEMP/siderefresh-venv"
+          "$RUNNER_TEMP/siderefresh-venv/bin/python" -m pip install --disable-pip-version-check -r requirements-dev.txt
+
+      - name: Test public source validator
+        run: Scripts/test-public-source-validator.sh
+
+      - name: Validate public source
+        run: Scripts/validate-public-source.sh
+
+      - name: Swift tests
+        run: swift test
+
+      - name: Python tests
+        run: |
+          "$RUNNER_TEMP/siderefresh-venv/bin/python" -m pytest
+
+      - name: Validate samples
+        run: Scripts/validate-samples.sh
+
+      - name: Validate Headless tools
+        run: Scripts/validate-headless.sh
+
+      - name: Validate Product Hunt assets
+        run: Scripts/validate-product-hunt-assets.sh
+
+      - name: Validate public site
+        run: Scripts/validate-product-hunt-site.sh
+
+      - name: Test public site validator
+        run: Scripts/test-public-site-validator.sh

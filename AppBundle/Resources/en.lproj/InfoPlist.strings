@@ -1,0 +1,3 @@
+"NSDesktopFolderUsageDescription" = "SideRefresh checks Xcode project settings and app icons in Desktop to find installable iOS apps.";
+"NSDocumentsFolderUsageDescription" = "SideRefresh checks Xcode project settings and app icons in Documents to find installable iOS apps.";
+"NSDownloadsFolderUsageDescription" = "SideRefresh checks Xcode project settings and app icons in Downloads to find installable iOS apps.";

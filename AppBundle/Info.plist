@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>SideRefresh</string>
+	<key>CFBundleExecutable</key>
+	<string>SideRefresh</string>
+	<key>CFBundleIconFile</key>
+	<string>SideRefresh</string>
+	<key>CFBundleIdentifier</key>
+	<string>io.github.siderefresh.macos</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>ko</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>SideRefresh</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>13.0</string>
+    <key>LSUIElement</key>
+    <true/>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSDesktopFolderUsageDescription</key>
+    <string>SideRefresh는 설치 가능한 iOS 앱을 찾기 위해 데스크탑의 Xcode 프로젝트 설정과 앱 아이콘을 확인합니다.</string>
+    <key>NSDocumentsFolderUsageDescription</key>
+    <string>SideRefresh는 설치 가능한 iOS 앱을 찾기 위해 문서 폴더의 Xcode 프로젝트 설정과 앱 아이콘을 확인합니다.</string>
+    <key>NSDownloadsFolderUsageDescription</key>
+    <string>SideRefresh는 설치 가능한 iOS 앱을 찾기 위해 다운로드 폴더의 Xcode 프로젝트 설정과 앱 아이콘을 확인합니다.</string>
+</dict>
+</plist>

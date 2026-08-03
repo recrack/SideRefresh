@@ -1,0 +1,7 @@
+{
+  "name": "siderefresh-product-hunt-assets",
+  "private": true,
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

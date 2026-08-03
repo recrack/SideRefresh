@@ -1,0 +1,13 @@
+{
+  "status": "template-do-not-promote",
+  "screenshotPath": "screenshots/en/healthy.png",
+  "screenshotSHA256": "REPLACE_WITH_64_HEX_SHA256",
+  "commitSHA": "REPLACE_WITH_40_HEX_COMMIT",
+  "version": "REPLACE_WITH_PUBLIC_RELEASE_VERSION",
+  "capturedAt": "REPLACE_WITH_UTC_ISO_8601",
+  "notarizationRequestId": "REPLACE_WITH_NOTARYTOOL_UUID",
+  "appBundleSHA256": "REPLACE_WITH_64_HEX_SHA256",
+  "signatureVerified": false,
+  "notarizationVerified": false,
+  "operatorAttestation": "pending-signed-release"
+}

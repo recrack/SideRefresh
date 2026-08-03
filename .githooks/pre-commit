@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set -euo pipefail
+
+hook_directory="$(cd "$(dirname "$0")" && pwd)"
+repository_root="$(cd "$hook_directory/.." && pwd)"
+
+cd "$repository_root"
+
+echo "SideRefresh pre-commit: checking staged changes"
+git diff --cached --check
+
+has_swift_changes=false
+while IFS= read -r -d '' staged_path; do
+    case "$staged_path" in
+        *.swift | Package.swift | Package.resolved)
+            has_swift_changes=true
+            break
+            ;;
+    esac
+done < <(
+    git diff \
+        --cached \
+        --name-only \
+        --diff-filter=ACMRD \
+        -z
+)
+
+if [[ "$has_swift_changes" = false ]]; then
+    echo "SideRefresh pre-commit: no staged Swift changes; tests skipped"
+    exit 0
+fi
+
+echo "SideRefresh pre-commit: running Swift tests"
+swift test --package-path "$repository_root"

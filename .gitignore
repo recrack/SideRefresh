@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+*.py[cod]
+dist/
+build/
+*.egg-info/
+.build/
+.swiftpm/
+node_modules/
+**/xcuserdata/
+dist/

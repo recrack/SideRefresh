@@ -1,0 +1,28 @@
+:root {
+  color-scheme: dark;
+  --canvas: #07101f;
+  --canvas-soft: #0b1730;
+  --panel: rgba(17, 31, 55, .82);
+  --panel-strong: rgba(20, 37, 67, .96);
+  --line: rgba(170, 200, 255, .18);
+  --ink: #f4f7ff;
+  --muted: #a9b6cf;
+  --blue: #3878ff;
+  --cyan: #45d8ff;
+  --mint: #4be0ae;
+  --amber: #ffad4d;
+  --radius: 28px;
+  --shadow: 0 30px 90px rgba(0, 0, 0, .42);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--canvas);
+}

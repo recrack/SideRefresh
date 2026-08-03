@@ -1,0 +1,3 @@
+"NSDesktopFolderUsageDescription" = "SideRefresh는 설치 가능한 iOS 앱을 찾기 위해 데스크탑의 Xcode 프로젝트 설정과 앱 아이콘을 확인합니다.";
+"NSDocumentsFolderUsageDescription" = "SideRefresh는 설치 가능한 iOS 앱을 찾기 위해 문서 폴더의 Xcode 프로젝트 설정과 앱 아이콘을 확인합니다.";
+"NSDownloadsFolderUsageDescription" = "SideRefresh는 설치 가능한 iOS 앱을 찾기 위해 다운로드 폴더의 Xcode 프로젝트 설정과 앱 아이콘을 확인합니다.";

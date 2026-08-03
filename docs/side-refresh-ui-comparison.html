@@ -1,0 +1,2486 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SideRefresh UI 비교 — 기존 버전과 심플 버전</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #091126;
+      --canvas-soft: #111d3d;
+      --ink: #0c1836;
+      --navy: #102867;
+      --cobalt: #2764f5;
+      --cobalt-dark: #1d4ed8;
+      --cyan: #4fc8ff;
+      --mint: #2dbf9f;
+      --amber: #e99324;
+      --red: #dc4c5b;
+      --surface: #ffffff;
+      --surface-2: #f5f7fb;
+      --surface-3: #eef2f9;
+      --text: #182036;
+      --muted: #69738a;
+      --line: #dfe5ef;
+      --shadow: 0 28px 90px rgba(0, 4, 20, 0.42);
+      --radius: 15px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-width: 320px;
+      background: var(--canvas);
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% -15%, rgba(54, 117, 255, 0.6), transparent 35%),
+        radial-gradient(circle at 88% 112%, rgba(47, 213, 177, 0.25), transparent 34%),
+        linear-gradient(145deg, var(--canvas), var(--canvas-soft));
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid rgba(79, 200, 255, 0.72);
+      outline-offset: 2px;
+    }
+
+    .page-shell {
+      width: min(1440px, 100%);
+      margin: 0 auto;
+      padding: 28px clamp(14px, 3vw, 42px) 40px;
+    }
+
+    .prototype-bar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 20px;
+      color: white;
+    }
+
+    .prototype-title {
+      min-width: 0;
+    }
+
+    .prototype-title strong {
+      display: block;
+      font-size: clamp(18px, 2vw, 24px);
+      letter-spacing: -0.025em;
+    }
+
+    .prototype-title span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 13px;
+    }
+
+    .version-switcher,
+    .state-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 11px;
+      background: rgba(7, 14, 32, 0.58);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+    }
+
+    .state-switcher {
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .version-switcher button,
+    .state-switcher button {
+      min-height: 34px;
+      padding: 0 14px;
+      border: 0;
+      border-radius: 8px;
+      color: rgba(255, 255, 255, 0.68);
+      background: transparent;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .version-switcher button[aria-selected="true"],
+    .state-switcher button[aria-pressed="true"] {
+      color: white;
+      background: rgba(57, 111, 244, 0.92);
+      box-shadow: 0 4px 14px rgba(27, 76, 202, 0.42);
+    }
+
+    .prototype-note {
+      justify-self: end;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .app-window {
+      min-height: min(790px, calc(100vh - 126px));
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 18px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .window-titlebar {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 16px;
+      border-bottom: 1px solid rgba(20, 31, 57, 0.1);
+      background: rgba(247, 249, 253, 0.88);
+      backdrop-filter: blur(28px) saturate(170%);
+    }
+
+    .traffic-lights {
+      display: flex;
+      gap: 8px;
+    }
+
+    .traffic-lights i {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 0.5px rgba(0, 0, 0, 0.18);
+    }
+
+    .traffic-lights i:nth-child(1) { background: #ff5f57; }
+    .traffic-lights i:nth-child(2) { background: #febc2e; }
+    .traffic-lights i:nth-child(3) { background: #28c840; }
+
+    .window-title {
+      font-size: 13px;
+      font-weight: 650;
+      color: #3c455a;
+    }
+
+    .window-mode-label {
+      justify-self: end;
+      padding: 4px 8px;
+      border: 1px solid #d9e0eb;
+      border-radius: 999px;
+      background: white;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+    }
+
+    .prototype-screen[hidden],
+    .existing-pane[hidden] {
+      display: none !important;
+    }
+
+    .existing-layout {
+      display: grid;
+      grid-template-columns: 216px minmax(0, 1fr);
+      min-height: calc(min(790px, calc(100vh - 126px)) - 48px);
+    }
+
+    .existing-sidebar {
+      padding: 20px 12px;
+      border-right: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(232, 238, 249, 0.9), rgba(242, 245, 250, 0.96));
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 2px 9px 18px;
+    }
+
+    .app-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      object-fit: cover;
+      box-shadow: 0 5px 12px rgba(25, 65, 161, 0.25);
+    }
+
+    .sidebar-brand strong {
+      font-size: 14px;
+      letter-spacing: -0.015em;
+    }
+
+    .sidebar-brand small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .existing-nav {
+      display: grid;
+      gap: 4px;
+    }
+
+    .existing-nav button {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      min-height: 38px;
+      padding: 0 10px;
+      border: 0;
+      border-radius: 8px;
+      color: #455069;
+      background: transparent;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 580;
+    }
+
+    .existing-nav button[aria-selected="true"] {
+      color: #153d9e;
+      background: rgba(39, 100, 245, 0.12);
+    }
+
+    .nav-icon {
+      display: grid;
+      place-items: center;
+      width: 22px;
+      color: var(--cobalt);
+      font-size: 15px;
+    }
+
+    .existing-main {
+      min-width: 0;
+      background:
+        linear-gradient(135deg, rgba(39, 100, 245, 0.045), transparent 32%),
+        #fbfcfe;
+    }
+
+    .scroll-content {
+      height: calc(min(790px, calc(100vh - 126px)) - 48px);
+      overflow: auto;
+      padding: 24px;
+      scrollbar-color: #c2cad8 transparent;
+    }
+
+    .content-wrap {
+      width: min(820px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-header,
+    .simple-header {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 18px;
+    }
+
+    .header-icon {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      border-radius: 12px;
+      color: white;
+      background: linear-gradient(145deg, var(--navy), var(--cobalt));
+      box-shadow: 0 8px 18px rgba(39, 100, 245, 0.22);
+      font-weight: 750;
+    }
+
+    .section-header h1,
+    .simple-header h1 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: -0.035em;
+    }
+
+    .section-header p,
+    .simple-header p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+    }
+
+    .button {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid #cfd7e5;
+      border-radius: 8px;
+      color: #30394d;
+      background: white;
+      font-size: 12px;
+      font-weight: 650;
+      box-shadow: 0 1px 1px rgba(12, 24, 54, 0.03);
+    }
+
+    .button:hover {
+      background: #f8faff;
+    }
+
+    .button.primary {
+      border-color: var(--cobalt);
+      color: white;
+      background: linear-gradient(145deg, #356df4, #1f56df);
+      box-shadow: 0 7px 15px rgba(39, 100, 245, 0.22);
+    }
+
+    .button.primary:hover {
+      background: linear-gradient(145deg, #4077fa, #275ee7);
+    }
+
+    .button.ghost {
+      border-color: transparent;
+      background: transparent;
+      color: var(--cobalt-dark);
+    }
+
+    .button.danger {
+      color: #b42331;
+    }
+
+    .icon-button {
+      width: 34px;
+      padding: 0;
+    }
+
+    .card {
+      margin-top: 14px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 8px 24px rgba(30, 49, 88, 0.045);
+    }
+
+    .card:first-of-type {
+      margin-top: 0;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .card-title > span:first-child {
+      color: var(--cobalt);
+    }
+
+    .card-title h2 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: -0.018em;
+    }
+
+    .card-title p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.45;
+    }
+
+    .readiness-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 18px;
+      color: white;
+      border: 1px solid rgba(97, 196, 255, 0.24);
+      border-radius: 16px;
+      background: linear-gradient(120deg, var(--ink), var(--navy) 54%, #2158d9);
+      box-shadow: 0 16px 34px rgba(30, 71, 180, 0.2);
+    }
+
+    .status-orb {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: #86ffe2;
+      background: rgba(45, 191, 159, 0.18);
+      font-size: 20px;
+      font-weight: 760;
+    }
+
+    .readiness-copy h2 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+    }
+
+    .readiness-copy p {
+      margin: 5px 0 0;
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 12px;
+    }
+
+    .readiness-next {
+      margin-left: auto;
+      text-align: right;
+    }
+
+    .readiness-next small {
+      display: block;
+      color: rgba(255, 255, 255, 0.52);
+      font-size: 10px;
+    }
+
+    .readiness-next strong {
+      display: block;
+      margin-top: 3px;
+      font-size: 13px;
+    }
+
+    .endpoint-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr);
+      align-items: center;
+      gap: 10px;
+    }
+
+    .endpoint {
+      min-height: 125px;
+      padding: 13px;
+      border: 1px solid #dce4f1;
+      border-radius: 12px;
+      background: var(--surface-2);
+    }
+
+    .endpoint .eyebrow {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .endpoint-icon {
+      margin-top: 16px;
+      color: var(--cobalt);
+      font-size: 22px;
+    }
+
+    .endpoint strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    .endpoint small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.4;
+    }
+
+    .flow-arrow {
+      color: var(--cobalt);
+      text-align: center;
+      font-size: 22px;
+      font-weight: 760;
+    }
+
+    .flow-arrow small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.3;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .metric {
+      min-width: 0;
+      padding: 11px;
+      border-radius: 10px;
+      background: var(--surface-2);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 12px;
+    }
+
+    .action-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .field-box,
+    .subtle-box {
+      padding: 13px;
+      border: 1px solid #e0e6f0;
+      border-radius: 11px;
+      background: var(--surface-2);
+    }
+
+    .field-box + .field-box,
+    .subtle-box + .subtle-box {
+      margin-top: 10px;
+    }
+
+    .field-heading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .field-heading strong {
+      font-size: 13px;
+    }
+
+    .field-heading small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .field-heading .button {
+      margin-left: auto;
+    }
+
+    .data-grid {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 7px 12px;
+      margin-top: 12px;
+      font-size: 11px;
+    }
+
+    .data-grid dt {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .data-grid dd {
+      min-width: 0;
+      margin: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+    }
+
+    .success-line,
+    .warning-line,
+    .error-line {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 10px;
+      font-size: 11px;
+      font-weight: 620;
+    }
+
+    .success-line { color: #15806c; }
+    .warning-line { color: #a95b0c; }
+    .error-line { color: #b42331; }
+
+    .segmented {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3px;
+      padding: 3px;
+      border: 1px solid #d8dfeb;
+      border-radius: 9px;
+      background: #edf1f7;
+    }
+
+    .segmented button {
+      min-height: 31px;
+      border: 0;
+      border-radius: 6px;
+      color: var(--muted);
+      background: transparent;
+      font-size: 11px;
+      font-weight: 620;
+    }
+
+    .segmented button.active {
+      color: var(--text);
+      background: white;
+      box-shadow: 0 1px 4px rgba(20, 31, 57, 0.12);
+    }
+
+    .automation-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 42px;
+    }
+
+    .automation-line strong {
+      font-size: 13px;
+    }
+
+    .automation-line small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .automation-line .button,
+    .automation-line .toggle {
+      margin-left: auto;
+    }
+
+    .toggle {
+      position: relative;
+      width: 38px;
+      height: 22px;
+      border: 0;
+      border-radius: 999px;
+      background: #b9c1cf;
+    }
+
+    .toggle::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+      transition: transform 180ms ease;
+    }
+
+    .toggle.on {
+      background: var(--cobalt);
+    }
+
+    .toggle.on::after {
+      transform: translateX(16px);
+    }
+
+    details {
+      margin-top: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 11px;
+    }
+
+    summary {
+      color: #42506c;
+      font-size: 11px;
+      font-weight: 650;
+      cursor: pointer;
+    }
+
+    .simple-layout {
+      min-height: calc(min(790px, calc(100vh - 126px)) - 48px);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(39, 100, 245, 0.08), transparent 42%),
+        #fbfcfe;
+    }
+
+    .simple-scroll {
+      height: calc(min(790px, calc(100vh - 126px)) - 48px);
+      overflow: auto;
+      padding: 30px;
+    }
+
+    .simple-wrap {
+      width: min(760px, 100%);
+      margin: 0 auto;
+    }
+
+    .simple-header {
+      margin-bottom: 24px;
+    }
+
+    .simple-header .app-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+    }
+
+    .simple-header .header-actions {
+      gap: 6px;
+    }
+
+    .secondary-menu {
+      position: relative;
+    }
+
+    .secondary-menu summary {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      color: var(--text);
+      background: white;
+      cursor: pointer;
+      list-style: none;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .secondary-menu summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .secondary-menu[open] summary {
+      border-color: #9bb5f1;
+      box-shadow: 0 0 0 3px rgba(38, 94, 230, 0.12);
+    }
+
+    .secondary-menu-popover {
+      position: absolute;
+      z-index: 4;
+      top: calc(100% + 7px);
+      right: 0;
+      width: 190px;
+      padding: 6px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: 0 14px 36px rgba(21, 34, 66, 0.18);
+    }
+
+    .secondary-menu-popover button {
+      width: 100%;
+      min-height: 34px;
+      padding: 0 10px;
+      border: 0;
+      border-radius: 7px;
+      color: var(--text);
+      background: transparent;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 620;
+    }
+
+    .secondary-menu-popover button:hover {
+      background: #edf3ff;
+    }
+
+    .simple-status {
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      color: white;
+      border-radius: 18px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(95, 222, 255, 0.3), transparent 31%),
+        linear-gradient(125deg, #0c1a40, #13347d 55%, #2361ed);
+      box-shadow: 0 18px 40px rgba(30, 71, 180, 0.23);
+    }
+
+    .simple-status[data-state="needs"] {
+      background:
+        radial-gradient(circle at 88% 12%, rgba(255, 207, 95, 0.24), transparent 31%),
+        linear-gradient(125deg, #241a10, #67390f 58%, #c87113);
+      box-shadow: 0 18px 40px rgba(163, 88, 12, 0.2);
+    }
+
+    .simple-status[data-state="running"] {
+      background:
+        radial-gradient(circle at 88% 12%, rgba(118, 219, 255, 0.28), transparent 31%),
+        linear-gradient(125deg, #0b1d3c, #164b83 58%, #1686bd);
+      box-shadow: 0 18px 40px rgba(21, 105, 153, 0.22);
+    }
+
+    .simple-status[data-state="failed"] {
+      background:
+        radial-gradient(circle at 88% 12%, rgba(255, 130, 144, 0.22), transparent 31%),
+        linear-gradient(125deg, #2b1017, #6f1d2b 58%, #bc3548);
+      box-shadow: 0 18px 40px rgba(150, 31, 50, 0.2);
+    }
+
+    .status-kicker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 11px;
+      font-weight: 720;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #6ff5d8;
+      box-shadow: 0 0 0 5px rgba(111, 245, 216, 0.13);
+    }
+
+    [data-state="needs"] .status-dot {
+      background: #ffd27a;
+      box-shadow: 0 0 0 5px rgba(255, 210, 122, 0.13);
+    }
+
+    [data-state="running"] .status-dot {
+      background: #86e4ff;
+      box-shadow: 0 0 0 5px rgba(134, 228, 255, 0.13);
+    }
+
+    [data-state="failed"] .status-dot {
+      background: #ff92a0;
+      box-shadow: 0 0 0 5px rgba(255, 146, 160, 0.13);
+    }
+
+    .simple-status h2 {
+      margin: 13px 0 0;
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing: -0.045em;
+    }
+
+    .simple-status > p {
+      max-width: 510px;
+      margin: 7px 0 0;
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .simple-status .button {
+      position: absolute;
+      right: 22px;
+      bottom: 22px;
+      border-color: rgba(255, 255, 255, 0.24);
+      color: white;
+      background: rgba(255, 255, 255, 0.14);
+      backdrop-filter: blur(12px);
+    }
+
+    .target-link-card {
+      margin-top: 14px;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: white;
+      box-shadow: 0 8px 24px rgba(30, 49, 88, 0.05);
+    }
+
+    .target-link {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 84px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+    }
+
+    .target-identity {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    .identity-icon {
+      display: grid;
+      place-items: center;
+      width: 39px;
+      height: 39px;
+      flex: 0 0 auto;
+      border-radius: 10px;
+      color: var(--cobalt);
+      background: #edf3ff;
+      font-weight: 800;
+    }
+
+    .target-identity strong {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+
+    .target-identity span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .transfer-line {
+      position: relative;
+      height: 2px;
+      background: linear-gradient(90deg, #b7c8ef, var(--cobalt));
+    }
+
+    .transfer-line::after {
+      content: "›";
+      position: absolute;
+      right: -2px;
+      top: 50%;
+      color: var(--cobalt);
+      font-size: 20px;
+      font-weight: 800;
+      transform: translateY(-55%);
+    }
+
+    .transfer-line span {
+      position: absolute;
+      left: 50%;
+      top: -18px;
+      width: max-content;
+      color: var(--muted);
+      font-size: 9px;
+      transform: translateX(-50%);
+    }
+
+    .simple-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--line);
+    }
+
+    .simple-metric {
+      padding: 15px;
+      background: white;
+    }
+
+    .simple-metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .simple-metric strong {
+      display: block;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+
+    .recent-result {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      padding: 14px 4px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .result-icon {
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      color: #137861;
+      background: #e3f8f2;
+      font-weight: 800;
+    }
+
+    .recent-result strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .recent-result span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .recent-result .button {
+      margin-left: auto;
+    }
+
+    .completion-toast {
+      position: fixed;
+      z-index: 20;
+      top: 22px;
+      left: 50%;
+      padding: 11px 15px;
+      border: 1px solid #a5ddcf;
+      border-radius: 11px;
+      color: #0c5e4b;
+      background: rgba(238, 252, 248, 0.98);
+      box-shadow: 0 12px 34px rgba(18, 85, 68, 0.18);
+      transform: translateX(-50%);
+      font-size: 12px;
+      font-weight: 720;
+    }
+
+    .comparison-caption {
+      margin-top: 14px;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    dialog {
+      width: min(640px, calc(100% - 28px));
+      padding: 0;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 17px;
+      color: var(--text);
+      background: rgba(252, 253, 255, 0.98);
+      box-shadow: 0 30px 100px rgba(0, 5, 24, 0.5);
+    }
+
+    dialog::backdrop {
+      background: rgba(5, 10, 23, 0.58);
+      backdrop-filter: blur(8px);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 17px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .dialog-header h2 {
+      margin: 0;
+      font-size: 17px;
+      letter-spacing: -0.025em;
+    }
+
+    .dialog-header p {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .dialog-header .button {
+      margin-left: auto;
+    }
+
+    .dialog-body {
+      max-height: min(560px, 68vh);
+      overflow: auto;
+      padding: 18px;
+    }
+
+    .settings-group + .settings-group {
+      margin-top: 18px;
+      padding-top: 17px;
+      border-top: 1px solid var(--line);
+    }
+
+    .settings-group > h3 {
+      margin: 0 0 10px;
+      font-size: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .settings-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 45px;
+    }
+
+    .settings-row + .settings-row {
+      border-top: 1px solid #edf0f5;
+    }
+
+    .settings-row strong {
+      display: block;
+      font-size: 12px;
+    }
+
+    .settings-row small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .settings-row .button,
+    .settings-row select,
+    .settings-row .toggle {
+      margin-left: auto;
+    }
+
+    .settings-row select {
+      min-height: 30px;
+      border: 1px solid #d6ddea;
+      border-radius: 7px;
+      background: white;
+      color: var(--text);
+      font-size: 11px;
+    }
+
+    .dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      padding: 13px 18px;
+      border-top: 1px solid var(--line);
+      background: var(--surface-2);
+    }
+
+    .wizard-dialog {
+      width: min(720px, calc(100% - 28px));
+    }
+
+    .wizard-progress {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 5px;
+      padding: 15px 18px 0;
+    }
+
+    .wizard-progress span {
+      height: 4px;
+      border-radius: 999px;
+      background: #dce2ed;
+    }
+
+    .wizard-progress span.active,
+    .wizard-progress span.complete {
+      background: var(--cobalt);
+    }
+
+    .wizard-step {
+      display: none;
+      min-height: 315px;
+      padding: 28px 30px;
+    }
+
+    .wizard-step.active {
+      display: block;
+    }
+
+    .wizard-step .step-label {
+      color: var(--cobalt);
+      font-size: 10px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .wizard-step h2 {
+      margin: 9px 0 0;
+      font-size: 25px;
+      letter-spacing: -0.04em;
+    }
+
+    .wizard-step > p {
+      max-width: 520px;
+      margin: 8px 0 20px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .choice-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border: 2px solid rgba(39, 100, 245, 0.55);
+      border-radius: 13px;
+      background: #f4f7ff;
+    }
+
+    .choice-card + .choice-card {
+      margin-top: 9px;
+      border-width: 1px;
+      border-color: var(--line);
+      background: white;
+    }
+
+    .choice-card strong {
+      display: block;
+      font-size: 13px;
+    }
+
+    .choice-card small {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    .choice-card .check {
+      margin-left: auto;
+      color: var(--cobalt);
+      font-weight: 800;
+    }
+
+    .wizard-footer {
+      display: flex;
+      gap: 8px;
+      padding: 13px 18px;
+      border-top: 1px solid var(--line);
+      background: var(--surface-2);
+    }
+
+    .wizard-footer .button:last-child {
+      margin-left: auto;
+    }
+
+    @media (max-width: 800px) {
+      .page-shell {
+        padding: 14px 10px 24px;
+      }
+
+      .prototype-bar {
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+      }
+
+      .version-switcher {
+        justify-self: stretch;
+      }
+
+      .version-switcher button {
+        flex: 1;
+      }
+
+      .prototype-note {
+        display: none;
+      }
+
+      .app-window,
+      .existing-layout,
+      .simple-layout {
+        min-height: 720px;
+      }
+
+      .existing-layout {
+        grid-template-columns: 64px minmax(0, 1fr);
+      }
+
+      .sidebar-brand {
+        justify-content: center;
+        padding-inline: 0;
+      }
+
+      .sidebar-brand div,
+      .existing-nav button span:last-child {
+        display: none;
+      }
+
+      .existing-nav button {
+        justify-content: center;
+        padding: 0;
+      }
+
+      .scroll-content,
+      .simple-scroll {
+        height: 672px;
+        padding: 18px 14px;
+      }
+
+      .section-header,
+      .simple-header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .header-actions {
+        width: 100%;
+        margin-left: 0;
+      }
+
+      .endpoint-row,
+      .target-link {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-arrow,
+      .transfer-line {
+        width: 2px;
+        height: 34px;
+        margin: 0 auto;
+        background: linear-gradient(180deg, #b7c8ef, var(--cobalt));
+      }
+
+      .flow-arrow {
+        width: auto;
+        height: auto;
+        transform: rotate(90deg);
+      }
+
+      .transfer-line::after {
+        right: auto;
+        left: 50%;
+        top: auto;
+        bottom: -9px;
+        transform: translateX(-50%) rotate(90deg);
+      }
+
+      .transfer-line span {
+        left: 13px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .metric-grid,
+      .simple-metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .simple-status .button {
+        position: static;
+        margin-top: 16px;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <header class="prototype-bar">
+      <div class="prototype-title">
+        <strong>SideRefresh 인터페이스 비교</strong>
+        <span>동일한 기능을 기존 구조와 단순화 구조로 비교합니다.</span>
+      </div>
+
+      <div class="version-switcher" role="tablist" aria-label="비교할 버전">
+        <button type="button" role="tab" aria-selected="true" data-version="existing">
+          기존 4메뉴
+        </button>
+        <button type="button" role="tab" aria-selected="false" data-version="simple">
+          심플 버전
+        </button>
+      </div>
+
+      <div class="prototype-note">
+        버튼과 메뉴를 직접 눌러보세요<br>
+        로컬 비교용 인터랙티브 시안
+      </div>
+    </header>
+
+    <section class="app-window" aria-label="SideRefresh 인터페이스 미리보기">
+      <div class="window-titlebar">
+        <div class="traffic-lights" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </div>
+        <div class="window-title">SideRefresh</div>
+        <div class="window-mode-label" id="window-mode-label">기존 버전</div>
+      </div>
+
+      <section class="prototype-screen" id="existing-screen" data-screen="existing">
+        <div class="existing-layout">
+          <aside class="existing-sidebar">
+            <div class="sidebar-brand">
+              <img
+                class="app-mark"
+                src="../Assets/Brand/SideRefresh-AppIcon-1024.png"
+                alt=""
+              >
+              <div>
+                <strong>SideRefresh</strong>
+                <small>iOS 앱 자동 갱신</small>
+              </div>
+            </div>
+
+            <nav class="existing-nav" aria-label="기존 버전 메뉴">
+              <button type="button" aria-selected="true" data-existing-pane="overview">
+                <span class="nav-icon">↻</span>
+                <span>갱신 현황</span>
+              </button>
+              <button type="button" aria-selected="false" data-existing-pane="app">
+                <span class="nav-icon">▣</span>
+                <span>갱신할 앱</span>
+              </button>
+              <button type="button" aria-selected="false" data-existing-pane="iphone">
+                <span class="nav-icon">▯</span>
+                <span>iPhone</span>
+              </button>
+              <button type="button" aria-selected="false" data-existing-pane="automation">
+                <span class="nav-icon">ϟ</span>
+                <span>자동 갱신</span>
+              </button>
+            </nav>
+          </aside>
+
+          <div class="existing-main">
+            <div class="scroll-content">
+              <div class="content-wrap existing-pane" data-pane="overview">
+                <div class="section-header">
+                  <img
+                    class="app-mark"
+                    src="../Assets/Brand/SideRefresh-AppIcon-1024.png"
+                    alt=""
+                  >
+                  <div>
+                    <h1>SideRefresh</h1>
+                    <p>개인용 iOS 앱 자동 갱신 도구</p>
+                  </div>
+                  <div class="header-actions">
+                    <button class="button">설치할 앱 선택</button>
+                    <button class="button icon-button" aria-label="상태 새로고침">↻</button>
+                    <button class="button primary">설정 저장</button>
+                  </div>
+                </div>
+
+                <div class="readiness-card">
+                  <div class="status-orb">✓</div>
+                  <div class="readiness-copy">
+                    <h2>자동 갱신 켜짐</h2>
+                    <p>TrailNote를 만료 전에 다시 설치합니다.</p>
+                  </div>
+                  <div class="readiness-next">
+                    <small>다음 갱신</small>
+                    <strong>8월 2일 오전 3:00</strong>
+                  </div>
+                </div>
+
+                <article class="card">
+                  <div class="card-title">
+                    <span>→</span>
+                    <div>
+                      <h2>갱신 대상</h2>
+                      <p>Mac의 앱을 빌드·서명해 선택한 iPhone에 다시 설치합니다.</p>
+                    </div>
+                  </div>
+                  <div class="endpoint-row">
+                    <div class="endpoint">
+                      <span class="eyebrow">Mac의 앱</span>
+                      <div class="endpoint-icon">▣</div>
+                      <strong>TrailNote</strong>
+                      <small>TrailNote.xcworkspace · Release</small>
+                    </div>
+                    <div class="flow-arrow">→<small>빌드 · 서명<br>· 설치</small></div>
+                    <div class="endpoint">
+                      <span class="eyebrow">설치할 iPhone</span>
+                      <div class="endpoint-icon">▯</div>
+                      <strong>민수의 iPhone</strong>
+                      <small>iPhone 16 Pro · iOS 26.0</small>
+                    </div>
+                  </div>
+                  <div class="action-row">
+                    <button class="button">설정 테스트</button>
+                    <button class="button primary">지금 갱신</button>
+                  </div>
+                </article>
+
+                <article class="card">
+                  <div class="card-title">
+                    <span>◷</span>
+                    <div>
+                      <h2>갱신 일정과 iPhone 설치 상태</h2>
+                      <p>내부 타이머와 실제 설치 확인을 구분해 보여줍니다.</p>
+                    </div>
+                  </div>
+                  <div class="metric-grid">
+                    <div class="metric"><span>갱신 주기</span><strong>144시간 · 6일</strong></div>
+                    <div class="metric"><span>마지막 설치 성공</span><strong>오늘 14:20</strong></div>
+                    <div class="metric"><span>확인된 서명 만료</span><strong>8월 4일</strong></div>
+                    <div class="metric"><span>iPhone 직접 확인</span><strong>오늘 14:23</strong></div>
+                  </div>
+                  <details>
+                    <summary>선택한 iPhone의 실제 개발자 앱과 프로파일 보기</summary>
+                    <dl class="data-grid">
+                      <dt>설치 앱</dt><dd>TrailNote 1.3.2 (104)</dd>
+                      <dt>프로파일 UUID</dt><dd>58D1…A94F</dd>
+                      <dt>Team ID</dt><dd>ABCDE12345</dd>
+                    </dl>
+                  </details>
+                </article>
+              </div>
+
+              <div class="content-wrap existing-pane" data-pane="app" hidden>
+                <div class="section-header">
+                  <div class="header-icon">▣</div>
+                  <div>
+                    <h1>갱신할 앱</h1>
+                    <p>Mac에서 빌드해 계속 사용할 iOS 앱을 선택합니다.</p>
+                  </div>
+                  <div class="header-actions">
+                    <button class="button">설치할 앱 선택</button>
+                    <button class="button icon-button">↻</button>
+                    <button class="button primary">설정 저장</button>
+                  </div>
+                </div>
+
+                <article class="card">
+                  <div class="card-title">
+                    <span>▣</span>
+                    <div>
+                      <h2>Mac에서 설치할 앱</h2>
+                      <p>Mac에 있는 Xcode 파일에서 빌드할 iOS 앱을 선택합니다.</p>
+                    </div>
+                  </div>
+                  <div class="field-box">
+                    <div class="field-heading">
+                      <div>
+                        <strong>TrailNote</strong>
+                        <small>TrailNote.xcworkspace · ~/Projects/TrailNote</small>
+                      </div>
+                      <button class="button">다른 앱 선택…</button>
+                    </div>
+                  </div>
+                  <div class="field-box">
+                    <strong style="font-size: 11px;">정확한 빌드 대상</strong>
+                    <dl class="data-grid">
+                      <dt>Scheme</dt><dd>TrailNote</dd>
+                      <dt>결과 앱</dt><dd>TrailNote.app</dd>
+                      <dt>Bundle ID</dt><dd>dev.recrack.trailnote</dd>
+                      <dt>Team ID</dt><dd>ABCDE12345</dd>
+                    </dl>
+                  </div>
+                  <div class="field-box">
+                    <div class="field-heading">
+                      <div>
+                        <strong>Apple 팀 준비</strong>
+                        <small>사용 가능한 Personal Team 프로파일을 확인했습니다.</small>
+                      </div>
+                      <button class="button">Team 다시 찾기</button>
+                    </div>
+                    <div class="success-line">✓ ABCDE12345 · 선택한 Xcode 앱 Target</div>
+                  </div>
+                  <details>
+                    <summary>빌드 및 서명 정보 수정</summary>
+                    <dl class="data-grid">
+                      <dt>Scheme</dt><dd>TrailNote</dd>
+                      <dt>Product</dt><dd>TrailNote.app</dd>
+                      <dt>Derived Data</dt><dd>~/Library/…/SideRefresh</dd>
+                    </dl>
+                  </details>
+                </article>
+              </div>
+
+              <div class="content-wrap existing-pane" data-pane="iphone" hidden>
+                <div class="section-header">
+                  <div class="header-icon">▯</div>
+                  <div>
+                    <h1>iPhone</h1>
+                    <p>설치할 iPhone과 연결 방법을 관리합니다.</p>
+                  </div>
+                  <div class="header-actions">
+                    <button class="button">설치할 앱 선택</button>
+                    <button class="button icon-button">↻</button>
+                    <button class="button primary">설정 저장</button>
+                  </div>
+                </div>
+
+                <article class="card">
+                  <div class="card-title">
+                    <span>▯</span>
+                    <div>
+                      <h2>2. 설치 대상 iPhone</h2>
+                      <p>앞에서 선택한 Mac 앱을 받을 iPhone 한 대를 선택합니다.</p>
+                    </div>
+                  </div>
+                  <div class="field-box">
+                    <div class="field-heading">
+                      <div>
+                        <strong>Xcode가 알고 있는 iPhone</strong>
+                        <small>페어링된 iPhone 1대를 찾았습니다.</small>
+                      </div>
+                      <button class="button">Xcode에서 찾기</button>
+                    </div>
+                    <div class="success-line">✓ 민수의 iPhone에 TrailNote를 설치합니다.</div>
+                    <dl class="data-grid">
+                      <dt>이름</dt><dd>민수의 iPhone</dd>
+                      <dt>모델</dt><dd>iPhone 16 Pro</dd>
+                      <dt>iOS</dt><dd>26.0</dd>
+                      <dt>UDID</dt><dd>00008140…F290</dd>
+                    </dl>
+                  </div>
+                </article>
+
+                <article class="card">
+                  <div class="card-title">
+                    <span>⌁</span>
+                    <div>
+                      <h2>iPhone 연결 방법</h2>
+                      <p>연결 주소는 설치 대상 기기 식별자와 별개입니다.</p>
+                    </div>
+                  </div>
+                  <div class="segmented">
+                    <button class="active">자동</button>
+                    <button>Tailscale / 직접 주소</button>
+                  </div>
+                  <div class="success-line">✓ USB 또는 같은 Wi-Fi에서 Xcode 연결을 사용합니다.</div>
+                </article>
+
+                <article class="card">
+                  <div class="automation-line">
+                    <div>
+                      <strong>선택한 iPhone의 실제 개발자 앱</strong>
+                      <small>TrailNote · 1.3.2 (104) · 오늘 14:23 확인</small>
+                    </div>
+                    <button class="button">iPhone에서 모두 확인</button>
+                  </div>
+                  <details>
+                    <summary>고급 iPhone 진단 보기</summary>
+                    <p style="font-size:11px;color:var(--muted);">
+                      프로파일, 등록 기기, 인증서, Entitlements 및 전체 앱 목록
+                    </p>
+                  </details>
+                </article>
+              </div>
+
+              <div class="content-wrap existing-pane" data-pane="automation" hidden>
+                <div class="section-header">
+                  <div class="header-icon">ϟ</div>
+                  <div>
+                    <h1>자동 갱신</h1>
+                    <p>갱신 주기와 Mac의 백그라운드 실행을 관리합니다.</p>
+                  </div>
+                  <div class="header-actions">
+                    <button class="button">설치할 앱 선택</button>
+                    <button class="button icon-button">↻</button>
+                    <button class="button primary">설정 저장</button>
+                  </div>
+                </div>
+
+                <article class="card">
+                  <div class="card-title">
+                    <span>ϟ</span>
+                    <div>
+                      <h2>자동 갱신 상태</h2>
+                      <p>창을 닫아도 macOS가 정해진 때에 갱신 여부를 확인합니다.</p>
+                    </div>
+                  </div>
+                  <div class="automation-line">
+                    <div>
+                      <strong>자동 갱신 켜짐</strong>
+                      <small>다음 갱신 · 8월 2일 오전 3:00</small>
+                    </div>
+                    <button class="button danger">자동 갱신 끄기</button>
+                  </div>
+                </article>
+
+                <article class="card">
+                  <div class="card-title">
+                    <span>↻</span>
+                    <div>
+                      <h2>갱신 방식과 주기</h2>
+                      <p>TrailNote → 민수의 iPhone 설치 방식을 설정합니다.</p>
+                    </div>
+                  </div>
+                  <strong style="font-size:11px;">갱신 빌드 방식</strong>
+                  <div class="segmented" style="margin-top:8px;">
+                    <button class="active">스마트 증분 · 권장</button>
+                    <button>전체 다시 빌드</button>
+                  </div>
+                  <strong style="display:block;margin-top:14px;font-size:11px;">앱 버전 처리</strong>
+                  <div class="segmented" style="margin-top:8px;">
+                    <button class="active">버전 그대로 유지</button>
+                    <button>자동으로 다음 버전</button>
+                  </div>
+                  <div class="automation-line" style="margin-top:10px;">
+                    <div>
+                      <strong>갱신 간격</strong>
+                      <small>무료 Personal Team 만료 전에 다시 설치합니다.</small>
+                    </div>
+                    <select aria-label="갱신 간격">
+                      <option>144시간 (6일)</option>
+                    </select>
+                  </div>
+                  <details>
+                    <summary>고급 설정 · 문제 해결용</summary>
+                    <dl class="data-grid">
+                      <dt>갱신 도구</dt><dd>SideRefreshIOSRenewal</dd>
+                      <dt>임시 빌드 폴더</dt><dd>~/Library/…/SideRefresh</dd>
+                    </dl>
+                  </details>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="prototype-screen" id="simple-screen" data-screen="simple" hidden>
+        <div class="simple-layout">
+          <div class="completion-toast" id="completion-toast" role="status" aria-live="polite" hidden>
+            ✓ TrailNote 설치 성공 · 다음 갱신 일정을 계산했습니다
+          </div>
+          <div class="simple-scroll">
+            <div class="simple-wrap">
+              <div class="simple-header">
+                <img
+                  class="app-mark"
+                  src="../Assets/Brand/SideRefresh-AppIcon-1024.png"
+                  alt=""
+                >
+                <div>
+                  <h1>SideRefresh</h1>
+                  <p>내 Xcode 앱을 iPhone에서 계속 실행하세요.</p>
+                </div>
+                <div class="header-actions">
+                  <div class="state-switcher" aria-label="심플 버전 상태 예시">
+                    <button type="button" aria-pressed="true" data-simple-state="healthy">정상</button>
+                    <button type="button" aria-pressed="false" data-simple-state="checking">확인 중</button>
+                    <button type="button" aria-pressed="false" data-simple-state="stale">확인 실패</button>
+                    <button type="button" aria-pressed="false" data-simple-state="needs">설정 필요</button>
+                    <button type="button" aria-pressed="false" data-simple-state="dirty">미저장</button>
+                    <button type="button" aria-pressed="false" data-simple-state="due">갱신 필요</button>
+                    <button type="button" aria-pressed="false" data-simple-state="expired">만료됨</button>
+                    <button type="button" aria-pressed="false" data-simple-state="expiredDirty">만료 + 미저장</button>
+                    <button type="button" aria-pressed="false" data-simple-state="running">갱신 중</button>
+                    <button type="button" aria-pressed="false" data-simple-state="unverifiedInstall">설치 확인 필요</button>
+                    <button type="button" aria-pressed="false" data-simple-state="failedConnection">연결 실패</button>
+                    <button type="button" aria-pressed="false" data-simple-state="failedBuild">빌드 실패</button>
+                    <button type="button" aria-pressed="false" data-simple-state="automationOff">자동 갱신 꺼짐</button>
+                    <button type="button" aria-pressed="false" data-simple-state="permission">권한</button>
+                    <button type="button" aria-pressed="false" data-simple-state="failedUnknown">원인 불명</button>
+                  </div>
+                  <details class="secondary-menu">
+                    <summary aria-label="기타 작업">•••</summary>
+                    <div class="secondary-menu-popover">
+                      <button type="button" id="simple-renew">지금 갱신</button>
+                      <button type="button" id="simple-test">설정 확인</button>
+                      <button type="button" id="open-wizard">처음 설정 다시 보기</button>
+                    </div>
+                  </details>
+                  <button class="button icon-button" id="open-settings" aria-label="설정 열기">⚙</button>
+                </div>
+              </div>
+
+              <section class="simple-status" data-state="healthy" id="simple-status">
+                <div class="status-kicker">
+                  <span class="status-dot"></span>
+                  <span id="simple-kicker">정상 · 자동 갱신 켜짐</span>
+                </div>
+                <h2 id="simple-headline">모든 준비가 끝났습니다</h2>
+                <p id="simple-summary">
+                  다음 갱신은 8월 2일 오전 3:00입니다. SideRefresh를 열어 둘 필요가 없습니다.
+                </p>
+                <button class="button" id="simple-context-action" hidden></button>
+              </section>
+
+              <section class="target-link-card">
+                <div class="target-link">
+                  <div class="target-identity">
+                    <div class="identity-icon">▣</div>
+                    <div>
+                      <strong>TrailNote</strong>
+                      <span>Xcode 프로젝트</span>
+                    </div>
+                  </div>
+                  <div class="transfer-line"><span>빌드 · 서명 · 설치</span></div>
+                  <div class="target-identity">
+                    <div class="identity-icon">▯</div>
+                    <div>
+                      <strong id="simple-device-name">민수의 iPhone</strong>
+                      <span id="simple-device-detail">iPhone 16 Pro</span>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="simple-metrics">
+                <div class="simple-metric">
+                  <span>다음 갱신</span>
+                  <strong id="metric-next">8월 2일 03:00</strong>
+                </div>
+                <div class="simple-metric">
+                  <span>마지막 설치 성공</span>
+                  <strong>오늘 14:20</strong>
+                </div>
+                <div class="simple-metric">
+                  <span>확인된 서명 만료</span>
+                  <strong>8월 4일</strong>
+                </div>
+              </section>
+
+              <section class="recent-result">
+                <div class="result-icon" id="result-icon">✓</div>
+                <div>
+                  <strong id="result-title">최근 갱신 성공</strong>
+                  <span id="result-detail">오늘 14:20 · TrailNote 1.3.2 (104) 설치</span>
+                </div>
+                <button class="button" id="result-action">세부 정보</button>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <p class="comparison-caption" id="comparison-caption">
+      기존 버전은 모든 설정과 진단을 네 화면에 지속적으로 노출합니다.
+    </p>
+  </main>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <div class="dialog-header">
+      <div>
+        <h2 id="settings-title">SideRefresh 설정</h2>
+        <p>자주 바꾸는 항목만 먼저 보여줍니다.</p>
+      </div>
+      <button class="button icon-button" data-close-dialog="settings-dialog" aria-label="설정 닫기">×</button>
+    </div>
+    <div class="dialog-body">
+      <section class="settings-group">
+        <h3>갱신 대상</h3>
+        <div class="settings-row">
+          <div>
+            <strong>TrailNote</strong>
+            <small>~/Projects/TrailNote/TrailNote.xcworkspace</small>
+          </div>
+          <button class="button">앱 변경…</button>
+        </div>
+        <div class="settings-row">
+          <div>
+            <strong>민수의 iPhone</strong>
+            <small>iPhone 16 Pro · iOS 26.0 · Xcode 자동 연결</small>
+          </div>
+          <button class="button">iPhone 변경…</button>
+        </div>
+      </section>
+
+      <section class="settings-group">
+        <h3>자동 갱신</h3>
+        <div class="settings-row">
+          <div>
+            <strong>자동 갱신</strong>
+            <small>창을 닫아도 macOS가 정해진 때에 확인합니다.</small>
+          </div>
+          <button class="toggle on" aria-label="자동 갱신 켜짐"></button>
+        </div>
+        <div class="settings-row">
+          <div>
+            <strong>갱신 간격</strong>
+            <small>Personal Team 앱이 만료되기 전에 다시 설치합니다.</small>
+          </div>
+          <select aria-label="갱신 간격">
+            <option>6일 · 권장</option>
+            <option>5일</option>
+            <option>4일</option>
+          </select>
+        </div>
+      </section>
+
+      <section class="settings-group">
+        <details>
+          <summary>고급 설정 및 진단</summary>
+          <dl class="data-grid">
+            <dt>Scheme</dt><dd>TrailNote</dd>
+            <dt>Bundle ID</dt><dd>dev.recrack.trailnote</dd>
+            <dt>Team ID</dt><dd>ABCDE12345</dd>
+            <dt>iPhone UDID</dt><dd>00008140…F290</dd>
+            <dt>빌드 방식</dt><dd>스마트 증분</dd>
+            <dt>버전 정책</dt><dd>현재 버전 유지</dd>
+          </dl>
+          <div class="action-row">
+            <button class="button">iPhone 진단…</button>
+            <button class="button">상세 로그…</button>
+          </div>
+        </details>
+      </section>
+    </div>
+    <div class="dialog-footer">
+      <button class="button" data-close-dialog="settings-dialog">취소</button>
+      <button class="button primary" data-close-dialog="settings-dialog">변경사항 저장</button>
+    </div>
+  </dialog>
+
+  <dialog id="wizard-dialog" class="wizard-dialog" aria-labelledby="wizard-title">
+    <div class="wizard-progress" aria-hidden="true">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <section class="wizard-step active" data-step="0">
+      <span class="step-label">1 / 4 · 앱 선택</span>
+      <h2 id="wizard-title">계속 사용할 앱을 선택하세요</h2>
+      <p>Mac에서 찾은 Xcode 앱입니다. Scheme과 Bundle ID 같은 기술 정보는 자동으로 확인합니다.</p>
+      <div class="choice-card">
+        <div class="identity-icon">▣</div>
+        <div>
+          <strong>TrailNote</strong>
+          <small>TrailNote.xcworkspace · ~/Projects/TrailNote</small>
+        </div>
+        <span class="check">✓</span>
+      </div>
+      <div class="choice-card">
+        <div class="identity-icon">▣</div>
+        <div>
+          <strong>SideRefresh Sample</strong>
+          <small>예제 프로젝트 · 안전 확인 모드</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="wizard-step" data-step="1">
+      <span class="step-label">2 / 4 · iPhone 선택</span>
+      <h2>앱을 설치할 iPhone을 선택하세요</h2>
+      <p>Xcode에서 이미 페어링된 기기만 표시합니다. 전체 UDID와 연결 주소는 필요할 때만 볼 수 있습니다.</p>
+      <div class="choice-card">
+        <div class="identity-icon">▯</div>
+        <div>
+          <strong>민수의 iPhone</strong>
+          <small>iPhone 16 Pro · iOS 26.0 · 연결 가능</small>
+        </div>
+        <span class="check">✓</span>
+      </div>
+      <button class="button ghost" style="margin-top:10px;">다른 연결 방법…</button>
+    </section>
+
+    <section class="wizard-step" data-step="2">
+      <span class="step-label">3 / 4 · 첫 갱신</span>
+      <h2>대상을 확인하고 처음 갱신하세요</h2>
+      <p>설정 확인은 앱을 설치하지 않습니다. 통과한 뒤 실제 갱신을 실행하면 iPhone의 같은 앱을 새 빌드로 교체합니다.</p>
+      <div class="target-link-card" style="margin-top:0;">
+        <div class="target-link">
+          <div class="target-identity">
+            <div class="identity-icon">▣</div>
+            <div><strong>TrailNote</strong><span>현재 Xcode 소스</span></div>
+          </div>
+          <div class="transfer-line"><span>첫 갱신</span></div>
+          <div class="target-identity">
+            <div class="identity-icon">▯</div>
+            <div><strong>민수의 iPhone</strong><span>설치 대상</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="success-line">✓ 설정 형식과 Personal Team 준비 완료</div>
+    </section>
+
+    <section class="wizard-step" data-step="3">
+      <span class="step-label">4 / 4 · 자동 갱신</span>
+      <h2>이제 자동으로 유지할까요?</h2>
+      <p>6일마다 상태를 확인하고, 서명 만료가 가까우면 더 일찍 갱신합니다. SideRefresh 창을 열어 둘 필요가 없습니다.</p>
+      <div class="field-box">
+        <div class="automation-line">
+          <div>
+            <strong>자동 갱신 · 6일</strong>
+            <small>Mac이 깨어 있고 iPhone에 연결할 수 있을 때 실행</small>
+          </div>
+          <button class="toggle on" aria-label="자동 갱신 켜짐"></button>
+        </div>
+      </div>
+      <p style="font-size:10px;color:var(--muted);">나중에 켜도 됩니다. 저장한 앱과 첫 갱신 기록은 유지됩니다.</p>
+    </section>
+
+    <div class="wizard-footer">
+      <button class="button" id="wizard-close">닫기</button>
+      <button class="button" id="wizard-back" disabled>뒤로</button>
+      <button class="button primary" id="wizard-next">이 앱 선택</button>
+    </div>
+  </dialog>
+
+  <script>
+    const versionButtons = [...document.querySelectorAll("[data-version]")];
+    const screens = [...document.querySelectorAll("[data-screen]")];
+    const modeLabel = document.getElementById("window-mode-label");
+    const caption = document.getElementById("comparison-caption");
+
+    function showVersion(version) {
+      versionButtons.forEach((button) => {
+        button.setAttribute("aria-selected", String(button.dataset.version === version));
+      });
+      screens.forEach((screen) => {
+        screen.hidden = screen.dataset.screen !== version;
+      });
+      modeLabel.textContent = version === "simple" ? "심플 버전" : "기존 버전";
+      caption.textContent = version === "simple"
+        ? "심플 버전은 최초 설정을 한 번만 안내하고, 평소에는 상태·대상·다음 행동만 보여줍니다."
+        : "기존 버전은 모든 설정과 진단을 네 화면에 지속적으로 노출합니다.";
+    }
+
+    versionButtons.forEach((button) => {
+      button.addEventListener("click", () => showVersion(button.dataset.version));
+    });
+
+    const existingButtons = [...document.querySelectorAll("[data-existing-pane]")];
+    const existingPanes = [...document.querySelectorAll("[data-pane]")];
+
+    existingButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = button.dataset.existingPane;
+        existingButtons.forEach((item) => {
+          item.setAttribute("aria-selected", String(item === button));
+        });
+        existingPanes.forEach((pane) => {
+          pane.hidden = pane.dataset.pane !== target;
+        });
+      });
+    });
+
+    const stateButtons = [...document.querySelectorAll("[data-simple-state]")];
+    const simpleStatus = document.getElementById("simple-status");
+    const simpleKicker = document.getElementById("simple-kicker");
+    const simpleHeadline = document.getElementById("simple-headline");
+    const simpleSummary = document.getElementById("simple-summary");
+    const simpleAction = document.getElementById("simple-context-action");
+    const simpleDeviceName = document.getElementById("simple-device-name");
+    const simpleDeviceDetail = document.getElementById("simple-device-detail");
+    const metricNext = document.getElementById("metric-next");
+    const simpleTest = document.getElementById("simple-test");
+    const simpleRenew = document.getElementById("simple-renew");
+    const resultIcon = document.getElementById("result-icon");
+    const resultTitle = document.getElementById("result-title");
+    const resultDetail = document.getElementById("result-detail");
+    const resultAction = document.getElementById("result-action");
+    const completionToast = document.getElementById("completion-toast");
+    let completionToastTimer;
+
+    const simpleStates = {
+      healthy: {
+        kicker: "정상 · 자동 갱신 켜짐",
+        headline: "모든 준비가 끝났습니다",
+        summary: "다음 갱신은 8월 2일 오전 3:00입니다. SideRefresh를 열어 둘 필요가 없습니다.",
+        action: "",
+        actionHidden: true,
+        device: "민수의 iPhone",
+        deviceDetail: "iPhone 16 Pro",
+        next: "8월 2일 03:00",
+        test: "설정 확인",
+        testDisabled: false,
+        renew: "지금 갱신",
+        renewDisabled: false,
+        resultIcon: "✓",
+        resultTitle: "최근 갱신 성공",
+        resultDetail: "오늘 14:20 · TrailNote 1.3.2 (104) 설치",
+        resultAction: "세부 정보"
+      },
+      checking: {
+        tone: "healthy",
+        kicker: "최근 검증 정상 · 현재 확인 중",
+        headline: "모든 준비가 끝났습니다",
+        summary: "오늘 14:20에 확인한 기록을 표시하고 있습니다. iPhone과 백그라운드 상태를 새로 확인하는 중입니다.",
+        action: "",
+        actionHidden: true,
+        device: "민수의 iPhone",
+        deviceDetail: "최근 확인 오늘 14:20",
+        next: "8월 2일 03:00",
+        test: "확인 중…",
+        testDisabled: true,
+        renew: "지금 갱신",
+        renewDisabled: true,
+        resultIcon: "✓",
+        resultTitle: "마지막으로 검증된 갱신",
+        resultDetail: "오늘 14:20 · TrailNote 1.3.2 (104) · 현재 상태 확인 중",
+        resultAction: "검증 정보 보기"
+      },
+      stale: {
+        tone: "needs",
+        kicker: "확인 필요 · 최신 상태 확인 실패",
+        headline: "최근 상태를 다시 확인하세요",
+        summary: "마지막 검증 기록은 유지됩니다. 현재 iPhone 상태를 읽지 못했으므로 표시된 연결 정보가 최신이 아닐 수 있습니다.",
+        action: "상태 다시 확인",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "마지막 확인 오늘 14:20",
+        next: "8월 2일 03:00 · 최근 계산",
+        test: "상태 다시 확인",
+        testDisabled: false,
+        renew: "지금 갱신",
+        renewDisabled: true,
+        resultIcon: "✓",
+        resultTitle: "마지막으로 검증된 갱신",
+        resultDetail: "오늘 14:20 · TrailNote 1.3.2 (104) · 현재 연결 미확인",
+        resultAction: "검증 정보 보기"
+      },
+      needs: {
+        kicker: "설정 필요 · 2단계 남음",
+        headline: "설치할 iPhone을 선택하세요",
+        summary: "TrailNote는 준비됐습니다. Xcode에서 페어링된 iPhone을 선택하면 안전하게 설정을 확인할 수 있습니다.",
+        action: "iPhone 선택",
+        actionHidden: false,
+        device: "iPhone 선택 필요",
+        deviceDetail: "아직 설치 대상 없음",
+        next: "설정 후 계산",
+        test: "설정 계속",
+        testDisabled: false,
+        renew: "지금 갱신",
+        renewDisabled: true,
+        resultIcon: "·",
+        resultTitle: "아직 갱신하지 않았습니다",
+        resultDetail: "앱과 iPhone을 선택한 뒤 처음 갱신하세요.",
+        resultAction: "처음 설정"
+      },
+      dirty: {
+        tone: "needs",
+        kicker: "조치 필요 · 변경사항 미저장",
+        headline: "현재 대상 변경사항을 저장하세요",
+        summary: "저장 전까지 백그라운드 갱신은 이전 앱과 iPhone 설정을 사용합니다. 내용을 검토한 뒤 새 설정을 적용하세요.",
+        action: "변경사항 저장",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "새 대상 · 아직 미저장",
+        next: "저장 후 다시 계산",
+        test: "설정 확인",
+        testDisabled: false,
+        renew: "지금 갱신",
+        renewDisabled: true,
+        resultIcon: "✓",
+        resultTitle: "마지막 검증 기록은 이전 설정 기준입니다",
+        resultDetail: "오늘 14:20 · 저장 전까지 이전 대상의 자동 갱신 유지",
+        resultAction: "변경 내용 보기"
+      },
+      due: {
+        tone: "needs",
+        kicker: "갱신 필요 · 서명 만료까지 22시간",
+        headline: "오늘 TrailNote를 갱신하세요",
+        summary: "민수의 iPhone에 연결할 수 있습니다. 지금 갱신하면 만료 전에 새 서명으로 다시 설치합니다.",
+        action: "지금 갱신",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "연결됨 · 갱신 가능",
+        next: "지금",
+        test: "설정 확인",
+        testDisabled: false,
+        renew: "지금 갱신",
+        renewDisabled: false,
+        resultIcon: "✓",
+        resultTitle: "마지막 설치는 아직 실행 가능합니다",
+        resultDetail: "6일 전 14:20 · TrailNote 1.3.2 (104) · 내일 14:20 만료",
+        resultAction: "세부 정보"
+      },
+      expired: {
+        tone: "failed",
+        kicker: "긴급 · 서명 만료됨",
+        headline: "TrailNote를 다시 설치하세요",
+        summary: "Personal Team 서명이 만료되어 iPhone에서 앱을 열 수 없습니다. 연결된 iPhone에 새 서명으로 다시 설치합니다.",
+        action: "지금 다시 설치",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "연결됨 · 재설치 가능",
+        next: "이미 만료됨",
+        test: "설정 확인",
+        testDisabled: false,
+        renew: "지금 다시 설치",
+        renewDisabled: false,
+        resultIcon: "!",
+        resultTitle: "마지막 설치의 서명이 만료됐습니다",
+        resultDetail: "7일 전 14:20 · TrailNote 1.3.2 (104) · 오늘 14:20 만료",
+        resultAction: "만료 정보 보기"
+      },
+      expiredDirty: {
+        tone: "failed",
+        kicker: "긴급 · 서명 만료됨",
+        headline: "TrailNote를 다시 설치해야 합니다",
+        summary: "앱은 이미 만료됐습니다. 먼저 현재 앱과 iPhone 변경사항을 저장하면 새 설정으로 다시 설치할 수 있습니다.",
+        action: "변경사항 저장",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "연결됨 · 미저장 변경 있음",
+        next: "설정 저장 후 재설치",
+        test: "설정 확인",
+        testDisabled: false,
+        renew: "지금 다시 설치",
+        renewDisabled: true,
+        resultIcon: "!",
+        resultTitle: "마지막 설치의 서명이 만료됐습니다",
+        resultDetail: "만료 상태는 유지 · 저장 후 재설치 가능",
+        resultAction: "변경 내용 보기"
+      },
+      running: {
+        kicker: "갱신 중 · 4 / 8",
+        headline: "Xcode에서 앱을 빌드하고 있습니다",
+        summary: "iPhone 연결을 확인했습니다. 빌드와 서명이 끝나면 TrailNote를 설치합니다.",
+        action: "",
+        actionHidden: true,
+        device: "민수의 iPhone",
+        deviceDetail: "연결됨 · 설치 대기",
+        next: "완료 후 다시 계산",
+        test: "설정 확인",
+        testDisabled: true,
+        renew: "갱신 중…",
+        renewDisabled: true,
+        resultIcon: "↻",
+        resultTitle: "현재 단계 · Xcode 빌드·서명",
+        resultDetail: "연결 확인 완료 · 빌드 진행 중 · 취소 없이 안전하게 완료합니다.",
+        resultAction: "진행 세부 정보"
+      },
+      unverifiedInstall: {
+        tone: "needs",
+        kicker: "확인 필요 · 설치 완료",
+        headline: "서명 만료일을 확인하지 못했습니다",
+        summary: "TrailNote 설치는 끝났지만 다음 갱신 시각을 안전하게 계산할 수 없습니다. iPhone의 실제 설치 정보를 확인하세요.",
+        action: "iPhone 설치 확인",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "설치됨 · 서명 확인 필요",
+        next: "만료 확인 후 계산",
+        test: "설정 확인",
+        testDisabled: false,
+        renew: "다시 설치",
+        renewDisabled: true,
+        resultIcon: "!",
+        resultTitle: "설치는 완료됐지만 갱신은 검증되지 않았습니다",
+        resultDetail: "오늘 15:02 · TrailNote 1.3.2 (104) · 만료일 기록 없음",
+        resultAction: "설치 정보 보기"
+      },
+      failedConnection: {
+        tone: "failed",
+        kicker: "확인 필요 · 최근 갱신 실패",
+        headline: "iPhone에 연결할 수 없습니다",
+        summary: "마지막 설치는 그대로 유지됩니다. iPhone의 잠금을 해제하고 연결을 확인하세요.",
+        action: "연결 확인",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "현재 연결 안 됨",
+        next: "연결 후 다시 시도",
+        test: "상태 새로고침",
+        testDisabled: false,
+        renew: "다시 시도",
+        renewDisabled: true,
+        resultIcon: "!",
+        resultTitle: "연결 확인 단계에서 실패",
+        resultDetail: "오늘 15:02 · 마지막 성공 오늘 14:20 · 서명 만료 8월 4일",
+        resultAction: "문제 해결"
+      },
+      failedBuild: {
+        tone: "failed",
+        kicker: "확인 필요 · 빌드·서명 실패",
+        headline: "Xcode의 서명 설정을 수정하세요",
+        summary: "Personal Team 또는 Signing & Capabilities 설정을 확인해야 합니다. iPhone의 마지막 설치는 그대로 유지됩니다.",
+        action: "Xcode에서 수정",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "마지막 설치 유지 중",
+        next: "수정 후 다시 시도",
+        test: "설정 다시 확인",
+        testDisabled: false,
+        renew: "다시 시도",
+        renewDisabled: true,
+        resultIcon: "!",
+        resultTitle: "Xcode 빌드·서명 단계에서 실패",
+        resultDetail: "오늘 15:02 · 마지막 성공 오늘 14:20 · 서명 만료 8월 4일",
+        resultAction: "문제 정보 보기"
+      },
+      automationOff: {
+        tone: "needs",
+        kicker: "설정 필요 · 자동 갱신 꺼짐",
+        headline: "자동 갱신을 켜세요",
+        summary: "TrailNote는 현재 실행되지만 다음 갱신은 예약되지 않았습니다. 자동 갱신을 켜야 만료 전에 다시 설치됩니다.",
+        action: "자동 갱신 켜기",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "마지막 설치 정상",
+        next: "자동 갱신을 켠 뒤 계산",
+        test: "설정 확인",
+        testDisabled: false,
+        renew: "지금 갱신",
+        renewDisabled: false,
+        resultIcon: "✓",
+        resultTitle: "앱은 아직 실행 가능합니다",
+        resultDetail: "오늘 14:20 설치 · TrailNote 1.3.2 (104) · 8월 4일 만료",
+        resultAction: "설치 정보 보기"
+      },
+      permission: {
+        tone: "needs",
+        kicker: "조치 필요 · macOS 권한",
+        headline: "백그라운드 실행을 허용하세요",
+        summary: "수동 갱신은 가능하지만 자동 갱신을 계속하려면 macOS 로그인 항목에서 SideRefresh를 허용해야 합니다.",
+        action: "시스템 설정 열기",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "마지막 설치 정상",
+        next: "권한 허용 후 계산",
+        test: "상태 새로고침",
+        testDisabled: false,
+        renew: "지금 갱신",
+        renewDisabled: false,
+        resultIcon: "✓",
+        resultTitle: "최근 갱신 성공",
+        resultDetail: "오늘 14:20 · TrailNote 1.3.2 (104) · 서명 만료 8월 4일",
+        resultAction: "세부 정보"
+      },
+      failedUnknown: {
+        tone: "failed",
+        kicker: "확인 필요 · 원인 불명",
+        headline: "갱신을 완료하지 못했습니다",
+        summary: "저장한 대상과 마지막 설치는 유지됩니다. 문제 정보를 열어 실패 단계와 해결 방법을 확인하세요.",
+        action: "문제 정보 보기",
+        actionHidden: false,
+        device: "민수의 iPhone",
+        deviceDetail: "마지막 설치 상태 확인 필요",
+        next: "문제 확인 후 다시 시도",
+        test: "상태 새로고침",
+        testDisabled: false,
+        renew: "다시 시도",
+        renewDisabled: true,
+        resultIcon: "!",
+        resultTitle: "알 수 없는 단계에서 실패",
+        resultDetail: "오늘 15:02 · 마지막 성공 오늘 14:20 · 알려진 만료 8월 4일",
+        resultAction: "문제 정보 보기"
+      }
+    };
+
+    function setSimpleState(state) {
+      const previousState = simpleStatus.dataset.state;
+      const value = simpleStates[state];
+      simpleStatus.dataset.state = value.tone ?? state;
+      simpleKicker.textContent = value.kicker;
+      simpleHeadline.textContent = value.headline;
+      simpleSummary.textContent = value.summary;
+      simpleAction.textContent = value.action;
+      simpleAction.hidden = value.actionHidden;
+      simpleDeviceName.textContent = value.device;
+      simpleDeviceDetail.textContent = value.deviceDetail;
+      metricNext.textContent = value.next;
+      simpleTest.textContent = value.test;
+      simpleTest.disabled = value.testDisabled;
+      simpleRenew.textContent = value.renew;
+      simpleRenew.disabled = value.renewDisabled;
+      resultIcon.textContent = value.resultIcon;
+      resultTitle.textContent = value.resultTitle;
+      resultDetail.textContent = value.resultDetail;
+      resultAction.textContent = value.resultAction;
+      stateButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.simpleState === state));
+      });
+      if (previousState === "running" && state === "healthy") {
+        completionToast.hidden = false;
+        clearTimeout(completionToastTimer);
+        completionToastTimer = setTimeout(() => {
+          completionToast.hidden = true;
+        }, 2600);
+      }
+    }
+
+    stateButtons.forEach((button) => {
+      button.addEventListener("click", () => setSimpleState(button.dataset.simpleState));
+    });
+
+    const settingsDialog = document.getElementById("settings-dialog");
+    document.getElementById("open-settings").addEventListener("click", () => {
+      settingsDialog.showModal();
+    });
+
+    document.querySelectorAll("[data-close-dialog]").forEach((button) => {
+      button.addEventListener("click", () => {
+        document.getElementById(button.dataset.closeDialog).close();
+      });
+    });
+
+    document.querySelectorAll(".toggle").forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        toggle.classList.toggle("on");
+        toggle.setAttribute(
+          "aria-label",
+          toggle.classList.contains("on") ? "자동 갱신 켜짐" : "자동 갱신 꺼짐"
+        );
+      });
+    });
+
+    const wizardDialog = document.getElementById("wizard-dialog");
+    const wizardSteps = [...wizardDialog.querySelectorAll(".wizard-step")];
+    const wizardProgress = [...wizardDialog.querySelectorAll(".wizard-progress span")];
+    const wizardBack = document.getElementById("wizard-back");
+    const wizardNext = document.getElementById("wizard-next");
+    let wizardIndex = 0;
+    const wizardActions = ["이 앱 선택", "이 iPhone 선택", "첫 갱신 실행", "완료"];
+
+    function renderWizard() {
+      wizardSteps.forEach((step, index) => {
+        step.classList.toggle("active", index === wizardIndex);
+      });
+      wizardProgress.forEach((bar, index) => {
+        bar.classList.toggle("active", index === wizardIndex);
+        bar.classList.toggle("complete", index < wizardIndex);
+      });
+      wizardBack.disabled = wizardIndex === 0;
+      wizardNext.textContent = wizardActions[wizardIndex];
+    }
+
+    document.getElementById("open-wizard").addEventListener("click", () => {
+      wizardIndex = 0;
+      renderWizard();
+      wizardDialog.showModal();
+    });
+
+    document.getElementById("wizard-close").addEventListener("click", () => {
+      wizardDialog.close();
+    });
+
+    wizardBack.addEventListener("click", () => {
+      wizardIndex = Math.max(0, wizardIndex - 1);
+      renderWizard();
+    });
+
+    wizardNext.addEventListener("click", () => {
+      if (wizardIndex === wizardSteps.length - 1) {
+        wizardDialog.close();
+        setSimpleState("healthy");
+        return;
+      }
+      wizardIndex += 1;
+      renderWizard();
+    });
+
+    document.getElementById("result-action").addEventListener("click", () => {
+      settingsDialog.showModal();
+    });
+
+    document.getElementById("simple-context-action").addEventListener("click", () => {
+      settingsDialog.showModal();
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        if (wizardDialog.open) wizardDialog.close();
+        if (settingsDialog.open) settingsDialog.close();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+set -euo pipefail
+
+hook_directory="$(cd "$(dirname "$0")" && pwd)"
+repository_root="$(cd "$hook_directory/.." && pwd)"
+
+cd "$repository_root"
+
+echo "SideRefresh pre-push: testing public source validator"
+Scripts/test-public-source-validator.sh
+
+echo "SideRefresh pre-push: validating public source"
+Scripts/validate-public-source.sh
+
+echo "SideRefresh pre-push: running Python tests"
+python3 -m pytest
+
+echo "SideRefresh pre-push: running Swift tests"
+swift test --package-path "$repository_root"
+
+echo "SideRefresh pre-push: validating iOS samples"
+Scripts/validate-samples.sh
+
+echo "SideRefresh pre-push: validating Headless tools"
+Scripts/validate-headless.sh
+
+echo "SideRefresh pre-push: validating Product Hunt assets"
+Scripts/validate-product-hunt-assets.sh
+
+echo "SideRefresh pre-push: validating public site"
+Scripts/validate-product-hunt-site.sh
+
+echo "SideRefresh pre-push: testing public site validator"
+Scripts/test-public-site-validator.sh
+
+echo "SideRefresh pre-push: all checks passed"

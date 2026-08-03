@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SideRefresh — 让个人 iOS App 持续运行</title>
+  <meta name="description" content="SideRefresh 会在免费的 Xcode Personal Team 签名到期前，重新构建并安装一个由编码智能体创建的 iOS App。">
+  <meta property="og:title" content="SideRefresh">
+  <meta property="og:description" content="让编码智能体构建的 iOS App 持续运行在你自己的 iPhone 上。">
+  <meta property="og:image" content="https://recrack.github.io/SideRefresh/product-hunt/assets/social-preview-public-1280x640.png">
+  <meta property="og:image:alt" content="从已验证安装到签名到期的 SideRefresh 刷新流程">
+  <meta property="og:locale" content="zh_CN">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://recrack.github.io/SideRefresh/zh-cn/">
+  <link rel="alternate" hreflang="en" href="https://recrack.github.io/SideRefresh/">
+  <link rel="alternate" hreflang="ko" href="https://recrack.github.io/SideRefresh/ko/">
+  <link rel="alternate" hreflang="ja" href="https://recrack.github.io/SideRefresh/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://recrack.github.io/SideRefresh/zh-cn/">
+  <link rel="alternate" hreflang="x-default" href="https://recrack.github.io/SideRefresh/">
+  <link rel="icon" href="../product-hunt/assets/thumbnail-240.png">
+  <link rel="stylesheet" href="../site/theme.css"><link rel="stylesheet" href="../site/page.css">
+  <link rel="stylesheet" href="../site/components.css"><link rel="stylesheet" href="../site/responsive.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">跳到正文</a>
+  <header class="site-header"><div class="header-row wrap">
+    <a class="brand" href="../" aria-label="SideRefresh 首页"><img src="../product-hunt/assets/thumbnail-240.png" width="36" height="36" alt=""><span>SideRefresh</span></a>
+    <nav class="product-nav" aria-label="产品"><a href="#how">工作原理</a><a href="#requirements">使用要求</a><a href="#limits">首发范围</a><a href="https://github.com/recrack/SideRefresh">GitHub</a></nav>
+    <nav class="language-nav" aria-label="语言"><ul><li><a href="../"><span lang="en">English</span></a></li><li><a href="../ko/"><span lang="ko">한국어</span></a></li><li><a href="../ja/"><span lang="ja">日本語</span></a></li><li><a href="../zh-cn/" aria-current="page"><span lang="zh-Hans">简体中文</span></a></li></ul></nav>
+  </div></header>
+  <main id="content" tabindex="-1">
+    <section class="hero wrap">
+      <div class="hero-copy"><p class="hero-note utility">开源 · Mac + Xcode · 一个 App + 一台 iPhone</p><h1>让编码智能体构建的 iOS App 持续运行在你自己的 iPhone 上。</h1><p class="lead">SideRefresh 会从你拥有的 Xcode 项目中重新构建、签名并安装一个 App，在免费的 Personal Team 签名到期前完成刷新。源代码始终留在你的 Mac 上。</p><div class="actions"><a class="button primary" href="https://github.com/recrack/SideRefresh">查看源代码</a><a class="button secondary" href="https://github.com/recrack/SideRefresh/releases">查看发布状态</a></div><p class="release-note">完成 Developer ID 签名、公证和发布验证后，将提供已签名的 Mac 构建版本。</p></div>
+      <figure class="product-view"><div class="product-frame"><img src="../product-hunt/assets/screenshots/en/healthy.png" width="2080" height="1400" alt="SideRefresh 界面显示已选择的个人 App、iPhone 和下次刷新时间"></div><figcaption>示例预览 · 合成数据。应用界面目前支持英语和韩语。</figcaption></figure>
+    </section>
+    <section class="renewal wrap" aria-labelledby="renewal-title"><div class="renewal-heading"><p class="utility">Personal Team 签名周期</p><p class="muted" id="renewal-title">SideRefresh 根据经过验证的安装与签名到期证据安排下次刷新，而不是只看命令是否成功。</p></div><ol class="evidence-track"><li><span class="utility">最近验证</span><strong>App 已安装</strong><small>从已安装的 App 读取签名到期时间</small></li><li><span class="utility">下次刷新</span><strong>到期前执行</strong><small>Mac 处于唤醒状态且 iPhone 可以连接时执行</small></li><li><span class="utility">签名到期</span><strong>最后期限</strong><small>必须重新构建、签名并安装 App 的时间</small></li></ol></section>
+    <section class="section wrap" id="how"><div class="section-heading"><p class="utility">工作原理</p><h2>在签名到期前，重复执行正常的 Xcode 安装流程。</h2></div><ol class="process"><li><h3>选择自己的项目</h3><p>选择一个你拥有的 Xcode 项目或工作区，以及已经配对的 iPhone。</p></li><li><h3>构建、签名并安装</h3><p>SideRefresh 使用已经安装的 Xcode 和免费的 Personal Team，不会收集 Apple Account 密码。</p></li><li><h3>验证并安排刷新</h3><p>记录已安装 App 的签名到期时间，并确定下一次安全刷新时间。</p></li></ol></section>
+    <section class="section wrap split" id="requirements"><div class="block"><p class="utility hero-note">使用要求</p><h2>需要真实的 Apple 开发环境。</h2><ul class="fact-list"><li>安装了受支持 Xcode 版本的 Mac</li><li>Apple Account 和免费的 Personal Team</li><li>你拥有的原生 iOS 项目</li><li>已开启开发者模式、完成配对且可以连接的 iPhone</li><li>在计划刷新时处于唤醒状态的 Mac</li></ul></div><div class="block"><p class="utility hero-note">本地运行</p><h2>项目始终留在你的 Mac 上。</h2><ul class="fact-list"><li>不收集 Apple Account 密码</li><li>不上传源代码</li><li>不使用第三方 IPA 商店</li><li>使用 Apple 正常的 Xcode 签名和设备工具</li><li>采用 MIT 许可证、可供检查的源代码</li></ul></div></section>
+    <section class="section wrap" id="limits"><div class="scope-grid"><div class="scope-copy"><p class="utility hero-note">首个版本范围</p><h2>有意保持小范围。</h2><p>SideRefresh 从一个个人 App 和一台 iPhone 开始。首个版本不用于安装他人的 IPA、管理团队或设备群、不支持脱离 Xcode 使用，也不承诺仅通过蜂窝网络完成刷新。</p><ul class="limit-list"><li>一个已选择的 App 和一台已选择的 iPhone</li><li>USB 或 Xcode 已经可以使用的网络路径</li><li>实验性连接功能会被明确标注</li></ul></div><div class="language-facts"><p><strong>产品页面：</strong>English · 한국어 · 日本語 · 简体中文</p><p><strong>应用界面语言：英语、韩语</strong></p></div></div></section>
+  </main>
+  <footer class="site-footer"><div class="footer-row wrap"><div class="footer-brand"><strong>SideRefresh</strong><p>采用 MIT 许可证的开源项目。</p></div><nav class="footer-links" aria-label="页脚"><a href="https://github.com/recrack/SideRefresh">源代码</a><a href="https://github.com/recrack/SideRefresh/security">安全</a><a href="https://github.com/recrack/SideRefresh/blob/master/LICENSE">MIT 许可证</a></nav><p class="legal">本项目与 Apple Inc. 无关联，也未获得其认可。Apple、Mac、iPhone、macOS 和 Xcode 是 Apple Inc. 的商标。</p></div></footer>
+</body>
+</html>

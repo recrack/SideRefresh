@@ -1,0 +1,37 @@
+{
+  "BackendState": "Running",
+  "Self": {
+    "ID": "sample-mac-id",
+    "HostName": "studio-mac",
+    "DNSName": "studio-mac.example.ts.net.",
+    "OS": "macOS",
+    "TailscaleIPs": [
+      "100.64.0.1",
+      "fd7a:115c:a1e0::1"
+    ],
+    "Online": true
+  },
+  "Peer": {
+    "nodekey:sample-iphone": {
+      "ID": "sample-iphone-id",
+      "HostName": "personal-iphone",
+      "DNSName": "personal-iphone.example.ts.net.",
+      "OS": "iOS",
+      "TailscaleIPs": [
+        "100.64.0.2",
+        "fd7a:115c:a1e0::2"
+      ],
+      "Online": true
+    },
+    "nodekey:sample-server": {
+      "ID": "sample-server-id",
+      "HostName": "home-server",
+      "DNSName": "home-server.example.ts.net.",
+      "OS": "linux",
+      "TailscaleIPs": [
+        "100.64.0.3"
+      ],
+      "Online": false
+    }
+  }
+}

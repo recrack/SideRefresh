@@ -1,0 +1,38 @@
+@media (max-width: 760px) {
+  .prototype-shell { padding: 16px 10px 100px; }
+  .prototype-header { align-items: stretch; flex-direction: column; gap: 14px; }
+  .state-control { width: 100%; }
+  .mac-window { min-height: 720px; border-radius: 14px; }
+  .titlebar { grid-template-columns: 1fr auto; }
+  .titlebar > span { display: none; }
+  .assistant-layout, .explicit-layout { padding: 18px; }
+  .assistant-sheet { padding: 20px 16px; }
+  .dual-grid { grid-template-columns: 1fr; }
+  .identity-card, .route-card { min-height: auto; }
+  .hybrid-panel { grid-template-columns: 1fr; gap: 13px; }
+  .hybrid-panel .connection-rail { grid-template-columns: 52px minmax(70px, 1fr) 52px; gap: 6px; }
+  .page-heading { align-items: stretch; flex-direction: column; }
+  .journey-layout { grid-template-columns: 1fr; }
+  .journey-nav { display: block; padding: 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .journey-nav h2 { margin-bottom: 14px; }
+  .step-list { grid-template-columns: repeat(3, 1fr); }
+  .step-list li { grid-template-columns: 1fr; justify-items: center; padding: 7px 3px; text-align: center; }
+  .journey-nav .button { display: none; }
+  .journey-main { padding: 22px 18px; }
+  .instruction-strip { grid-template-columns: 1fr; }
+  .prototype-switcher { grid-template-columns: 42px minmax(170px, auto) 42px; }
+  .connection-rail { grid-template-columns: 64px 1fr 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+}
+
+@media (prefers-contrast: more) {
+  :root { --line: #7b8494; --muted: #3f4858; }
+  .card, .assistant-sheet, .candidate { border-width: 2px; }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .card, .assistant-sheet { background: #fff; }
+}

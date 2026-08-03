@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 2,
+  "updated": "2026-08-03",
+  "status": "draft-pre-release",
+  "releaseGate": "signed-notarized-release",
+  "canonicalIcon": "Assets/Brand/SideRefresh-AppIcon-1024.png",
+  "sampleApp": {
+    "project": "Examples/SideRefreshSampleApp/SideRefreshSample.xcodeproj",
+    "scheme": "SideRefreshSample",
+    "product": "SideRefresh Sample",
+    "bundleIdentifier": "io.github.siderefresh.sample",
+    "marketingVersion": "1.0",
+    "buildVersion": "1",
+    "icon": "Examples/SideRefreshSampleApp/SideRefreshSample/Assets.xcassets/AppIcon.appiconset/SideRefresh-AppIcon.png",
+    "fixtureSource": "Sources/SideRefreshAppPresentation/SimpleWorkspaceFixture+Input.swift"
+  },
+  "outputs": [
+    {"path":"thumbnail-240.png","width":240,"height":240,"status":"reusable","source":"Assets/Brand/SideRefresh-AppIcon-1024.png","replacementGate":null},
+    {"path":"gallery/01-agent-builds.png","width":1270,"height":760,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=gallery-01","replacementGate":"signed-release-candidate-capture"},
+    {"path":"gallery/02-expiration-cycle.png","width":1270,"height":760,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=gallery-02","replacementGate":"signed-release-candidate-capture"},
+    {"path":"gallery/03-simple-workspace.png","width":1270,"height":760,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=gallery-03","replacementGate":"signed-release-candidate-capture"},
+    {"path":"gallery/04-xcode-flow.png","width":1270,"height":760,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=gallery-04","replacementGate":"signed-release-candidate-capture"},
+    {"path":"gallery/05-local-and-private.png","width":1270,"height":760,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=gallery-05","replacementGate":"signed-release-candidate-capture"},
+    {"path":"gallery/06-open-source.png","width":1270,"height":760,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=gallery-06","replacementGate":"signed-release-candidate-capture"},
+    {"path":"social-preview-1280x640.png","width":1280,"height":640,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=social-preview","replacementGate":"signed-release-candidate-capture"},
+    {"path":"social-preview-public-1280x640.png","width":1280,"height":640,"status":"reusable","source":"docs/product-hunt/assets/source/public-social-preview-generation.md","replacementGate":null},
+    {"path":"demo/youtube-thumbnail-1280x720.png","width":1280,"height":720,"status":"draft","source":"docs/product-hunt/assets/source/index.html?asset=youtube-thumbnail","replacementGate":"signed-release-candidate-capture"}
+  ],
+  "fixtureScreenshots": [
+    {"path":"screenshots/en/healthy.png","width":2080,"height":1400,"status":"draft-fixture","source":"Scripts/capture-product-hunt-ui.sh#healthy","captureKind":"debug-fixture","sha256":null,"releaseEvidence":null,"replacementGate":"signed-release-candidate-capture"},
+    {"path":"screenshots/en/initial-setup.png","width":2080,"height":1400,"status":"draft-fixture","source":"Scripts/capture-product-hunt-ui.sh#initial-setup","captureKind":"debug-fixture","sha256":null,"releaseEvidence":null,"replacementGate":"signed-release-candidate-capture"},
+    {"path":"screenshots/en/dirty-target.png","width":2080,"height":1400,"status":"draft-fixture","source":"Scripts/capture-product-hunt-ui.sh#dirty-target","captureKind":"debug-fixture","sha256":null,"releaseEvidence":null,"replacementGate":"signed-release-candidate-capture"},
+    {"path":"screenshots/en/due.png","width":2080,"height":1400,"status":"draft-fixture","source":"Scripts/capture-product-hunt-ui.sh#due","captureKind":"debug-fixture","sha256":null,"releaseEvidence":null,"replacementGate":"signed-release-candidate-capture"},
+    {"path":"screenshots/en/running.png","width":2080,"height":1400,"status":"draft-fixture","source":"Scripts/capture-product-hunt-ui.sh#running","captureKind":"debug-fixture","sha256":null,"releaseEvidence":null,"replacementGate":"signed-release-candidate-capture"},
+    {"path":"screenshots/en/failure-with-evidence.png","width":2080,"height":1400,"status":"draft-fixture","source":"Scripts/capture-product-hunt-ui.sh#failure-with-evidence","captureKind":"debug-fixture","sha256":null,"releaseEvidence":null,"replacementGate":"signed-release-candidate-capture"}
+  ],
+  "inputs": [
+    {"path":"backgrounds/renewal-loop-source.png","width":1536,"height":1024,"status":"selected-source","source":"docs/product-hunt/assets/source/image-generation.md","replacementGate":null}
+  ],
+  "privacy": {
+    "usesSyntheticData": true,
+    "containsPrivateDeviceIdentifiers": false,
+    "containsPrivatePaths": false,
+    "containsAccountOrSigningData": false
+  },
+  "finalization": {
+    "publicReleaseCapturePaths": ["screenshots/en/healthy.png"],
+    "removeDraftLabel": false,
+    "replaceFixtureScreenshotsWithReleaseCandidateCaptures": true,
+    "recheckLiveProductHuntForm": true
+  }
+}

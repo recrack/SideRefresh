@@ -1,0 +1,81 @@
+# Changelog
+
+All notable changes will be documented here.
+
+The format is based on Keep a Changelog. SideRefresh does not yet make
+compatibility guarantees under semantic versioning.
+
+## Unreleased
+
+### Added
+
+- Added explicit Desktop, Documents, Downloads, and custom-folder access
+  status to the project picker.
+- Added repository-managed pre-commit and pre-push validation hooks with a
+  one-time installer.
+
+### Changed
+
+- Standardized the product and search-oriented description as
+  **SideRefresh — Automatic iOS App Refresh**.
+- Standardized Swift modules, app and helper executables, CLI/MCP commands,
+  sample targets, resources, and documentation on the SideRefresh name.
+- Finalized the pre-release app identifier as `io.github.siderefresh.macos`
+  and the LaunchAgent identifier as `io.github.siderefresh.renewal`.
+- Standardized Application Support, UserDefaults, cache, build-setting, and
+  progress-protocol keys on SideRefresh.
+- Developer ID builds use `SIDEREFRESH_SIGNING_IDENTITY`.
+- Improved project discovery with batched results, cached candidates, a
+  persistent selection action, and explicit folder-access guidance.
+- Preserved Xcode's resolved Products layout and exact app path for
+  Flutter/CocoaPods resource builds.
+- Limited GitHub Actions to pull-request validation and added Headless/MCP
+  checks, avoiding a duplicate macOS run after merge.
+
+## 0.1.0 - 2026-07-28
+
+### Added
+
+- Native SwiftUI menu-bar app and settings.
+- Scheduled renewal Agent using `SMAppService`.
+- Xcode project/workspace discovery with Spotlight and bounded scanning.
+- Dry-run-first Xcode build and CoreDevice installation helper.
+- Bundle ID verification before installation.
+- Automatic, Tailscale, and custom-address connection guidance.
+- Native iOS sample app and non-mutating validation script.
+- SideRefresh brand mark and macOS application icon.
+- App-aware version policies that either keep the current version or advance
+  from the newer project and installed-app versions.
+- Headless CLI, LaunchAgent installation, and an MCP server for status,
+  configuration, dry-run, and explicitly confirmed renewal commands.
+- Sample-app renewal evidence that distinguishes an update install from a
+  fresh installation.
+
+### Changed
+
+- Product, package, executable, storage, bundle, and Agent identities now use
+  SideRefresh exclusively.
+- Automatic project discovery now shows only containers with a detectable iOS
+  application target. Manual project/workspace selection remains available
+  for uncommon generated layouts.
+- Project results show iOS application target names and recommend a Workspace
+  only when it actually references the matching Project.
+- Mixed-platform projects identify iOS targets from target-specific build
+  configurations, and nested Workspace groups resolve project references
+  relative to their parent groups.
+- The settings and project-picker windows open at a roomier Mac-friendly size,
+  and the settings window restores the user's last resized frame.
+- Development builds start with fresh settings and background registration.
+- Developer ID builds use `SIDEREFRESH_SIGNING_IDENTITY`. A real identity enables
+  hardened runtime and secure timestamps; an unset value remains an ad-hoc
+  local build.
+- The menu-bar popover is prepared against its real status item, reducing
+  click-to-visible latency without removing menu actions.
+- Release packaging excludes local Xcode sample build products.
+
+### Known limitations
+
+- One renewal target per configuration.
+- Initial Xcode/CoreDevice pairing and unknown-IP registration remain manual.
+- Cellular-only CoreDevice installation over Tailscale is not yet verified.
+- Binary releases are not Developer ID signed or notarized yet.

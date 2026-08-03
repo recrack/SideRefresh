@@ -1,0 +1,30 @@
+{
+  "command": {
+    "arguments": [
+      "--dry-run",
+      "--version-policy",
+      "keep",
+      "--source-marketing-version",
+      "1.0",
+      "--source-build-version",
+      "1",
+      "--container",
+      "/ABSOLUTE/PATH/TO/ios-dev/Examples/SideRefreshSampleApp/SideRefreshSample.xcodeproj",
+      "--scheme",
+      "SideRefreshSample",
+      "--team",
+      "REPLACE_WITH_TEAM_ID",
+      "--bundle-id",
+      "io.github.siderefresh.sample.replace-me",
+      "--product",
+      "SideRefreshSample",
+      "--device",
+      "REPLACE_WITH_DEVICE_UDID",
+      "--derived-data",
+      "/ABSOLUTE/PATH/TO/SideRefreshDerivedData"
+    ],
+    "executable": "/ABSOLUTE/PATH/TO/SideRefreshIOSRenewal"
+  },
+  "renew_every_hours": 144,
+  "state_file": "/ABSOLUTE/PATH/TO/side-refresh-sample-state.json"
+}

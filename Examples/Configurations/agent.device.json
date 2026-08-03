@@ -1,0 +1,26 @@
+{
+  "command": {
+    "arguments": [
+      "--execute",
+      "--version-policy",
+      "keep",
+      "--container",
+      "/ABSOLUTE/PATH/TO/YOUR_APP.xcodeproj",
+      "--scheme",
+      "YOUR_SCHEME",
+      "--team",
+      "YOUR_PERSONAL_TEAM_ID",
+      "--bundle-id",
+      "YOUR_UNIQUE_BUNDLE_IDENTIFIER",
+      "--product",
+      "YOUR_APP_PRODUCT_NAME",
+      "--device",
+      "YOUR_PAIRED_DEVICE_UDID",
+      "--derived-data",
+      "/ABSOLUTE/PATH/TO/SideRefreshDerivedData"
+    ],
+    "executable": "/ABSOLUTE/PATH/TO/SideRefreshIOSRenewal"
+  },
+  "renew_every_hours": 144,
+  "state_file": "/ABSOLUTE/PATH/TO/side-refresh-device-state.json"
+}

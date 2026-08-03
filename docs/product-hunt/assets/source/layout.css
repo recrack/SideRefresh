@@ -1,0 +1,86 @@
+#canvas {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 80% 90%, rgba(55, 112, 255, .24), transparent 34%),
+    linear-gradient(135deg, var(--canvas), var(--canvas-soft));
+}
+
+.art-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .58;
+  mix-blend-mode: screen;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #07101f 0%, rgba(7, 16, 31, .96) 35%,
+    rgba(7, 16, 31, .15) 72%, rgba(7, 16, 31, .32) 100%);
+}
+
+.topbar {
+  position: absolute;
+  top: 40px;
+  left: 54px;
+  right: 54px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 22px;
+  font-weight: 720;
+  letter-spacing: -.02em;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  box-shadow: 0 10px 28px rgba(40, 126, 255, .3);
+}
+
+.stage {
+  position: absolute;
+  z-index: 2;
+  inset: 126px 54px 62px;
+  display: grid;
+  grid-template-columns: 43% 57%;
+  align-items: center;
+}
+
+.copy { align-self: center; padding-right: 34px; }
+
+.visual {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer {
+  position: absolute;
+  z-index: 3;
+  left: 54px;
+  right: 54px;
+  bottom: 25px;
+  display: flex;
+  justify-content: space-between;
+  color: #71809c;
+  font-size: 12px;
+  letter-spacing: .01em;
+}

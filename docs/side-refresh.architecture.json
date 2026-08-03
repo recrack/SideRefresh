@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "SideRefresh Runtime Architecture",
+    "subtitle": "Implemented macOS renewal path and its explicit system boundaries",
+    "output": "side-refresh-architecture.html",
+    "quality_profile": "standard",
+    "views": [
+      {
+        "id": "configuration",
+        "label": "Configuration and approval",
+        "focus": ["user", "menu-app", "agent-config", "service-management", "launchd"],
+        "note": "The user saves a renewal command and separately approves background registration."
+      },
+      {
+        "id": "renewal",
+        "label": "Scheduled renewal",
+        "focus": ["launchd", "agent", "renewal-engine", "renewal-state", "ios-helper", "xcode-tools", "iphone"],
+        "note": "A short-lived Agent checks whether the command is due before building, signing, and installing."
+      },
+      {
+        "id": "tailnet-preflight",
+        "label": "Tailnet preflight",
+        "focus": ["menu-app", "agent", "tailnet-resolver", "tailscale", "iphone"],
+        "note": "The user selects a stable peer in the UI. A due Agent run resolves it again without changing Tailscale."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "user",
+      "type": "external",
+      "label": "User",
+      "sublabel": "explicit approval",
+      "pos": [40, 290],
+      "size": [120, 64]
+    },
+    {
+      "id": "menu-app",
+      "type": "frontend",
+      "label": "SideRefresh App",
+      "sublabel": "SwiftUI menu bar",
+      "pos": [230, 290],
+      "size": [140, 64]
+    },
+    {
+      "id": "agent-config",
+      "type": "database",
+      "label": "Agent Config",
+      "sublabel": "Application Support",
+      "pos": [440, 290],
+      "size": [140, 64],
+      "tag": "mode 0600"
+    },
+    {
+      "id": "agent",
+      "type": "backend",
+      "label": "SideRefresh Agent",
+      "sublabel": "short-lived process",
+      "pos": [650, 290],
+      "size": [140, 64]
+    },
+    {
+      "id": "renewal-engine",
+      "type": "backend",
+      "label": "Renewal Engine",
+      "sublabel": "due check + lock",
+      "pos": [860, 290],
+      "size": [140, 64]
+    },
+    {
+      "id": "ios-helper",
+      "type": "backend",
+      "label": "iOS Helper",
+      "sublabel": "build/install plan",
+      "pos": [1070, 290],
+      "size": [140, 64],
+      "tag": "execute is explicit"
+    },
+    {
+      "id": "xcode-tools",
+      "type": "external",
+      "label": "Xcode Tools",
+      "sublabel": "xcodebuild + devicectl",
+      "pos": [1280, 290],
+      "size": [150, 64]
+    },
+    {
+      "id": "iphone",
+      "type": "external",
+      "label": "Personal iPhone",
+      "sublabel": "signed app target",
+      "pos": [1500, 290],
+      "size": [140, 64]
+    },
+    {
+      "id": "service-management",
+      "type": "security",
+      "label": "SMAppService",
+      "sublabel": "registration approval",
+      "pos": [230, 100],
+      "size": [140, 64]
+    },
+    {
+      "id": "launchd",
+      "type": "cloud",
+      "label": "launchd",
+      "sublabel": "calendar trigger",
+      "pos": [650, 100],
+      "size": [140, 64]
+    },
+    {
+      "id": "renewal-state",
+      "type": "database",
+      "label": "Renewal State",
+      "sublabel": "last success",
+      "pos": [860, 480],
+      "size": [140, 64]
+    },
+    {
+      "id": "tailnet-resolver",
+      "type": "backend",
+      "label": "Tailnet Resolver",
+      "sublabel": "Node ID + DNS",
+      "pos": [860, 100],
+      "size": [140, 64]
+    },
+    {
+      "id": "tailscale",
+      "type": "external",
+      "label": "Tailscale",
+      "sublabel": "status --json",
+      "pos": [1070, 100],
+      "size": [150, 64],
+      "tag": "read only"
+    }
+  ],
+  "connections": [
+    {
+      "id": "user-configures-app",
+      "from": "user",
+      "to": "menu-app",
+      "variant": "emphasis"
+    },
+    {
+      "id": "app-saves-config",
+      "from": "menu-app",
+      "to": "agent-config",
+      "label": "atomic save"
+    },
+    {
+      "id": "app-registers-agent",
+      "from": "menu-app",
+      "to": "service-management",
+      "label": "confirm",
+      "variant": "security",
+      "fromSide": "top",
+      "toSide": "bottom"
+    },
+    {
+      "id": "service-enables-launchd",
+      "from": "service-management",
+      "to": "launchd",
+      "label": "register",
+      "variant": "security"
+    },
+    {
+      "id": "launchd-starts-agent",
+      "from": "launchd",
+      "to": "agent",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "agent-loads-config",
+      "from": "agent-config",
+      "to": "agent"
+    },
+    {
+      "id": "agent-checks-renewal",
+      "from": "agent",
+      "to": "renewal-engine",
+      "variant": "emphasis"
+    },
+    {
+      "id": "engine-records-success",
+      "from": "renewal-engine",
+      "to": "renewal-state",
+      "label": "success only",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelAt": [930, 368]
+    },
+    {
+      "id": "engine-runs-helper",
+      "from": "renewal-engine",
+      "to": "ios-helper",
+      "variant": "emphasis"
+    },
+    {
+      "id": "helper-builds-app",
+      "from": "ios-helper",
+      "to": "xcode-tools",
+      "label": "build + sign",
+      "variant": "emphasis"
+    },
+    {
+      "id": "xcode-installs-app",
+      "from": "xcode-tools",
+      "to": "iphone",
+      "label": "CoreDevice install",
+      "variant": "emphasis",
+      "labelAt": [1465, 368]
+    },
+    {
+      "id": "agent-preflights-tailnet",
+      "from": "agent",
+      "to": "tailnet-resolver",
+      "label": "when due",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "route": "orthogonal-h"
+    },
+    {
+      "id": "resolver-reads-tailscale",
+      "from": "tailnet-resolver",
+      "to": "tailscale",
+      "label": "read status",
+      "variant": "dashed"
+    },
+    {
+      "id": "tailscale-reports-iphone",
+      "from": "tailscale",
+      "to": "iphone",
+      "label": "peer status only",
+      "variant": "dashed",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [[1250, 132], [1570, 132]]
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Implemented path",
+      "items": [
+        "Native Swift menu app, Agent, renewal engine, and iOS helper",
+        "Dry-run by default; execute must be selected explicitly",
+        "Successful real-device sample install verified over USB"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Tailnet boundary",
+      "items": [
+        "Live status is read only after an explicit user action",
+        "UI stores Node ID / DNS and the Agent resolves it when due",
+        "Pure-cellular CoreDevice installation remains unverified"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Apple boundary",
+      "items": [
+        "Personal Team signing still expires and must be renewed",
+        "Initial Developer Mode, trust, signing, and pairing are manual",
+        "Tailscale transports traffic; it does not replace Apple signing"
+      ]
+    }
+  ]
+}
