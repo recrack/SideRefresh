@@ -30,6 +30,7 @@ required_workflow_copy=(
     'sudo apt-get install --no-install-recommends --yes ripgrep'
     'Scripts/validate-product-hunt-site.sh'
     'Scripts/test-public-site-validator.sh'
+    'Scripts/test-public-homepage-design.sh'
     'Scripts/build-pages-site.sh'
     'Scripts/validate-pages-artifact.sh'
 )

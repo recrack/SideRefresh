@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SideRefresh — Keep your personal iOS app running</title>
   <meta name="description" content="SideRefresh rebuilds and reinstalls one agent-built iOS app through Xcode Personal Team before signing expires.">
+  <meta name="theme-color" content="#050817">
   <meta property="og:title" content="SideRefresh">
   <meta property="og:description" content="Keep the iOS app your coding agent built running on your own iPhone.">
   <meta property="og:image" content="https://recrack.github.io/SideRefresh/product-hunt/assets/social-preview-public-1280x640.png">
@@ -21,17 +22,17 @@
   <link rel="stylesheet" href="site/theme.css"><link rel="stylesheet" href="site/page.css">
   <link rel="stylesheet" href="site/components.css"><link rel="stylesheet" href="site/responsive.css">
 </head>
-<body>
+<body data-theme="renewal">
   <a class="skip-link" href="#content">Skip to content</a>
   <header class="site-header"><div class="header-row wrap">
-    <a class="brand" href="./" aria-label="SideRefresh home"><img src="product-hunt/assets/thumbnail-240.png" width="36" height="36" alt=""><span>SideRefresh</span></a>
+    <a class="brand" href="./" aria-label="SideRefresh home"><img src="product-hunt/assets/thumbnail-240.png" width="36" height="36" alt=""><span>SideRefresh</span><span class="renewal-mark" aria-hidden="true"><span></span><span></span></span></a>
     <nav class="product-nav" aria-label="Product"><a href="#how">How it works</a><a href="#requirements">Requirements</a><a href="#limits">Limits</a><a href="https://github.com/recrack/SideRefresh">GitHub</a></nav>
     <nav class="language-nav" aria-label="Language"><ul><li><a href="./" aria-current="page"><span lang="en">English</span></a></li><li><a href="ko/"><span lang="ko">한국어</span></a></li><li><a href="ja/"><span lang="ja">日本語</span></a></li><li><a href="zh-cn/"><span lang="zh-Hans">简体中文</span></a></li></ul></nav>
   </div></header>
   <main id="content" tabindex="-1">
     <section class="hero wrap">
       <div class="hero-copy"><p class="hero-note utility">Open source · Mac + Xcode · One app + one iPhone</p><h1>Keep the iOS app your coding agent built running on your own iPhone.</h1><p class="lead">SideRefresh rebuilds, signs, and reinstalls one app from an Xcode project you own before free Personal Team signing expires. Your source stays on your Mac.</p><div class="actions"><a class="button primary" href="https://github.com/recrack/SideRefresh">View source</a><a class="button secondary" href="https://github.com/recrack/SideRefresh/releases">View release status</a></div><p class="release-note">A signed Mac build will follow Developer ID notarization and release verification.</p></div>
-      <figure class="product-view"><div class="product-frame"><img src="product-hunt/assets/screenshots/en/healthy.png" width="2080" height="1400" alt="SideRefresh showing a verified personal app, its selected iPhone, and the next refresh date"></div><figcaption>Sample preview · synthetic data. The app interface currently supports English and Korean.</figcaption></figure>
+      <figure class="product-view"><div class="product-frame"><img src="product-hunt/assets/screenshots/en/healthy.png" width="2080" height="1400" fetchpriority="high" alt="SideRefresh showing a verified personal app, its selected iPhone, and the next refresh date"></div><figcaption>Sample preview · synthetic data. The app interface currently supports English and Korean.</figcaption></figure>
     </section>
     <section class="renewal wrap" aria-labelledby="renewal-title"><div class="renewal-heading"><p class="utility">Personal Team signing window</p><p class="muted" id="renewal-title">SideRefresh schedules from verified installation and expiration evidence—not from a successful command alone.</p></div><ol class="evidence-track"><li><span class="utility">Last verified</span><strong>App installed</strong><small>Signing expiration read from the installed app</small></li><li><span class="utility">Next refresh</span><strong>Before expiry</strong><small>Runs when the Mac is awake and the iPhone is reachable</small></li><li><span class="utility">Signing expiry</span><strong>Deadline</strong><small>The app must be rebuilt, signed, and installed again</small></li></ol></section>
     <section class="section wrap" id="how"><div class="section-heading"><p class="utility">How it works</p><h2>The normal Xcode path, repeated before signing expires.</h2></div><ol class="process"><li><h3>Choose what you own</h3><p>Select one Xcode project or workspace and the paired iPhone you use.</p></li><li><h3>Build, sign, and install</h3><p>SideRefresh uses your installed Xcode and free Personal Team—without collecting your Apple Account password.</p></li><li><h3>Verify and schedule</h3><p>It records the installed app’s signing expiration and chooses the next safe refresh time.</p></li></ol></section>
