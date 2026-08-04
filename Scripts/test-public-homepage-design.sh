@@ -41,6 +41,10 @@ rg --fixed-strings --quiet 'touch-action: manipulation' \
     "$repository_root/docs/site/theme.css" || fail "Pages links do not declare touch behavior"
 rg --fixed-strings --quiet 'scroll-margin-top:' \
     "$repository_root/docs/site/theme.css" || fail "Pages anchors do not clear the sticky header"
+rg --fixed-strings --quiet 'html[lang="ko"] h1, html[lang="ko"] h2, html[lang="ko"] h3 { word-break: keep-all;' \
+    "$repository_root/docs/site/theme.css" || fail "Korean headings can break inside words"
+rg --fixed-strings --quiet 'html[lang="ko"] .hero h1 { font-size: clamp(3.1rem, 4.5vw, 4.1rem);' \
+    "$repository_root/docs/site/theme.css" || fail "Korean hero heading wraps too aggressively on desktop"
 rg --fixed-strings --quiet '.button.primary { border-color: var(--blue); color: var(--dark);' \
     "$repository_root/docs/site/components.css" || fail "Pages primary button contrast regressed"
 

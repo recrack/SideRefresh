@@ -45,8 +45,10 @@ button, a { touch-action: manipulation; -webkit-tap-highlight-color: transparent
 [id] { scroll-margin-top: 100px; }
 h1, h2, h3, p { margin-top: 0; }
 h1, h2 { font-weight: 760; letter-spacing: -.05em; text-wrap: balance; }
+html[lang="ko"] h1, html[lang="ko"] h2, html[lang="ko"] h3 { word-break: keep-all; overflow-wrap: break-word; }
 p { text-wrap: pretty; }
 h1 { margin-bottom: 25px; font-size: clamp(3.1rem, 5.8vw, 5.8rem); line-height: .96; }
+html[lang="ko"] .hero h1 { font-size: clamp(3.1rem, 4.5vw, 4.1rem); line-height: 1; }
 h2 { margin-bottom: 18px; font-size: clamp(2.15rem, 3.7vw, 3.7rem); line-height: 1.02; }
 h3 { margin-bottom: 9px; font-size: 1.08rem; line-height: 1.3; }
 .utility {
