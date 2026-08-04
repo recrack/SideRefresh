@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SideRefresh — 개인 iOS 앱을 계속 사용하세요</title>
   <meta name="description" content="SideRefresh는 코딩 에이전트가 만든 iOS 앱 하나를 무료 Xcode Personal Team 서명이 만료되기 전에 다시 빌드하고 설치합니다.">
+  <meta name="theme-color" content="#050817">
   <meta property="og:title" content="SideRefresh">
   <meta property="og:description" content="코딩 에이전트가 만든 iOS 앱을 내 iPhone에서 계속 사용하세요.">
   <meta property="og:image" content="https://recrack.github.io/SideRefresh/product-hunt/assets/social-preview-public-1280x640.png">
@@ -21,17 +22,17 @@
   <link rel="stylesheet" href="../site/theme.css"><link rel="stylesheet" href="../site/page.css">
   <link rel="stylesheet" href="../site/components.css"><link rel="stylesheet" href="../site/responsive.css">
 </head>
-<body>
+<body data-theme="renewal">
   <a class="skip-link" href="#content">본문으로 건너뛰기</a>
   <header class="site-header"><div class="header-row wrap">
-    <a class="brand" href="../" aria-label="SideRefresh 홈"><img src="../product-hunt/assets/thumbnail-240.png" width="36" height="36" alt=""><span>SideRefresh</span></a>
+    <a class="brand" href="../" aria-label="SideRefresh 홈"><img src="../product-hunt/assets/thumbnail-240.png" width="36" height="36" alt=""><span>SideRefresh</span><span class="renewal-mark" aria-hidden="true"><span></span><span></span></span></a>
     <nav class="product-nav" aria-label="제품"><a href="#how">작동 방식</a><a href="#requirements">필요한 것</a><a href="#limits">첫 범위</a><a href="https://github.com/recrack/SideRefresh">GitHub</a></nav>
     <nav class="language-nav" aria-label="언어"><ul><li><a href="../"><span lang="en">English</span></a></li><li><a href="../ko/" aria-current="page"><span lang="ko">한국어</span></a></li><li><a href="../ja/"><span lang="ja">日本語</span></a></li><li><a href="../zh-cn/"><span lang="zh-Hans">简体中文</span></a></li></ul></nav>
   </div></header>
   <main id="content" tabindex="-1">
     <section class="hero wrap">
       <div class="hero-copy"><p class="hero-note utility">오픈소스 · Mac + Xcode · 앱 하나 + iPhone 한 대</p><h1>코딩 에이전트가 만든 iOS 앱을 내 iPhone에서 계속 사용하세요.</h1><p class="lead">SideRefresh는 사용자가 소유한 Xcode 프로젝트의 앱 하나를 다시 빌드하고 서명해 무료 Personal Team 서명이 만료되기 전에 재설치합니다. 소스 코드는 Mac 밖으로 나가지 않습니다.</p><div class="actions"><a class="button primary" href="https://github.com/recrack/SideRefresh">소스 보기</a><a class="button secondary" href="https://github.com/recrack/SideRefresh/releases">릴리스 상태 보기</a></div><p class="release-note">Developer ID 서명·공증과 릴리스 검증이 끝난 뒤 서명된 Mac 빌드를 제공합니다.</p></div>
-      <figure class="product-view"><div class="product-frame"><img src="../product-hunt/assets/screenshots/en/healthy.png" width="2080" height="1400" alt="선택한 개인 앱과 iPhone, 다음 갱신 시점을 보여주는 SideRefresh 화면"></div><figcaption>샘플 미리보기 · 합성 데이터. 앱 인터페이스는 현재 영어와 한국어를 지원합니다.</figcaption></figure>
+      <figure class="product-view"><div class="product-frame"><img src="../product-hunt/assets/screenshots/en/healthy.png" width="2080" height="1400" fetchpriority="high" alt="선택한 개인 앱과 iPhone, 다음 갱신 시점을 보여주는 SideRefresh 화면"></div><figcaption>샘플 미리보기 · 합성 데이터. 앱 인터페이스는 현재 영어와 한국어를 지원합니다.</figcaption></figure>
     </section>
     <section class="renewal wrap" aria-labelledby="renewal-title"><div class="renewal-heading"><p class="utility">Personal Team 서명 기간</p><p class="muted" id="renewal-title">명령 성공 여부가 아니라 확인된 설치와 서명 만료 증거를 기준으로 다음 갱신을 정합니다.</p></div><ol class="evidence-track"><li><span class="utility">마지막 확인</span><strong>앱 설치 완료</strong><small>설치된 앱에서 서명 만료 시점을 읽음</small></li><li><span class="utility">다음 갱신</span><strong>만료 전 실행</strong><small>Mac이 깨어 있고 iPhone에 연결할 수 있을 때 실행</small></li><li><span class="utility">서명 만료</span><strong>갱신 기한</strong><small>앱을 다시 빌드하고 서명해 설치해야 하는 시점</small></li></ol></section>
     <section class="section wrap" id="how"><div class="section-heading"><p class="utility">작동 방식</p><h2>서명이 만료되기 전에 정상 Xcode 설치 과정을 다시 실행합니다.</h2></div><ol class="process"><li><h3>내 프로젝트 선택</h3><p>사용자가 소유한 Xcode 프로젝트 또는 워크스페이스 하나와 페어링된 iPhone을 선택합니다.</p></li><li><h3>빌드·서명·설치</h3><p>SideRefresh가 설치된 Xcode와 무료 Personal Team을 사용합니다. Apple Account 암호를 수집하지 않습니다.</p></li><li><h3>확인 후 예약</h3><p>설치된 앱의 서명 만료 시점을 기록하고 다음 안전한 갱신 시간을 정합니다.</p></li></ol></section>

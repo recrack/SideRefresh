@@ -41,6 +41,7 @@ Scripts/validate-headless.sh
 Scripts/validate-product-hunt-assets.sh
 Scripts/validate-product-hunt-site.sh
 Scripts/test-public-site-validator.sh
+Scripts/test-public-homepage-design.sh
 Scripts/test-pages-publication.sh
 ```
 

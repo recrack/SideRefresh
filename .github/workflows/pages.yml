@@ -33,6 +33,9 @@ jobs:
           TMPDIR: ${{ runner.temp }}
         run: Scripts/test-public-site-validator.sh
 
+      - name: Test public homepage design
+        run: Scripts/test-public-homepage-design.sh
+
       - name: Build Pages artifact
         run: Scripts/build-pages-site.sh "$RUNNER_TEMP/siderefresh-pages"
 
