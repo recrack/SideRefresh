@@ -18,8 +18,9 @@ The static public product site now uses [`docs/index.html`](../index.html) for
 English, with complete [Korean](../ko/index.html),
 [Japanese](../ja/index.html), and [Simplified Chinese](../zh-cn/index.html)
 explanation pages. The macOS app interface itself remains English and Korean.
-The GitHub Pages workflow is prepared to publish a curated site-only artifact
-with source and release status links, but no download CTA. The [public-readiness
+The GitHub Pages workflow publishes a curated site-only artifact at
+[`recrack.github.io/SideRefresh`](https://recrack.github.io/SideRefresh/) with
+source and release status links, but no download CTA. The [public-readiness
 audit](public-readiness-audit.md) explains why private development history is
 kept in a separate archive. Complete the signed-release gate before activating
 the download CTA or scheduling Product Hunt.
@@ -104,7 +105,7 @@ Schedule only when every product gate is checked:
   development history is not reachable from it.
 - [ ] The repository name, description, topics, social preview, README, and
   release all consistently say `SideRefresh`.
-- [ ] GitHub Pages serves a curated artifact from reviewed `master` source,
+- [x] GitHub Pages serves a curated artifact from reviewed `master` source,
   without presenting an unavailable download.
 - [ ] A stable Developer ID-signed and Apple-notarized download is public.
 - [ ] A fresh public download passes checksum, provenance, Gatekeeper, launch,

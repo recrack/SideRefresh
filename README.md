@@ -151,10 +151,10 @@ Apple device identity separately.
   binary remains a separate release gate.
 - This public source repository was created as a sanitized snapshot; private
   development history was not copied into it.
-- The reviewed [product-site source](docs/index.html) explains the project in
-  English, Korean, Japanese, and Simplified Chinese. GitHub Pages publication
-  is pending; the site links only to source and release status while the signed,
-  notarized download remains a separate release gate.
+- The reviewed [public product site](https://recrack.github.io/SideRefresh/)
+  explains the project in English, Korean, Japanese, and Simplified Chinese.
+  It links only to source and release status while the signed, notarized
+  download remains a separate release gate.
 
 Read [the full implementation status](docs/STATUS.md) for project discovery,
 device evidence, logging, version rules, limitations, and verified behavior.

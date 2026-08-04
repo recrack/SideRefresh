@@ -66,12 +66,11 @@ copy are maintained in [copy/listing.md](copy/listing.md).
 
 **Primary URL after public-release verification**
 
-> https://github.com/recrack/SideRefresh
+> https://recrack.github.io/SideRefresh/
 
-After the public-readiness and stable-release gates pass, replace this draft
-value with `https://recrack.github.io/SideRefresh/`. Add the exact immutable
-GitHub Release asset as the download link; do not use `/releases/latest` while
-historical releases carry the old product name.
+After the stable-release gate passes, add the exact immutable GitHub Release
+asset as the download link; do not use `/releases/latest` while historical
+releases carry the old product name.
 
 The root product page is English for Product Hunt. It links to complete Korean,
 Japanese, and Simplified Chinese explanations while stating separately that
