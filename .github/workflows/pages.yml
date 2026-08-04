@@ -29,6 +29,8 @@ jobs:
         run: Scripts/validate-product-hunt-site.sh
 
       - name: Test public site validator
+        env:
+          TMPDIR: ${{ runner.temp }}
         run: Scripts/test-public-site-validator.sh
 
       - name: Build Pages artifact

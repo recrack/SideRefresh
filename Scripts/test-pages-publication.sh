@@ -20,6 +20,7 @@ required_workflow_copy=(
     'pages: read'
     'pages: write'
     'id-token: write'
+    'TMPDIR: ${{ runner.temp }}'
     'cancel-in-progress: false'
     'needs: build'
     "if: github.ref == 'refs/heads/master'"
