@@ -1,6 +1,6 @@
 # SideRefresh Product Hunt playbook
 
-Updated: 2026-08-03
+Updated: 2026-08-04
 
 This folder is the operating manual for registering and promoting SideRefresh
 on Product Hunt. Operational copy is kept in English because every Product Hunt
@@ -18,10 +18,11 @@ The static public product site now uses [`docs/index.html`](../index.html) for
 English, with complete [Korean](../ko/index.html),
 [Japanese](../ja/index.html), and [Simplified Chinese](../zh-cn/index.html)
 explanation pages. The macOS app interface itself remains English and Korean.
-GitHub Pages must remain disabled. The
-[public-readiness audit](public-readiness-audit.md) explains why private
-development history is kept in a separate archive. Complete the signed-release
-gate before publishing the page or activating its download CTA.
+The GitHub Pages workflow is prepared to publish a curated site-only artifact
+with source and release status links, but no download CTA. The [public-readiness
+audit](public-readiness-audit.md) explains why private development history is
+kept in a separate archive. Complete the signed-release gate before activating
+the download CTA or scheduling Product Hunt.
 
 Product Hunt registration itself does not require Developer ID. SideRefresh
 requires a trusted binary as a product decision: asking someone to bypass
@@ -103,8 +104,8 @@ Schedule only when every product gate is checked:
   development history is not reachable from it.
 - [ ] The repository name, description, topics, social preview, README, and
   release all consistently say `SideRefresh`.
-- [ ] GitHub Pages serves the reviewed `master /docs` source only after the
-  signed-release gate passes, with the exact immutable download link.
+- [ ] GitHub Pages serves a curated artifact from reviewed `master` source,
+  without presenting an unavailable download.
 - [ ] A stable Developer ID-signed and Apple-notarized download is public.
 - [ ] A fresh public download passes checksum, provenance, Gatekeeper, launch,
   version, and clean-account checks.

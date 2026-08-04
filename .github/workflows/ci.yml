@@ -53,3 +53,6 @@ jobs:
 
       - name: Test public site validator
         run: Scripts/test-public-site-validator.sh
+
+      - name: Test Pages publication
+        run: Scripts/test-pages-publication.sh

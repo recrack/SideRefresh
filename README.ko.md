@@ -95,10 +95,11 @@ Developer ID 서명과 Apple 공증을 별도 통과해야 합니다. 현재 배
 [배포 문서](docs/DISTRIBUTION.md)를 참고하세요.
 
 이 공개 저장소는 개인정보를 제거한 단일 스냅샷으로 만들었으며 비공개 개발
-이력은 복사하지 않았습니다. 홈페이지 소스는 영어, 한국어, 일본어,
-중국어(간체)로 포함되어 있지만, 서명·공증된 다운로드가 준비될 때까지 GitHub
-Pages는 비활성화합니다. 홈페이지 설명 언어와 별개로 현재 앱 인터페이스는
-영어와 한국어를 지원합니다.
+이력은 복사하지 않았습니다. 검토된 [홈페이지 소스](docs/index.html)는 영어,
+한국어, 일본어, 중국어(간체)를 지원하며 GitHub Pages 게시는 준비 중입니다.
+홈페이지는 소스와 릴리스 상태만 안내하고, 서명·공증된 다운로드는 별도의
+릴리스 게이트로 남아 있습니다. 홈페이지 설명 언어와 별개로 현재 앱
+인터페이스는 영어와 한국어를 지원합니다.
 
 ## 문서
 
@@ -108,7 +109,7 @@ Pages는 비활성화합니다. 홈페이지 설명 언어와 별개로 현재 �
 | [Personal Team 준비](docs/PERSONAL-TEAM-SETUP.ko.md) | Xcode 로그인·서명 문제 해결 |
 | [구현 상태](docs/STATUS.md) | 검증 범위와 제한 |
 | [Product Hunt 공식 조사·전략](docs/product-hunt/research.md) · [실행 문서](docs/product-hunt/README.md) · [한국어 문구](docs/PRODUCT-HUNT.ko.md) | 등록, 홍보 운영, 소개 문구, 이미지와 출시 게이트 |
-| [공개 홈페이지 — English](docs/index.html) · [한국어](docs/ko/index.html) · [日本語](docs/ja/index.html) · [简体中文](docs/zh-cn/index.html) | 네 언어 제품 설명과 공개 전 검증 |
+| [홈페이지 소스 — English](docs/index.html) · [한국어](docs/ko/index.html) · [日本語](docs/ja/index.html) · [简体中文](docs/zh-cn/index.html) | 네 언어 제품 설명과 게시 준비 상태 |
 | [iOS 갱신 도구](docs/IOS-RENEWAL.md) | 빌드·버전 정책 |
 | [배포](docs/DISTRIBUTION.md) | 소스 빌드와 공증 릴리스 경로 |
 

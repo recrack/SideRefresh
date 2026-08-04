@@ -49,8 +49,8 @@ MIT and Apple trademark footer
   renewal outside the first-release claim.
 - Label the current UI capture as a synthetic sample.
 - Link to source and release status only; do not claim a Mac download yet.
-- Keep Pages and the download CTA disabled until the signed-release gate is
-  complete.
+- Publish Pages as a source-and-status site; keep the download CTA disabled
+  until the signed-release gate is complete.
 
 ## Validation
 

@@ -60,5 +60,6 @@ Before offering a public Mac download:
 Apple's official references are [Developer ID](https://developer.apple.com/help/glossary/developer-id-certificate/)
 and [notarizing macOS software](https://developer.apple.com/documentation/security/notarizing-macos-software-before-distribution).
 
-GitHub Pages and Product Hunt scheduling stay disabled until these release and
-media gates pass.
+GitHub Pages can explain the public source without a download once its live
+routes are verified. Product Hunt scheduling and the download CTA stay disabled
+until these release and media gates pass.

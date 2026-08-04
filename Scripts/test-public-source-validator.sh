@@ -6,6 +6,7 @@ repository_root="$(cd "$(dirname "$0")/.." && pwd)"
 validator="$repository_root/Scripts/validate-public-source.sh"
 fixture_root="$(mktemp -d)"
 trap 'rm -rf "$fixture_root"' EXIT
+# shellcheck source=Scripts/public-source-validator-test-lib.sh
 source "$repository_root/Scripts/public-source-validator-test-lib.sh"
 
 create_public_source_fixture
@@ -52,6 +53,10 @@ printf '%s\n' \
     '  - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1' \
     > "$fixture_root/.github/workflows/ci.yml"
 
+rm "$fixture_root/.github/workflows/pages.yml"
+expect_public_source_rejected "missing Pages workflow"
+git -C "$fixture_root" checkout -- .github/workflows/pages.yml
+
 rm "$fixture_root/CONTRIBUTING.md"
 expect_public_source_rejected "missing contribution guide"
 cp "$repository_root/CONTRIBUTING.md" "$fixture_root/CONTRIBUTING.md"
@@ -81,10 +86,6 @@ for test_case in \
     expect_public_source_rejected "$label"
 done
 
-cp "$repository_root/README.md" "$fixture_root/README.md"
-printf '%s\n' 'steps:' '  - uses: actions/checkout@v7' \
-    > "$fixture_root/.github/workflows/ci.yml"
-expect_public_source_rejected "unpinned checkout action"
-
 echo "Public source validator tests passed"
+"$repository_root/Scripts/test-public-source-action-pins.sh"
 "$repository_root/Scripts/test-public-source-validator-errors.sh"

@@ -34,4 +34,7 @@ Scripts/validate-product-hunt-site.sh
 echo "SideRefresh pre-push: testing public site validator"
 Scripts/test-public-site-validator.sh
 
+echo "SideRefresh pre-push: testing Pages publication"
+Scripts/test-pages-publication.sh
+
 echo "SideRefresh pre-push: all checks passed"

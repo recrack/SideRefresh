@@ -37,6 +37,14 @@ reject_matches() {
     esac
 }
 
+reject_unreviewed_action() {
+    local action="$1"
+    local sha="$2"
+    reject_matches "$action must use $sha" -P \
+        "uses:\\s*${action}@(?!${sha}(?:\\s|$))\\S+" \
+        "$repository_root/.github/workflows"
+}
+
 validate_public_source_contents() {
     reject_matches "direct internal tracker links found" \
         'https?://github\.com/recrack/SideRefresh/(issues|pull)/[0-9]+' \
@@ -69,10 +77,17 @@ validate_public_source_contents() {
         '\b(?!(?:00008110-001234567890001E|00008120-001234567890001E|00008120-001C2D123456A1B2)\b)[0-9A-Fa-f]{8}-[0-9A-Fa-f]{16}\b' \
         "${public_source_paths[@]}"
 
-    local checkout_sha="3d3c42e5aac5ba805825da76410c181273ba90b1"
-    reject_matches "actions/checkout must use $checkout_sha" -P \
-        "uses:\\s*actions/checkout@(?!${checkout_sha}(?:\\s|$))\\S+" \
+    reject_matches "workflow actions must use full commit SHAs" -P \
+        'uses:\s*(?!\./)[^@\s]+@(?![0-9a-f]{40}(?:\s|$))\S+' \
         "$repository_root/.github/workflows"
+    reject_unreviewed_action actions/checkout \
+        3d3c42e5aac5ba805825da76410c181273ba90b1
+    reject_unreviewed_action actions/configure-pages \
+        45bfe0192ca1faeb007ade9deae92b16b8254a0d
+    reject_unreviewed_action actions/upload-pages-artifact \
+        fc324d3547104276b827a68afc52ff2a11cc49c9
+    reject_unreviewed_action actions/deploy-pages \
+        cd2ce8fcbc39b97be8ca5fce6e763baed58fa128
     reject_matches "stale repository-visibility copy found" -i \
         '(the |GitHub )?repository (is|remains) private|after (the )?repository is published|once (the )?repository is public|저장소는 (현재 )?(private|비공개)(입니다|이다)?' \
         "${public_source_paths[@]}"

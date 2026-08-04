@@ -6,6 +6,7 @@ script_directory="$(cd "$(dirname "$0")" && pwd)"
 script_root="$(cd "$script_directory/.." && pwd)"
 repository_root="${SIDEREFRESH_PUBLIC_SOURCE_ROOT:-$script_root}"
 public_source_rg="${SIDEREFRESH_RG_COMMAND:-rg}"
+# shellcheck source=Scripts/public-source-validation-lib.sh
 source "$script_directory/public-source-validation-lib.sh"
 
 command -v "$public_source_rg" >/dev/null 2>&1 || {
@@ -48,6 +49,7 @@ required_files=(
     .github/PULL_REQUEST_TEMPLATE.md
     .github/dependabot.yml
     .github/workflows/ci.yml
+    .github/workflows/pages.yml
 )
 
 for relative_path in "${required_files[@]}"; do

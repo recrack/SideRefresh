@@ -107,9 +107,10 @@ Personal Team renewal.
 See [the iOS renewal helper guide](docs/IOS-RENEWAL.md) for the exact build and
 version rules.
 
-The repository's GitHub Actions workflow is CI only. Its GitHub-hosted macOS
-runner tests a fresh checkout and cannot access the project, signing Keychain,
-or paired iPhone on the user's Mac.
+The repository's CI workflow uses a GitHub-hosted macOS runner to test a fresh
+checkout; it cannot access the project, signing Keychain, or paired iPhone on
+the user's Mac. A separate least-privilege workflow is prepared to publish only
+the reviewed static website artifact to GitHub Pages.
 
 Unattended renewal runs through the local LaunchAgent on that Mac. A
 self-hosted Actions runner could call the CLI on the same prepared Mac, but
@@ -150,9 +151,10 @@ Apple device identity separately.
   binary remains a separate release gate.
 - This public source repository was created as a sanitized snapshot; private
   development history was not copied into it.
-- A static product site is included under `docs/` in English, Korean, Japanese,
-  and Simplified Chinese. GitHub Pages stays disabled until a signed and
-  notarized download is ready.
+- The reviewed [product-site source](docs/index.html) explains the project in
+  English, Korean, Japanese, and Simplified Chinese. GitHub Pages publication
+  is pending; the site links only to source and release status while the signed,
+  notarized download remains a separate release gate.
 
 Read [the full implementation status](docs/STATUS.md) for project discovery,
 device evidence, logging, version rules, limitations, and verified behavior.
@@ -200,7 +202,7 @@ for the full comparison and publication plan.
 | [User manual — English](docs/MANUAL.md) · [한국어](docs/MANUAL.ko.md) | First setup, connection choices, saving, and renewal |
 | [Personal Team — English](docs/PERSONAL-TEAM-SETUP.md) · [한국어](docs/PERSONAL-TEAM-SETUP.ko.md) | Signing preparation and troubleshooting |
 | [Product Hunt playbook](docs/product-hunt/README.md) · [Launch assets](docs/product-hunt/assets/README.md) · [English copy](docs/PRODUCT-HUNT.md) · [한국어](docs/PRODUCT-HUNT.ko.md) | Registration, generated media, bilingual copy, demo package, promotion, and launch gates |
-| [Public website — English](docs/index.html) · [한국어](docs/ko/index.html) · [日本語](docs/ja/index.html) · [简体中文](docs/zh-cn/index.html) · [Public-readiness audit](docs/product-hunt/public-readiness-audit.md) | Four-language product explanation and the source, license, binary, and launch blockers that gate publication |
+| [Website source — English](docs/index.html) · [한국어](docs/ko/index.html) · [日本語](docs/ja/index.html) · [简体中文](docs/zh-cn/index.html) · [Public-readiness audit](docs/product-hunt/public-readiness-audit.md) | Four-language product explanation and the source, license, binary, and launch blockers |
 | [Implementation status](docs/STATUS.md) | Current behavior, evidence, and limitations |
 | [iOS renewal helper](docs/IOS-RENEWAL.md) | Dry run, build strategy, and version policy |
 | [CLI, LaunchAgent, and MCP](docs/HEADLESS.md) | Headless install and automation |
