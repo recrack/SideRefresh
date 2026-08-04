@@ -43,8 +43,16 @@ rg --fixed-strings --quiet 'scroll-margin-top:' \
     "$repository_root/docs/site/theme.css" || fail "Pages anchors do not clear the sticky header"
 rg --fixed-strings --quiet 'html[lang="ko"] h1, html[lang="ko"] h2, html[lang="ko"] h3 { word-break: keep-all;' \
     "$repository_root/docs/site/theme.css" || fail "Korean headings can break inside words"
-rg --fixed-strings --quiet 'html[lang="ko"] .hero h1 { font-size: clamp(3.1rem, 4.5vw, 4.1rem);' \
-    "$repository_root/docs/site/theme.css" || fail "Korean hero heading wraps too aggressively on desktop"
+rg --quiet '^\.hero h1 \{ font-size: clamp\(3\.1rem, 4\.5vw, 4\.1rem\); line-height: 1; \}$' \
+    "$repository_root/docs/site/theme.css" || fail "Hero heading scale is not shared across locales"
+rg --fixed-strings --quiet 'gap: 56px; align-items: start; padding-block: 88px 58px;' \
+    "$repository_root/docs/site/page.css" || fail "Desktop hero columns do not share a stable top anchor"
+rg --fixed-strings --quiet '.hero > .hero-copy > .hero-note { font-size: clamp(.68rem, 1.05vw, .74rem); }' \
+    "$repository_root/docs/site/page.css" || fail "Hero eyebrow can wrap unevenly near the desktop breakpoint"
+if ! rg --fixed-strings --quiet '.product-view { margin: 36px 0 0; }' "$repository_root/docs/site/page.css" \
+    || ! rg --fixed-strings --quiet '.product-view { max-width: 880px; margin-top: 0; }' "$repository_root/docs/site/responsive.css"; then
+    fail "Product preview does not align to the heading and reset in the stacked layout"
+fi
 rg --fixed-strings --quiet '.button.primary { border-color: var(--blue); color: var(--dark);' \
     "$repository_root/docs/site/components.css" || fail "Pages primary button contrast regressed"
 
