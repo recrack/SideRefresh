@@ -292,9 +292,9 @@ Pre-commit checks the staged diff and runs Swift tests only for Swift package
 changes. Pre-push runs Swift tests, iOS sample validation, and Headless/MCP
 validation.
 
-Pull-request CI repeats those checks on GitHub's `macos-15` hosted runner. It is
-validation only: it does not use signing credentials, contact an iPhone, or
-perform renewal. The workflow does not run again after merge.
+GitHub Actions CI repeats those checks on the `macos-15` hosted runner for pull
+requests and pushes to `master`. It is validation only: it does not use signing
+credentials, contact an iPhone, or perform renewal.
 
 Actual scheduled renewal remains a local LaunchAgent responsibility. A
 self-hosted runner on the prepared Mac could invoke the CLI, but no such

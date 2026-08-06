@@ -17,6 +17,9 @@ service, jailbreak, or Apple Account password collection.
 > Source builds are available now. A Developer ID-signed and notarized public
 > Mac build remains a separate release gate.
 
+Current source prerelease:
+[v0.2.0-beta.1](https://github.com/recrack/SideRefresh/releases/tag/v0.2.0-beta.1).
+
 ## See the product
 
 <img src="docs/product-hunt/assets/screenshots/en/healthy.png" width="100%" alt="SideRefresh sample workspace showing one app, one iPhone, refresh timing, and a verified result">

@@ -7,12 +7,16 @@ compatibility guarantees under semantic versioning.
 
 ## Unreleased
 
+## 0.2.0-beta.1 - 2026-08-06
+
 ### Added
 
 - Added explicit Desktop, Documents, Downloads, and custom-folder access
   status to the project picker.
 - Added repository-managed pre-commit and pre-push validation hooks with a
   one-time installer.
+- Added a multilingual GitHub Pages product site in English, Korean, Japanese,
+  and Simplified Chinese.
 
 ### Changed
 
@@ -29,8 +33,22 @@ compatibility guarantees under semantic versioning.
   persistent selection action, and explicit folder-access guidance.
 - Preserved Xcode's resolved Products layout and exact app path for
   Flutter/CocoaPods resource builds.
-- Limited GitHub Actions to pull-request validation and added Headless/MCP
-  checks, avoiding a duplicate macOS run after merge.
+- Added Headless/MCP checks to GitHub Actions validation for pull requests and
+  pushes to `master`.
+- Made the Simple workspace the default launch experience with consistent
+  in-window navigation for My app, Settings, Help, and Diagnostics.
+- Published a privacy-reviewed public source repository with contribution,
+  support, security, and release documentation.
+
+### Known limitations
+
+- This is a source-only prerelease. It does not include a downloadable,
+  Developer ID-signed and notarized Mac app.
+- One renewal target is supported per configuration.
+- Initial Xcode/CoreDevice pairing and the first Xcode installation remain
+  manual.
+- Pure-cellular CoreDevice installation over Tailscale is not a verified
+  support claim.
 
 ## 0.1.0 - 2026-07-28
 
