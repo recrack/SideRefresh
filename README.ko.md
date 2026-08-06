@@ -17,6 +17,9 @@ SideRefresh는 무료 Xcode Personal Team으로 설치한 내 iOS 앱 하나를 
 > 소스 빌드는 지금 사용할 수 있습니다. Developer ID 서명·공증된 공개 Mac
 > 앱은 별도의 릴리스 검증을 통과해야 합니다.
 
+현재 소스 프리릴리스:
+[v0.2.0-beta.1](https://github.com/recrack/SideRefresh/releases/tag/v0.2.0-beta.1).
+
 ## 실제 화면
 
 <img src="docs/product-hunt/assets/screenshots/en/healthy.png" width="100%" alt="앱 하나와 iPhone 한 대, 갱신 시점과 확인 결과를 보여주는 SideRefresh 샘플 화면">

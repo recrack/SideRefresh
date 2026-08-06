@@ -1,8 +1,10 @@
 # SideRefresh distribution
 
-## Current channel: source build
+## Current channel: source prerelease
 
-SideRefresh is currently distributed as source under the MIT License.
+SideRefresh `v0.2.0-beta.1` is distributed as a source-only prerelease under
+the MIT License. GitHub's generated source archives contain the tagged source;
+they are not signed Mac application downloads.
 
 ```sh
 swift test
@@ -25,6 +27,22 @@ The current identifiers are:
 
 All product, storage, executable, sample, and reverse-DNS identifiers use the
 SideRefresh name.
+
+## Remove a source build
+
+1. Disable **Automatic refresh** in SideRefresh before removing the app. For a
+   Headless installation, run `side-refresh schedule disable --confirm` first.
+2. Quit SideRefresh and remove the locally built `dist/SideRefresh.app`.
+3. To remove all retained configuration and evidence, delete the `SideRefresh`
+   folders from `~/Library/Application Support` and `~/Library/Caches`, then
+   remove the `io.github.siderefresh.macos` defaults domain.
+4. A Headless installation may also have
+   `~/Library/LaunchAgents/io.github.siderefresh.renewal.plist`; remove it only
+   after the schedule-disable command succeeds.
+
+Removing configuration is optional and cannot be undone. It deletes the saved
+renewal target and Last verified evidence, but it does not delete the user's
+Xcode project or the app already installed on the iPhone.
 
 ## Pre-release identity policy
 
