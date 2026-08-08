@@ -123,7 +123,7 @@ Build one 1270×760 English gallery story:
 | 3 | **One app. One iPhone. One next action.** | The real Simple workspace with the selected app, selected iPhone, and renewal condition. |
 | 4 | **Refresh through Apple’s normal Xcode flow.** | Xcode project → SideRefresh → paired iPhone; never imply a signing bypass. |
 | 5 | **Your source stays on your Mac.** | Local processing, no Apple password collection, explicit project and device access. |
-| 6 | **Open source. Local by design.** | MIT source, public checks, English/Korean UI, and the signed/notarized release gate. |
+| 6 | **Open source. Local by design.** | Apache-2.0 source, public checks, English/Korean UI, and the signed/notarized release gate. |
 
 The checked-in draft uses a DEBUG fixture that mirrors the repository's
 `SideRefresh Sample` project. Every public screenshot must replace it with the

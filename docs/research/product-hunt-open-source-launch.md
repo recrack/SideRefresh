@@ -1,5 +1,9 @@
 # SideRefresh 오픈소스 × Product Hunt 출시 조사
 
+> 라이선스 정책 변경: 이 문서의 MIT 상태와 체크리스트는 조사 당시 기록이다.
+> `v0.2.0-beta.2`부터 적용되는 Apache-2.0 및 브랜드 경계는
+> [ADR 0001](../adr/0001-apache-2-license-and-brand-boundary.md)이 대체한다.
+
 > 현재 제출 문구와 Go/No-Go 상태는
 > [Product Hunt launch kit](../PRODUCT-HUNT.md)과
 > [한국어 출시 자료](../PRODUCT-HUNT.ko.md)를 기준으로 합니다. 이 문서는

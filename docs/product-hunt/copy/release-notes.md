@@ -6,7 +6,7 @@
 
 ## What this release does
 
-SideRefresh is an MIT-licensed Mac app for one Xcode project you own and one
+SideRefresh is an Apache-2.0-licensed Mac app for one Xcode project you own and one
 paired iPhone. It rebuilds current local source, signs with your Xcode Personal
 Team, validates the built app, reinstalls it through CoreDevice tooling, and
 records verified installation and signing-expiration evidence.

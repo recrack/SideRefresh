@@ -103,7 +103,7 @@ appear in the README and launch follow-up.
    footer.
 5. **Connection:** Xcode/CoreDevice always visible; optional Tailscale clearly
    marked experimental.
-6. **Open source:** local source, MIT license, GitHub, and the exact privacy
+6. **Open source:** local source, Apache 2.0, GitHub, and the exact privacy
    boundary.
 
 Recommended demo: 45–75 seconds showing an agent-built project, selection,

@@ -1,6 +1,6 @@
 # Product Hunt launch assets
 
-Updated: 2026-08-03 · Status: **draft / pre-release**
+Updated: 2026-08-08 · Status: **draft / pre-release**
 
 These files are review-ready, but they are not approved for public launch.
 The stable-release gate must first provide a Developer ID-signed and

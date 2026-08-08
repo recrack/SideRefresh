@@ -18,7 +18,7 @@ SideRefresh는 무료 Xcode Personal Team으로 설치한 내 iOS 앱 하나를 
 > 앱은 별도의 릴리스 검증을 통과해야 합니다.
 
 현재 소스 프리릴리스:
-[v0.2.0-beta.1](https://github.com/recrack/SideRefresh/releases/tag/v0.2.0-beta.1).
+[v0.2.0-beta.2](https://github.com/recrack/SideRefresh/releases/tag/v0.2.0-beta.2).
 
 ## 실제 화면
 
@@ -88,4 +88,6 @@ iPhone 한 대를 지원합니다. 타인의 IPA 설치, Personal Team 서명 �
 
 `Scripts/install-git-hooks.sh`로 저장소 hook을 설치한 뒤
 [CONTRIBUTING.md](CONTRIBUTING.md)를 참고하세요. 민감한 문제는
-[SECURITY.md](SECURITY.md)로 제보합니다. [MIT License](LICENSE)를 따릅니다.
+[SECURITY.md](SECURITY.md)로 제보합니다. 코드와 문서는
+[Apache License 2.0](LICENSE), 이름과 시각 자산은
+[브랜드 정책](BRAND_POLICY.md)을 따릅니다. `v0.2.0-beta.1`까지는 MIT가 유지됩니다.

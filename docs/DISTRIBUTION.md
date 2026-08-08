@@ -2,9 +2,13 @@
 
 ## Current channel: source prerelease
 
-SideRefresh `v0.2.0-beta.1` is distributed as a source-only prerelease under
-the MIT License. GitHub's generated source archives contain the tagged source;
+SideRefresh `v0.2.0-beta.2` is distributed as a source-only prerelease under
+Apache License 2.0. GitHub's generated source archives contain the tagged source;
 they are not signed Mac application downloads.
+
+Versions through `v0.2.0-beta.1` remain available under their original MIT
+terms. SideRefresh names and visual assets in later versions follow the
+[brand policy](../BRAND_POLICY.md).
 
 ```sh
 swift test
@@ -16,7 +20,8 @@ open dist/SideRefresh.app
 The build script creates `dist/SideRefresh.app`, signs it ad hoc, and does not
 launch the app, register its background Agent, or change Login Items. An ad-hoc
 signature is for local development; it does not make a downloaded binary
-trusted by Gatekeeper.
+trusted by Gatekeeper. The app resources include `LICENSE`, `NOTICE`, and
+`BRAND_POLICY.md`; the Headless package carries the same files at its root.
 
 The current identifiers are:
 
@@ -108,6 +113,7 @@ output. Notarization and stapling are separate checks.
 - [ ] Swift tests, sample validation, and Headless/MCP validation pass.
 - [ ] Version and build numbers are updated.
 - [ ] Changelog is updated.
+- [ ] `LICENSE`, `NOTICE`, brand policy, and third-party notices are packaged.
 - [ ] Final bundle and Agent identifiers match this document.
 - [ ] App, embedded executables, and archive pass signature verification.
 - [ ] Apple notarization succeeds and the ticket is stapled.

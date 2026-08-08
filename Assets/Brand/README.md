@@ -27,6 +27,8 @@ which a refreshed build reconnects to the same app identity.
 
 ## Usage
 
+- Follow the repository [brand policy](../../BRAND_POLICY.md). Forks and
+  modified distributions must replace the SideRefresh name, icons, and marks.
 - Keep the mark free of text at menu-bar and app-icon sizes.
 - Keep the menu-bar SVG monochrome and transparent. macOS supplies its color
   for light, dark, highlighted, and increased-contrast appearances.

@@ -1,5 +1,9 @@
 # SideRefresh 오픈소스 성장과 수요 검증
 
+> 라이선스 정책 변경: 이 문서의 SideRefresh MIT 권고는 당시 판단을 보존한
+> 역사적 기록이다. `v0.2.0-beta.2`부터 적용되는 Apache-2.0 및 브랜드 경계는
+> [ADR 0001](../adr/0001-apache-2-license-and-brand-boundary.md)이 대체한다.
+
 - 조사일: 2026-07-26
 - 질문:
   - 무료 Personal Team 앱의 7일 만료와 재설치에 실제 불만이 있는가?

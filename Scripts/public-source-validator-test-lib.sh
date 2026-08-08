@@ -12,7 +12,8 @@ expect_public_source_rejected() {
 create_public_source_fixture() {
     mkdir -p "$fixture_root/docs" "$fixture_root/.github/ISSUE_TEMPLATE" \
         "$fixture_root/.github/workflows"
-    cp "$repository_root/LICENSE" "$repository_root/README.md" \
+    cp "$repository_root/BRAND_POLICY.md" "$repository_root/LICENSE" \
+        "$repository_root/NOTICE" "$repository_root/README.md" \
         "$repository_root/README.ko.md" "$repository_root/SECURITY.md" \
         "$repository_root/SUPPORT.md" "$repository_root/CODE_OF_CONDUCT.md" \
         "$repository_root/CONTRIBUTING.md" "$fixture_root/"

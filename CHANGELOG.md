@@ -7,6 +7,29 @@ compatibility guarantees under semantic versioning.
 
 ## Unreleased
 
+## 0.2.0-beta.2 - 2026-08-08
+
+### Changed
+
+- Adopted Apache License 2.0 for source code and prose documentation beginning
+  with this release, including explicit contributor patent terms and project
+  attribution in `NOTICE`.
+- Separated the SideRefresh name and visual identity into a brand policy for
+  modified and derived distributions.
+- Added `LICENSE`, `NOTICE`, and `BRAND_POLICY.md` to app and Headless build
+  outputs.
+- Updated repository, website, contribution, Product Hunt, and release
+  documentation to state the Apache-2.0 boundary consistently.
+- Preserved the original MIT terms and historical records for versions through
+  `v0.2.0-beta.1`.
+
+### Known limitations
+
+- This remains a source-only prerelease without a downloadable Developer
+  ID-signed and notarized Mac app.
+- No functional renewal behavior or verified device compatibility changed in
+  this release.
+
 ## 0.2.0-beta.1 - 2026-08-06
 
 ### Added

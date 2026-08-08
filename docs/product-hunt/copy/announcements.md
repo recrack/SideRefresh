@@ -45,7 +45,7 @@ use the direct Product Hunt URL without tracking. Never add an upvote request.
 
 ## Relevant community post
 
-> I’m the maker of SideRefresh. I built it after personal iOS apps made with coding agents repeatedly became unavailable when free Personal Team signing expired. SideRefresh is an MIT-licensed Mac app that rebuilds and reinstalls one project you own through Xcode. It requires a Mac, Xcode, initial pairing, trust, and Developer Mode; it does not install third-party IPAs or bypass signing. This community permits project sharing, so I’m posting the source, exact limitations, and setup guide. I’d especially value reports from people using [COMMUNITY-SPECIFIC TOOL]: [DIRECT URL]
+> I’m the maker of SideRefresh. I built it after personal iOS apps made with coding agents repeatedly became unavailable when free Personal Team signing expired. SideRefresh is an Apache-2.0-licensed Mac app that rebuilds and reinstalls one project you own through Xcode. It requires a Mac, Xcode, initial pairing, trust, and Developer Mode; it does not install third-party IPAs or bypass signing. This community permits project sharing, so I’m posting the source, exact limitations, and setup guide. I’d especially value reports from people using [COMMUNITY-SPECIFIC TOOL]: [DIRECT URL]
 
 Post only where the current community rules permit this format and disclose the
 maker relationship. Product Hunt comments and replies must be written personally,

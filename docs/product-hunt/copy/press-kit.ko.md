@@ -14,7 +14,7 @@ Team 개발 서명이 만료되면 다시 빌드·설치해야 합니다. SideRe
 
 ## 제품 소개
 
-SideRefresh는 개인용 iOS 앱을 만드는 사용자를 위한 MIT 라이선스 macOS
+SideRefresh는 개인용 iOS 앱을 만드는 사용자를 위한 Apache 2.0 라이선스 macOS
 도구입니다. 네이티브 한국어·영어 화면에서 현재 앱, 선택된 iPhone, 마지막
 검증 결과와 다음 행동을 한눈에 보여줍니다. 소스는 사용자의 Mac에 남고,
 Apple Account 로그인, 인증서, 기기 페어링, 신뢰와 Developer Mode는 Apple

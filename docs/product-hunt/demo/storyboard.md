@@ -8,7 +8,7 @@
 | 24–32s | Choose the prepared iPhone already paired with Xcode. | Choose one iPhone already paired with Xcode. | Hide UDID, serial, IP, Tailnet, and unrelated devices. |
 | 32–43s | Save, return to My app, and start Refresh now. Condense real waiting time. | SideRefresh rebuilds, signs, validates, and reinstalls through Xcode. | Overlay `Build wait condensed`; never animate a fake result. |
 | 43–53s | Show the completed state, Last verified evidence, signing expiration, and next eligibility. | Verify the installation evidence and next refresh. | The installed app and evidence must match the recording. |
-| 53–60s | Show repository, MIT, local boundary, languages, and final CTA. | Open source. Local by design. Mac and Xcode required. | Use public URLs and the legal notice. |
+| 53–60s | Show repository, Apache 2.0, local boundary, languages, and final CTA. | Open source. Local by design. Mac and Xcode required. | Use public URLs and the legal notice. |
 
 ## Shot list
 

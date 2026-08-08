@@ -7,7 +7,7 @@ Audited: 2026-08-03
 | Gate | Verdict | Reason |
 | --- | --- | --- |
 | Source publication | **GO through clean snapshot** | Publish only the reviewed tree as a new root commit; never expose the private development graph. |
-| Legal and license | **READY** | Project code and project-created assets are covered by the root MIT license and asset notice. |
+| Legal and license | **READY** | Code and documentation use Apache-2.0; names and visual assets follow the separate brand policy. |
 | Signed binary release | **NO-GO** | No Developer ID-signed, notarized, stapled archive and checksum are public yet. |
 | Product Hunt launch | **NO-GO** | The trusted download and exact-release media remain outstanding. |
 
@@ -38,8 +38,9 @@ and [sensitive-data removal](https://docs.github.com/en/authentication/keeping-y
 
 ## Legal and asset boundary
 
-The root MIT license covers project source and project-created visual assets as
-recorded in [the asset notice](../ASSET-LICENSE.md). SwiftPM declares no runtime
+The root Apache License 2.0 covers source code and prose documentation. The
+[asset notice](../ASSET-LICENSE.md) reserves names and visual assets under the
+separate brand policy. SwiftPM declares no runtime
 third-party package dependency. Marketing build tools and downloaded browser
 artifacts retain their upstream licenses and are not bundled.
 

@@ -1,5 +1,9 @@
 # SideRefresh 오픈소스 성공 전략
 
+> 라이선스 정책 변경: 이 문서의 SideRefresh MIT 평가는 당시 상태를 보존한
+> 역사적 기록이다. `v0.2.0-beta.2`부터 적용되는 Apache-2.0 및 브랜드 경계는
+> [ADR 0001](../adr/0001-apache-2-license-and-brand-boundary.md)이 대체한다.
+
 > 조사 기준일: 2026-07-30
 >
 > 근거 범위: SideRefresh 저장소, Apple 공식 문서, GitHub 공식 저장소·REST API·문서,

@@ -36,6 +36,12 @@ swift_binary_directory="$(
 rm -rf "$package_path"
 mkdir -p "$binary_output_path"
 
+for legal_file in LICENSE NOTICE BRAND_POLICY.md; do
+    install -m 644 \
+        "$repository_root/$legal_file" \
+        "$package_path/$legal_file"
+done
+
 for executable in "${products[@]}"; do
     install -m 755 \
         "$swift_binary_directory/$executable" \
