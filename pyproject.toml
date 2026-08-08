@@ -3,7 +3,8 @@ name = "ios-tailnet-preflight"
 version = "0.2.0"
 description = "Tailnet preflight and opt-in background renewal scheduling for personal iOS development."
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
 
 [project.scripts]
 ios-tailnet-preflight = "ios_tailnet_preflight.__main__:main"

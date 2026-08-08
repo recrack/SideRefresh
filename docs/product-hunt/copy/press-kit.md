@@ -17,7 +17,7 @@ Xcode Personal Team flow before development signing expires.
 
 ## Boilerplate
 
-SideRefresh is an independent, MIT-licensed macOS utility for people who build
+SideRefresh is an independent, Apache-2.0-licensed macOS utility for people who build
 personal iOS apps with coding agents or Xcode. It presents one app, one paired
 iPhone, the latest verified installation, and the next required action in a
 native English or Korean workspace. Source stays on the user's Mac; Apple
@@ -28,7 +28,7 @@ Apple signing, make Personal Team profiles permanent, or work without Xcode.
 ## Verified facts
 
 - Platform: macOS 13 or later; Xcode is required.
-- License: MIT.
+- License: Apache-2.0.
 - Scope: one owned app and one paired iPhone per configuration.
 - Membership: a paid Apple Developer Program membership is not required for
   personal-device use; an Apple Account Personal Team is still required.

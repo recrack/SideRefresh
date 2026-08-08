@@ -18,7 +18,7 @@ service, jailbreak, or Apple Account password collection.
 > Mac build remains a separate release gate.
 
 Current source prerelease:
-[v0.2.0-beta.1](https://github.com/recrack/SideRefresh/releases/tag/v0.2.0-beta.1).
+[v0.2.0-beta.2](https://github.com/recrack/SideRefresh/releases/tag/v0.2.0-beta.2).
 
 ## See the product
 
@@ -88,4 +88,6 @@ and experimental; it does not replace Apple pairing, trust, or signing.
 
 Install the repository hooks with `Scripts/install-git-hooks.sh`, then see
 [CONTRIBUTING.md](CONTRIBUTING.md). Report sensitive issues through
-[SECURITY.md](SECURITY.md). SideRefresh is available under the [MIT License](LICENSE).
+[SECURITY.md](SECURITY.md). Code and documentation are available under the
+[Apache License 2.0](LICENSE); names and visual assets follow the
+[brand policy](BRAND_POLICY.md). Versions through `v0.2.0-beta.1` remain MIT-licensed.

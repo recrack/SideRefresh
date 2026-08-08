@@ -3,7 +3,7 @@
 ## Supported versions
 
 SideRefresh is pre-1.0. Security fixes are applied to the latest source
-prerelease and the default branch. `v0.2.0-beta.1` is source-only; there are no
+prerelease and the default branch. `v0.2.0-beta.2` is source-only; there are no
 supported binary release channels yet.
 
 ## Reporting a vulnerability

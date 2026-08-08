@@ -16,7 +16,7 @@ Update them if the final release-candidate images change materially.
    SideRefresh and Xcode signing/CoreDevice to a paired iPhone.
 5. **Local boundary:** Three cards explain local source, no Apple Account
    password collection, and explicit project and device access.
-6. **Open-source trust:** SideRefresh icon with MIT-licensed Swift source,
+6. **Open-source trust:** SideRefresh icon with Apache-2.0 Swift source,
    the public-repository launch gate, English and Korean UI, and the signed and
    notarized public-release gate.
 7. **Social preview:** SideRefresh icon and abstract renewal loop beside the

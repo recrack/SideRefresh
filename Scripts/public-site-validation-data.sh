@@ -26,6 +26,12 @@ sample_labels=(
     "サンプルプレビュー · 合成データ"
     "示例预览 · 合成数据"
 )
+license_labels=(
+    "Open source under Apache License 2.0."
+    "Apache License 2.0으로 공개되는 오픈소스입니다."
+    "Apache License 2.0のオープンソースです。"
+    "采用 Apache License 2.0 的开源项目。"
+)
 current_language_hrefs=(
     './'
     '../ko/'

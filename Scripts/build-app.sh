@@ -57,6 +57,11 @@ install -m 644 \
 install -m 644 \
     "$repository_root/Assets/Brand/SideRefresh-MenuBar.svg" \
     "$application_path/Contents/Resources/SideRefresh-MenuBar.svg"
+for legal_file in LICENSE NOTICE BRAND_POLICY.md; do
+    install -m 644 \
+        "$repository_root/$legal_file" \
+        "$application_path/Contents/Resources/$legal_file"
+done
 /usr/bin/rsync \
     -a \
     "$repository_root/AppBundle/Resources/" \

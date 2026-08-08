@@ -46,6 +46,18 @@ fi
 }
 
 cp "$repository_root/SUPPORT.md" "$fixture_root/SUPPORT.md"
+rm "$fixture_root/NOTICE"
+expect_public_source_rejected "missing NOTICE"
+cp "$repository_root/NOTICE" "$fixture_root/NOTICE"
+
+rm "$fixture_root/BRAND_POLICY.md"
+expect_public_source_rejected "missing brand policy"
+cp "$repository_root/BRAND_POLICY.md" "$fixture_root/BRAND_POLICY.md"
+
+printf '%s\n' 'Not the Apache License' > "$fixture_root/LICENSE"
+expect_public_source_rejected "invalid Apache license"
+cp "$repository_root/LICENSE" "$fixture_root/LICENSE"
+
 rm "$fixture_root/.github/workflows/ci.yml"
 expect_public_source_rejected "missing CI workflow"
 printf '%s\n' \

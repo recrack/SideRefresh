@@ -35,7 +35,9 @@ fi
 }
 
 required_files=(
+    BRAND_POLICY.md
     LICENSE
+    NOTICE
     README.md
     README.ko.md
     SECURITY.md
@@ -55,6 +57,30 @@ required_files=(
 for relative_path in "${required_files[@]}"; do
     [[ -f "$repository_root/$relative_path" ]] || {
         echo "Public source validation failed: missing $relative_path" >&2
+        exit 1
+    }
+done
+
+for license_text in \
+    'Apache License' \
+    'Version 2.0, January 2004' \
+    'TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION' \
+    'END OF TERMS AND CONDITIONS'; do
+    "$public_source_rg" --fixed-strings --quiet \
+        "$license_text" "$repository_root/LICENSE" || {
+        echo "Public source validation failed: LICENSE is not Apache-2.0." >&2
+        exit 1
+    }
+done
+"$public_source_rg" --fixed-strings --quiet \
+    'SideRefresh' "$repository_root/NOTICE" || {
+    echo "Public source validation failed: NOTICE has no SideRefresh attribution." >&2
+    exit 1
+}
+for relative_path in README.md README.ko.md CONTRIBUTING.md docs/ASSET-LICENSE.md; do
+    "$public_source_rg" --fixed-strings --quiet \
+        'Apache License 2.0' "$repository_root/$relative_path" || {
+        echo "Public source validation failed: stale license policy in $relative_path." >&2
         exit 1
     }
 done

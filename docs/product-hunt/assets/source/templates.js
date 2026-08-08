@@ -16,7 +16,7 @@
       case "privacy":
         return `<div class="privacy-grid">${[["⌂", "Local source", "Builds the selected project on this Mac."], ["✓", "No password collection", "Apple Account sign-in stays in Xcode."], ["→", "Explicit access", "You choose the project and paired device."]].map(item => `<div class="privacy-card glass-card"><span class="check">${item[0]}</span><div><strong>${item[1]}</strong><p>${item[2]}</p></div></div>`).join("")}</div>`;
       case "trust":
-        return `<div class="trust-card glass-card"><img class="product-icon" src="${icon}" alt="SideRefresh icon"><div class="trust-list">${[["✓", "MIT-licensed Swift source", ""], ["→", "Public repository at launch", "pending"], ["✓", "English and Korean UI", ""], ["→", "Developer ID + notarization before launch", "pending"]].map(item => `<div class="trust-item"><span class="check ${item[2]}">${item[0]}</span>${item[1]}</div>`).join("")}</div></div>`;
+        return `<div class="trust-card glass-card"><img class="product-icon" src="${icon}" alt="SideRefresh icon"><div class="trust-list">${[["✓", "Apache-2.0 Swift source", ""], ["→", "Public repository at launch", "pending"], ["✓", "English and Korean UI", ""], ["→", "Developer ID + notarization before launch", "pending"]].map(item => `<div class="trust-item"><span class="check ${item[2]}">${item[0]}</span>${item[1]}</div>`).join("")}</div></div>`;
       case "video":
         return `${screenshot(data)}<div class="play">▶</div>`;
       default:

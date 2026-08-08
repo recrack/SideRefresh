@@ -23,8 +23,10 @@ for index in "${!pages[@]}"; do
         "<main id=\"content\" tabindex=\"-1\">"
         "class=\"skip-link\" href=\"#content\""
         "${sample_labels[$index]}"
+        "${license_labels[$index]}"
         "social-preview-public-1280x640.png"
         "https://github.com/recrack/SideRefresh/releases"
+        "https://github.com/recrack/SideRefresh/blob/master/BRAND_POLICY.md"
         "<meta property=\"og:image:alt\""
         "<meta name=\"twitter:card\" content=\"summary_large_image\""
     )

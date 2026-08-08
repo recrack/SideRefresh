@@ -12,7 +12,7 @@ Program membership, or promise unsupported product behavior.
 
 SideRefresh will use a two-stage public launch:
 
-1. Publish the MIT-licensed repository and a source-build prerelease for Agent
+1. Publish the Apache-2.0-licensed repository and a source-build prerelease for Agent
    app makers who already have a Mac and Xcode.
 2. Publish the first stable release only when a Developer ID-signed, notarized
    macOS binary and the Simple workspace acceptance evidence are ready.
@@ -58,13 +58,18 @@ research receive a human privacy review.
 
 ### Project license
 
-Keep the MIT License with SPDX identifier `MIT`. SPDX records MIT as an
-OSI-approved license and provides its canonical text.
-[SPDX: MIT](https://spdx.org/licenses/MIT)
+Beginning with `v0.2.0-beta.2`, use Apache License 2.0 with SPDX identifier
+`Apache-2.0`. Keep the canonical license text unmodified and include the
+project attribution in `NOTICE`.
+[SPDX: Apache-2.0](https://spdx.org/licenses/Apache-2.0)
 
-The release must include `LICENSE` in the source archive and inside the binary
-archive alongside the app. Documentation and project-owned brand assets use the
-same MIT terms unless a file states otherwise.
+The release must include `LICENSE` and `NOTICE` in source and binary packages.
+Source code and prose documentation use Apache-2.0. SideRefresh names and
+visual assets follow `BRAND_POLICY.md` and `docs/ASSET-LICENSE.md`, which must
+also accompany packages containing those assets.
+
+The MIT terms attached to versions through `v0.2.0-beta.1` remain valid. Do not
+move those tags or rewrite their historical license and release records.
 
 Before public visibility:
 
@@ -72,7 +77,7 @@ Before public visibility:
   provenance;
 - confirm that the maintainer has the right to publish every tracked asset;
 - record every bundled third-party component and its license;
-- do not copy or bundle GPL/AGPL code into the MIT distribution without an
+- do not copy or bundle GPL/AGPL code into the Apache-2.0 distribution without an
   explicit compatibility and distribution review;
 - add `THIRD_PARTY_NOTICES.md` when the first distributable third-party
   component is introduced.
@@ -85,10 +90,10 @@ provenance is required for the stable binary regardless.
 ### Inbound contributions
 
 Use inbound-equals-outbound licensing: by contributing, a contributor licenses
-the contribution under MIT, as the current `CONTRIBUTING.md` states.
+the contribution under Apache-2.0, as `CONTRIBUTING.md` states.
 
 Do not require a CLA or DCO for the first release. Either would add contributor
-friction without a current relicensing, dual-licensing, or multi-organization
+friction without a dual-licensing or multi-organization
 governance requirement. Revisit only if that need becomes real.
 
 Add Contributor Covenant 2.1 with a real maintainer enforcement contact.
@@ -151,6 +156,7 @@ The stable release provides:
 - `SideRefresh-v0.2.0-universal-macos.zip`;
 - `SHA256SUMS`;
 - `LICENSE`;
+- `NOTICE` and the applicable brand policy;
 - release notes and a link to the full changelog;
 - installation, update, and complete-uninstall instructions;
 - a compatibility table and known limitations;

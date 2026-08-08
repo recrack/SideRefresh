@@ -88,4 +88,4 @@ a public issue.
 ## License
 
 By contributing, you agree that your contribution is licensed under the
-project's MIT License.
+project's Apache License 2.0.

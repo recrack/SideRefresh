@@ -248,6 +248,9 @@ The output is:
 dist/SideRefreshHeadless
 ```
 
+The package root includes `LICENSE`, `NOTICE`, and `BRAND_POLICY.md` alongside
+the signed executables in `bin/`.
+
 Xcode, an Apple Development identity, project source, and an already paired
 and reachable iPhone remain required.
 
