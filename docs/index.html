@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SideRefresh — Keep your personal iOS app running</title>
-  <meta name="description" content="SideRefresh rebuilds and reinstalls one agent-built iOS app through Xcode Personal Team before signing expires.">
+  <title>SideRefresh — Keep an Xcode-installed iOS app running</title>
+  <meta name="description" content="I built an app my daughter needed. SideRefresh refreshes it before free Personal Team signing expires.">
   <meta name="theme-color" content="#050817">
   <meta property="og:title" content="SideRefresh">
-  <meta property="og:description" content="Keep the iOS app your coding agent built running on your own iPhone.">
+  <meta property="og:description" content="I built an app my daughter needed. A week later, it stopped opening. SideRefresh refreshes it before signing expires.">
   <meta property="og:image" content="https://recrack.github.io/SideRefresh/product-hunt/assets/social-preview-public-1280x640.png">
   <meta property="og:image:alt" content="SideRefresh renewal evidence from verified installation through signing expiry">
   <meta property="og:locale" content="en_US">
@@ -19,7 +19,7 @@
   <link rel="alternate" hreflang="zh-Hans" href="https://recrack.github.io/SideRefresh/zh-cn/">
   <link rel="alternate" hreflang="x-default" href="https://recrack.github.io/SideRefresh/">
   <link rel="icon" href="product-hunt/assets/thumbnail-240.png">
-  <link rel="stylesheet" href="site/theme.css"><link rel="stylesheet" href="site/page.css">
+  <link rel="stylesheet" href="site/theme.css"><link rel="stylesheet" href="site/page.css"><link rel="stylesheet" href="site/story.css">
   <link rel="stylesheet" href="site/components.css"><link rel="stylesheet" href="site/responsive.css">
 </head>
 <body data-theme="renewal">
@@ -31,9 +31,10 @@
   </div></header>
   <main id="content" tabindex="-1">
     <section class="hero wrap">
-      <div class="hero-copy"><p class="hero-note utility">Open source · Mac + Xcode · One app + one iPhone</p><h1>Keep the iOS app your coding agent built running on your own iPhone.</h1><p class="lead">SideRefresh rebuilds, signs, and reinstalls one app from an Xcode project you own before free Personal Team signing expires. Your source stays on your Mac.</p><div class="actions"><a class="button primary" href="https://github.com/recrack/SideRefresh">View source</a><a class="button secondary" href="https://github.com/recrack/SideRefresh/releases">View release status</a></div><p class="release-note">A signed Mac build will follow Developer ID notarization and release verification.</p></div>
+      <div class="hero-copy"><p class="hero-note utility">Open source · Mac + Xcode · One app + one iPhone</p><h1>I built an app my daughter needed.<br>A week later, it stopped opening.</h1><p class="lead">SideRefresh rebuilds, signs, and reinstalls that app before free Personal Team signing expires. Your source stays on your Mac.</p><div class="actions"><a class="button primary" href="https://wikidocs.net/book/20828">Read the guide</a><a class="button secondary" href="https://github.com/recrack/SideRefresh">View source</a><a class="button secondary" href="https://github.com/recrack/SideRefresh/releases">View release status</a></div><p class="release-note">A signed Mac build will follow Developer ID notarization and release verification.</p></div>
       <figure class="product-view"><div class="product-frame"><img src="product-hunt/assets/screenshots/en/healthy.png" width="2080" height="1400" fetchpriority="high" alt="SideRefresh showing a verified personal app, its selected iPhone, and the next refresh date"></div><figcaption>Sample preview · synthetic data. The app interface currently supports English and Korean.</figcaption></figure>
     </section>
+    <section class="story wrap" aria-labelledby="story-title"><div class="story-heading"><p class="utility">Why this exists</p><h2 id="story-title">One small app. One broken week. A repeatable fix.</h2><p>The first install worked. The free signing window did not last. SideRefresh turns the weekly Xcode rebuild into a scheduled refresh, as long as the Mac is awake and the iPhone is reachable.</p></div><figure class="storyboard"><img src="product-hunt/assets/storyboard-4x4-en.png" width="1280" height="1731" alt="Sixteen-panel story showing an app that stops opening after seven days and the steps to schedule SideRefresh automatic refresh"><figcaption>From the first install to an automatic refresh · story preview.</figcaption></figure></section>
     <section class="renewal wrap" aria-labelledby="renewal-title"><div class="renewal-heading"><p class="utility">Personal Team signing window</p><p class="muted" id="renewal-title">SideRefresh schedules from verified installation and expiration evidence—not from a successful command alone.</p></div><ol class="evidence-track"><li><span class="utility">Last verified</span><strong>App installed</strong><small>Signing expiration read from the installed app</small></li><li><span class="utility">Next refresh</span><strong>Before expiry</strong><small>Runs when the Mac is awake and the iPhone is reachable</small></li><li><span class="utility">Signing expiry</span><strong>Deadline</strong><small>The app must be rebuilt, signed, and installed again</small></li></ol></section>
     <section class="section wrap" id="how"><div class="section-heading"><p class="utility">How it works</p><h2>The normal Xcode path, repeated before signing expires.</h2></div><ol class="process"><li><h3>Choose what you own</h3><p>Select one Xcode project or workspace and the paired iPhone you use.</p></li><li><h3>Build, sign, and install</h3><p>SideRefresh uses your installed Xcode and free Personal Team—without collecting your Apple Account password.</p></li><li><h3>Verify and schedule</h3><p>It records the installed app’s signing expiration and chooses the next safe refresh time.</p></li></ol></section>
     <section class="section wrap split" id="requirements"><div class="block"><p class="utility hero-note">What you need</p><h2>A real Apple development setup.</h2><ul class="fact-list"><li>A Mac with a supported Xcode version</li><li>An Apple Account and free Personal Team</li><li>Your own native iOS project</li><li>A paired, reachable iPhone with Developer Mode</li><li>The Mac awake when a scheduled refresh runs</li></ul></div><div class="block"><p class="utility hero-note">Local by design</p><h2>Your project stays on your Mac.</h2><ul class="fact-list"><li>No Apple Account password collection</li><li>No uploaded source code</li><li>No third-party IPA store</li><li>Apple’s normal Xcode signing and device tools</li><li>Apache-2.0 source you can inspect</li></ul></div></section>

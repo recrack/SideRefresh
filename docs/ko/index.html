@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SideRefresh — 개인 iOS 앱을 계속 사용하세요</title>
-  <meta name="description" content="SideRefresh는 코딩 에이전트가 만든 iOS 앱 하나를 무료 Xcode Personal Team 서명이 만료되기 전에 다시 빌드하고 설치합니다.">
+  <title>SideRefresh — Xcode 앱을 7일 뒤에도 계속 쓰는 방법</title>
+  <meta name="description" content="딸에게 필요한 앱을 만들었는데 일주일 뒤 열리지 않았습니다. SideRefresh가 무료 Personal Team 서명 만료 전에 앱을 자동 갱신합니다.">
   <meta name="theme-color" content="#050817">
   <meta property="og:title" content="SideRefresh">
-  <meta property="og:description" content="코딩 에이전트가 만든 iOS 앱을 내 iPhone에서 계속 사용하세요.">
+  <meta property="og:description" content="딸에게 필요한 앱을 만들었는데 일주일 뒤 열리지 않았습니다. SideRefresh가 만료 전에 자동 갱신합니다.">
   <meta property="og:image" content="https://recrack.github.io/SideRefresh/product-hunt/assets/social-preview-public-1280x640.png">
   <meta property="og:image:alt" content="확인된 설치부터 서명 만료까지 SideRefresh 갱신 흐름">
   <meta property="og:locale" content="ko_KR">
@@ -19,7 +19,7 @@
   <link rel="alternate" hreflang="zh-Hans" href="https://recrack.github.io/SideRefresh/zh-cn/">
   <link rel="alternate" hreflang="x-default" href="https://recrack.github.io/SideRefresh/">
   <link rel="icon" href="../product-hunt/assets/thumbnail-240.png">
-  <link rel="stylesheet" href="../site/theme.css"><link rel="stylesheet" href="../site/page.css">
+  <link rel="stylesheet" href="../site/theme.css"><link rel="stylesheet" href="../site/page.css"><link rel="stylesheet" href="../site/story.css">
   <link rel="stylesheet" href="../site/components.css"><link rel="stylesheet" href="../site/responsive.css">
 </head>
 <body data-theme="renewal">
@@ -31,12 +31,13 @@
   </div></header>
   <main id="content" tabindex="-1">
     <section class="hero wrap">
-      <div class="hero-copy"><p class="hero-note utility">오픈소스 · Mac + Xcode · 앱 하나 + iPhone 한 대</p><h1>코딩 에이전트가 만든 iOS 앱을 내 iPhone에서 계속 사용하세요.</h1><p class="lead">SideRefresh는 사용자가 소유한 Xcode 프로젝트의 앱 하나를 다시 빌드하고 서명해 무료 Personal Team 서명이 만료되기 전에 재설치합니다. 소스 코드는 Mac 밖으로 나가지 않습니다.</p><div class="actions"><a class="button primary" href="https://github.com/recrack/SideRefresh">소스 보기</a><a class="button secondary" href="https://github.com/recrack/SideRefresh/releases">릴리스 상태 보기</a></div><p class="release-note">Developer ID 서명·공증과 릴리스 검증이 끝난 뒤 서명된 Mac 빌드를 제공합니다.</p></div>
+      <div class="hero-copy"><p class="hero-note utility">오픈소스 · Mac + Xcode · 앱 하나 + iPhone 한 대</p><h1>딸에게 필요한 앱을 만들었습니다.<br>그런데 일주일 뒤 열리지 않았습니다.</h1><p class="lead">SideRefresh는 그 앱을 무료 Personal Team 서명이 만료되기 전에 다시 빌드하고 설치합니다. 소스 코드는 Mac 밖으로 나가지 않습니다.</p><div class="actions"><a class="button primary" href="https://wikidocs.net/book/20828">설치 안내 보기</a><a class="button secondary" href="https://github.com/recrack/SideRefresh">소스 보기</a><a class="button secondary" href="https://github.com/recrack/SideRefresh/releases">릴리스 상태 보기</a></div><p class="release-note">Developer ID 서명·공증과 릴리스 검증이 끝난 뒤 서명된 Mac 빌드를 제공합니다.</p></div>
       <figure class="product-view"><div class="product-frame"><img src="../product-hunt/assets/screenshots/en/healthy.png" width="2080" height="1400" fetchpriority="high" alt="선택한 개인 앱과 iPhone, 다음 갱신 시점을 보여주는 SideRefresh 화면"></div><figcaption>샘플 미리보기 · 합성 데이터. 앱 인터페이스는 현재 영어와 한국어를 지원합니다.</figcaption></figure>
     </section>
+    <section class="story wrap" aria-labelledby="story-title"><div class="story-heading"><p class="utility">왜 만들었나요?</p><h2 id="story-title">작은 앱 하나가 일주일 뒤 멈췄고, 반복 가능한 해결책을 만들었습니다.</h2><p>처음 설치는 잘 됐지만 무료 서명 기간은 계속 줄어들었습니다. Mac이 깨어 있고 iPhone에 연결할 수 있다면 SideRefresh가 매주 하던 Xcode 재빌드·설치를 예약 갱신으로 바꿉니다.</p></div><figure class="storyboard"><img src="../product-hunt/assets/storyboard-4x4-ko.png" width="1280" height="1588" alt="7일 뒤 열리지 않는 앱과 SideRefresh 자동 갱신 설정 과정을 보여주는 16칸 카툰"><figcaption>처음 설치부터 자동 갱신까지 · 4×4 스토리보드.</figcaption></figure></section>
     <section class="renewal wrap" aria-labelledby="renewal-title"><div class="renewal-heading"><p class="utility">Personal Team 서명 기간</p><p class="muted" id="renewal-title">명령 성공 여부가 아니라 확인된 설치와 서명 만료 증거를 기준으로 다음 갱신을 정합니다.</p></div><ol class="evidence-track"><li><span class="utility">마지막 확인</span><strong>앱 설치 완료</strong><small>설치된 앱에서 서명 만료 시점을 읽음</small></li><li><span class="utility">다음 갱신</span><strong>만료 전 실행</strong><small>Mac이 깨어 있고 iPhone에 연결할 수 있을 때 실행</small></li><li><span class="utility">서명 만료</span><strong>갱신 기한</strong><small>앱을 다시 빌드하고 서명해 설치해야 하는 시점</small></li></ol></section>
     <section class="section wrap" id="how"><div class="section-heading"><p class="utility">작동 방식</p><h2>서명이 만료되기 전에 정상 Xcode 설치 과정을 다시 실행합니다.</h2></div><ol class="process"><li><h3>내 프로젝트 선택</h3><p>사용자가 소유한 Xcode 프로젝트 또는 워크스페이스 하나와 페어링된 iPhone을 선택합니다.</p></li><li><h3>빌드·서명·설치</h3><p>SideRefresh가 설치된 Xcode와 무료 Personal Team을 사용합니다. Apple Account 암호를 수집하지 않습니다.</p></li><li><h3>확인 후 예약</h3><p>설치된 앱의 서명 만료 시점을 기록하고 다음 안전한 갱신 시간을 정합니다.</p></li></ol></section>
-    <section class="section wrap split" id="requirements"><div class="block"><p class="utility hero-note">필요한 것</p><h2>실제 Apple 개발 환경이 필요합니다.</h2><ul class="fact-list"><li>지원되는 Xcode가 설치된 Mac</li><li>Apple Account와 무료 Personal Team</li><li>사용자가 소유한 네이티브 iOS 프로젝트</li><li>개발자 모드가 켜진 페어링·연결 가능한 iPhone</li><li>예약 갱신 시 깨어 있는 Mac</li></ul></div><div class="block"><p class="utility hero-note">Mac 안에서 처리</p><h2>프로젝트는 내 Mac에 남습니다.</h2><ul class="fact-list"><li>Apple Account 암호를 수집하지 않음</li><li>소스 코드를 업로드하지 않음</li><li>타사 IPA 스토어를 사용하지 않음</li><li>Apple의 정상 Xcode 서명·기기 도구 사용</li><li>검토할 수 있는 Apache-2.0 라이선스 소스</li></ul></div></section>
+    <section class="section wrap split" id="requirements"><div class="block"><p class="utility hero-note">필요한 것</p><h2>실제 Apple 개발 환경이 필요합니다.</h2><ul class="fact-list"><li>지원되는 Xcode가 설치된 Mac</li><li>Apple Account와 무료 Personal Team</li><li>사용자가 소유한 네이티브 iOS 프로젝트</li><li>개발자 모드가 켜진 페어링·연결 가능한 iPhone</li><li>예약 갱신 시 깨어 있는 Mac</li></ul></div><div class="block"><p class="utility hero-note">Mac 안에서 처리</p><h2>프로젝트는 내 Mac에 남습니다.</h2><ul class="fact-list"><li>Apple Account 암호를 수집하지 않음</li><li>소스 코드를 업로드하지 않음</li><li>타사 IPA 스토어를 사용하지 않음</li><li>Apple의 정상 Xcode 서명·기기 도구 사용</li><li>검토할 수 있는 Apache-2.0 소스</li></ul></div></section>
     <section class="section wrap" id="limits"><div class="scope-grid"><div class="scope-copy"><p class="utility hero-note">첫 릴리스 범위</p><h2>일부러 좁게 시작합니다.</h2><p>SideRefresh는 개인 앱 하나와 iPhone 한 대에서 시작합니다. 타인의 IPA 설치, 팀·여러 기기 관리, Xcode 없는 사용, 순수 셀룰러 갱신을 첫 릴리스 기능으로 주장하지 않습니다.</p><ul class="limit-list"><li>선택한 앱 하나와 iPhone 한 대</li><li>USB 또는 Xcode가 이미 사용할 수 있는 네트워크 경로</li><li>실험적 연결은 실험 기능으로 명확히 표시</li></ul></div><div class="language-facts"><p><strong>제품 페이지:</strong> 영어 · 한국어 · 일본어 · 중국어(간체)</p><p><strong>앱 인터페이스: 영어 · 한국어</strong></p></div></div></section>
   </main>
   <footer class="site-footer"><div class="footer-row wrap"><div class="footer-brand"><strong>SideRefresh</strong><p>Apache License 2.0으로 공개되는 오픈소스입니다.</p></div><nav class="footer-links" aria-label="하단 메뉴"><a href="https://github.com/recrack/SideRefresh">소스</a><a href="https://github.com/recrack/SideRefresh/security">보안</a><a href="https://github.com/recrack/SideRefresh/blob/master/LICENSE">Apache 2.0</a><a href="https://github.com/recrack/SideRefresh/blob/master/BRAND_POLICY.md">브랜드 정책</a></nav><p class="legal">Apple Inc.와 제휴하거나 Apple Inc.의 보증을 받은 제품이 아닙니다. Apple, Mac, iPhone, macOS, Xcode는 Apple Inc.의 상표입니다.</p></div></footer>
