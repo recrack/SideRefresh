@@ -9,8 +9,8 @@ canonicals=(
     "https://recrack.github.io/SideRefresh/zh-cn/"
 )
 headlines=(
-    "Keep the iOS app your coding agent built running on your own iPhone."
-    "코딩 에이전트가 만든 iOS 앱을 내 iPhone에서 계속 사용하세요."
+    "I built an app my daughter needed."
+    "딸에게 필요한 앱을 만들었습니다."
     "コーディングエージェントが作ったiOSアプリを、自分のiPhoneで使い続ける。"
     "让编码智能体构建的 iOS App 持续运行在你自己的 iPhone 上。"
 )

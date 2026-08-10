@@ -1,0 +1,11 @@
+.story { padding-block: 70px 86px; border-top: 1px solid var(--rule); }
+.story-heading { max-width: 760px; margin-bottom: 30px; }
+.story-heading .utility { margin-bottom: 14px; color: var(--blue); }
+.story-heading p:last-child { max-width: 680px; margin-bottom: 0; color: var(--muted); font-size: 1.08rem; }
+.storyboard { max-width: 980px; margin: 0; padding: 14px; border: 1px solid var(--rule); border-radius: 24px; background: var(--paper); box-shadow: 0 18px 45px rgba(20, 35, 55, .08); }
+.storyboard img { display: block; width: 100%; height: auto; border-radius: 14px; }
+.storyboard figcaption { margin: 12px 4px 0; color: var(--quiet); font-size: .78rem; }
+@media (max-width: 720px) {
+  .story { padding-block: 56px 66px; }
+  .storyboard { padding: 8px; border-radius: 17px; }
+}

@@ -21,6 +21,9 @@ prepare_case() {
         "$case_root/docs/product-hunt/assets/"
     cp "$repository_root/docs/product-hunt/assets/screenshots/en/healthy.png" \
         "$case_root/docs/product-hunt/assets/screenshots/en/"
+    cp "$repository_root/docs/product-hunt/assets/storyboard-4x4-en.png" \
+        "$repository_root/docs/product-hunt/assets/storyboard-4x4-ko.png" \
+        "$case_root/docs/product-hunt/assets/"
     printf '%s\n' "$case_root"
 }
 
