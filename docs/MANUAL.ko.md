@@ -82,10 +82,11 @@ USB 또는 Xcode가 이미 사용할 수 있는 네트워크 경로에 사용합
 4. **Tailscale 주소 확인 완료** 후에도 **Xcode에서 iPhone 확인**을 별도로
    실행합니다.
 
-Tailscale 온라인은 Xcode 연결 성공을 뜻하지 않습니다. CoreDevice UDID,
-최초 페어링, 신뢰, Developer Mode, Apple 서명을 대신하지도 않습니다. 순수
-셀룰러 Tailnet을 통한 실제 CoreDevice 설치는 아직 공개 지원 범위로
-검증되지 않았습니다.
+Tailscale 온라인은 Xcode 연결 성공을 뜻하지 않습니다. Tailscale에서 찾은
+주소를 `xcodebuild`나 `devicectl`에 전달하지 않으며, 실제 iPhone 선택은 저장된
+CoreDevice UDID가 계속 담당합니다. 최초 페어링, 신뢰, Developer Mode, Apple
+서명을 대신하지도 않습니다. 순수 셀룰러 Tailnet을 통한 실제 CoreDevice
+설치는 아직 공개 지원 범위로 검증되지 않았습니다.
 
 ### 직접 IP/DNS
 

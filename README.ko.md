@@ -39,7 +39,10 @@ Simple 화면은 내 앱 → 빌드·서명·설치 → 내 iPhone 관계를 한
    서명 만료 증거까지 확인된 경우에만 성공을 기록합니다.
 
 첫 설치를 확인한 뒤 **자동 갱신**을 명시적으로 켭니다. 갱신 시점에는 Mac이
-깨어 있고 iPhone에 연결할 수 있어야 합니다.
+깨어 있고 iPhone이 Xcode/CoreDevice에 연결할 수 있어야 합니다. 연결은 USB나
+Xcode가 이미 알고 있는 네트워크 경로를 사용할 수 있으며, SideRefresh가
+전송 방식을 선택하거나 감지하지는 않습니다. Tailscale은 선택적 실험 기능으로
+peer와 주소를 확인할 뿐 Xcode 연결을 대신하지 않습니다.
 
 ## 소스에서 시작
 
@@ -71,10 +74,12 @@ launchd → 짧게 실행되는 Agent → 갱신 엔진 → xcodebuild → devic
 ## 의도적으로 좁은 범위
 
 설정 하나당 내가 소유한 앱 하나, Xcode 프로젝트나 워크스페이스 하나, 페어링된
-iPhone 한 대를 지원합니다. 타인의 IPA 설치, Personal Team 서명 영구화,
-여러 기기 관리, Xcode 없는 사용, 순수 셀룰러 CoreDevice 갱신을 지원한다고
-주장하지 않습니다. Tailscale은 선택적 실험 기능이며 Apple 페어링·신뢰·서명을
-대신하지 않습니다.
+iPhone 한 대를 지원합니다. 자동 갱신은 Xcode가 이미 연결한 CoreDevice 경로를
+사용하며, USB나 Xcode가 알고 있는 로컬 네트워크 경로일 수 있습니다. 타인의
+IPA 설치, Personal Team 서명 영구화, 여러 기기 관리, Xcode 없는 사용, 순수
+셀룰러 CoreDevice 갱신을 지원한다고 주장하지 않습니다. Tailscale은 선택적
+실험 기능으로 peer와 주소를 확인하지만 Apple 페어링·신뢰·서명이나 Xcode
+연결을 대신하지 않습니다.
 
 ## 더 알아보기
 

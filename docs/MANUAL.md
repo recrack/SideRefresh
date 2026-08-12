@@ -83,10 +83,11 @@ same tailnet.
 4. After **Tailscale address confirmed**, separately run **Check iPhone in
    Xcode**.
 
-Tailscale online status is not proof of an Xcode connection. Tailscale does not
-replace the CoreDevice UDID, initial pairing, trust, Developer Mode, or Apple
-signing. Pure-cellular CoreDevice installation is not yet a verified public
-support claim.
+Tailscale online status is not proof of an Xcode connection. The address found
+by Tailscale is not passed into `xcodebuild` or `devicectl`; the saved CoreDevice
+UDID still selects the iPhone. Tailscale does not replace initial pairing,
+trust, Developer Mode, or Apple signing. Pure-cellular CoreDevice installation
+is not yet a verified public support claim.
 
 ### Custom IP/DNS
 

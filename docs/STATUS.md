@@ -43,7 +43,9 @@ on a paired iPhone.
 
 Pure-cellular installation through a Tailscale direct-IP connection remains
 unverified. SideRefresh does not claim that Apple CoreDevice works over a
-cellular-only Tailnet path.
+cellular-only Tailnet path. The automatic helper can use USB or a local-network
+CoreDevice connection that Xcode already knows; those operating conditions
+still need separate exact-final-archive evidence before both are advertised.
 
 The helper does not create the initial Xcode/CoreDevice connection. Signing in
 to Xcode, enabling Developer Mode, accepting trust prompts, and initial pairing
@@ -164,11 +166,17 @@ discovery button. A single paired iPhone is selected automatically.
 When several iPhones exist, the picker shows each name, model, iOS version, and
 a short UDID suffix. Manual UDID entry remains available.
 
-Three connection routes are represented:
+The connection preparation UI represents three choices:
 
 - an existing automatic/CoreDevice connection;
 - explicit Tailscale discovery; or
 - a custom IP or DNS address for Xcode's connection UI.
+
+The automatic/CoreDevice choice is transport-agnostic: Xcode may use USB or a
+network route it already knows. SideRefresh does not inspect or force that
+transport. Tailscale discovery is a separate experimental preflight; its
+resolved address is not passed into `xcodebuild` or `devicectl`, and it does not
+establish Xcode pairing.
 
 Changing network addresses are not treated as installation identity.
 CoreDevice UDID selects the iPhone.

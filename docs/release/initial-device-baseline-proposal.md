@@ -18,7 +18,7 @@
 | iPhone | iPhone 13 Pro Max (`iPhone14,3`) |
 | iOS | `26.5.2`, build `23F84` |
 | Pairing / Developer Mode | paired; Developer Mode enabled |
-| Candidate route | cable/USB operating condition |
+| Candidate route | Xcode/CoreDevice reachable condition; USB observed, LAN not yet observed |
 | CoreDevice tunnel | unavailable |
 
 The route value is an operating-condition candidate, not proof that
@@ -49,7 +49,8 @@ and provenance contract](signed-archive-provenance-contract.md).
 The named human must explicitly confirm:
 
 > “I confirm this exact tuple as the proposed initial device baseline, with
-> the first-release boundary limited to the cable-present operating condition;
+> the first-release boundary limited to the Xcode/CoreDevice reachable
+> operating condition (USB or a separately verified Xcode-known network route);
 > I understand it is read-only candidate evidence, not a passed matrix case
 > or support claim, and that CoreDevice tunnel unavailability leaves the
 > required execution blocked.”
@@ -62,9 +63,9 @@ any matrix row `pass`, approve a final archive, or authorize publication.
 1. Re-observe every tuple member on the same host and physical iPhone; record
    the exact final archive identity and immutable case/route records required
    by the [acceptance matrix](first-release-acceptance-matrix.md).
-2. Re-establish and record the advertised cable-present route. If a
-   CoreDevice tunnel is used, record it as a separately verified route; do not
-   infer USB transport from command success or tunnel availability.
+2. Re-establish and record each advertised Xcode/CoreDevice route condition.
+   If a CoreDevice tunnel is used, record it as a separately verified route; do
+   not infer USB transport from command success or tunnel availability.
 3. Against that exact final archive, run the applicable physical-device
    installation and renewal rows, including signing-expiration evidence,
    hands-free renewal across an iPhone reboot, route loss/recovery, and

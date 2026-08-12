@@ -45,8 +45,10 @@ or workspace and one paired iPhone. It is not an IPA store or fleet manager.
 ## What does the Tailscale option support?
 
 It is optional and experimental. It can identify a selected Tailnet peer and
-check a network route, but it does not replace Xcode pairing or prove
-pure-cellular CoreDevice installation. Verify the first installation over USB.
+check its address, but it does not replace Xcode pairing or establish a
+CoreDevice route. Automatic renewal can use USB or a network route already
+available to Xcode; Tailscale alone does not prove pure-cellular CoreDevice
+installation. Verify the first installation over USB.
 
 ## Why do I see “No Accounts” or “No profiles”?
 

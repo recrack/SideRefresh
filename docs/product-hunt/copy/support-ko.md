@@ -44,9 +44,10 @@ iPhone을 페어링·신뢰하고 Developer Mode를 켜 Xcode에서 한 번 설�
 
 ## Tailscale 옵션은 무엇을 지원하나요?
 
-선택적·실험적 기능입니다. Tailnet peer와 네트워크 경로를 확인할 수 있지만
-Xcode 페어링을 대신하거나 셀룰러 CoreDevice 설치를 보장하지 않습니다. 최초
-설치는 USB로 검증하세요.
+선택적·실험적 기능입니다. Tailnet peer와 주소를 확인할 수 있지만 Xcode
+페어링이나 CoreDevice 연결을 대신하지 않습니다. 자동 갱신 자체는 USB 또는
+Xcode가 이미 알고 있는 네트워크 경로를 사용하며, Tailscale만으로 순수
+셀룰러 설치를 보장하지 않습니다. 최초 설치는 USB로 검증하세요.
 
 ## “No Accounts” 또는 “No profiles”가 나오면요?
 

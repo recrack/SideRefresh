@@ -39,7 +39,11 @@ install → your iPhone. Raw Xcode and CoreDevice output stays in Diagnostics.
    through CoreDevice, and records success only with expiration evidence.
 
 After that first verified installation, explicitly enable **Automatic refresh**.
-The Mac must be awake and the iPhone reachable when a renewal is due.
+The Mac must be awake and the iPhone reachable when a renewal is due. The
+automatic CoreDevice path can use USB or a network route already available to
+Xcode; SideRefresh does not select or detect the transport. Tailscale remains
+an optional, experimental peer/address check and does not create the Xcode
+connection itself.
 
 ## Start from source
 
@@ -71,10 +75,13 @@ launchd → short-lived Agent → renewal engine → xcodebuild → devicectl �
 ## Deliberately narrow
 
 SideRefresh currently supports one app you own, one Xcode project or workspace,
-and one paired iPhone per configuration. It does **not** install third-party
-IPAs, make Personal Team signing permanent, manage fleets, work without Xcode,
-or claim verified pure-cellular CoreDevice renewal. Tailscale remains optional
-and experimental; it does not replace Apple pairing, trust, or signing.
+and one paired iPhone per configuration. Its automatic route relies on Xcode's
+existing CoreDevice connection, whether that connection is over USB or an
+already-configured local network. It does **not** install third-party IPAs,
+make Personal Team signing permanent, manage fleets, work without Xcode, or
+claim verified pure-cellular CoreDevice renewal. Tailscale remains optional and
+experimental: it checks the selected peer and address but does not replace
+Apple pairing, trust, signing, or Xcode's connection setup.
 
 ## Go deeper
 

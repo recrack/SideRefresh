@@ -180,7 +180,7 @@ Use four parts:
 
 Example:
 
-> Not yet. Tailscale can verify the selected peer and network path, but it does not replace Xcode pairing or prove pure-cellular installation. We currently support a verified first USB installation and only advertise routes that have completed the release checks. If remote renewal is your use case, please add your Mac/iPhone conditions to this issue: [issue URL].
+> Tailscale is experimental. It can verify the selected peer and address, but it does not replace Xcode pairing or prove pure-cellular installation. The automatic CoreDevice path can use USB or a network route already available to Xcode; each advertised condition needs its own final-release checks. If remote renewal is your use case, please add your Mac/iPhone conditions to this issue: [issue URL].
 
 ## Metrics and retrospective
 

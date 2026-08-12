@@ -8,21 +8,26 @@
 
 ## Proposed first-release route
 
-Advertise exactly one route: the **cable-present operating envelope**. This
-names the required user operating condition, not a detected transport:
+Advertise the **Xcode/CoreDevice reachable operating envelope**. This covers
+two operating conditions that use the same automatic path: a USB-connected
+iPhone, or an iPhone already connected to Xcode over a local network. It names
+the condition SideRefresh can rely on, not a transport that SideRefresh
+detects:
 
 - Manual setup is completed in Xcode: Apple Account/Personal Team, trust,
   Developer Mode, pairing, and the first run are user-controlled prerequisites.
-- After setup, the selected physical iPhone remains connected to the Mac by a
-  cable.
+- After setup, the selected physical iPhone remains reachable to Xcode and
+  CoreDevice. The user may keep the cable connected or use a network route that
+  Xcode already knows how to use.
 - The approved Agent may perform scheduled automatic renewal with no user
   interaction under this proposed operating envelope. SideRefresh does not
-  currently verify that the cable remains present.
+  currently verify which transport Xcode selected.
 
-If approved, public copy should say **“while you keep the iPhone connected by
-cable”**. It must not say “USB detected”, “USB route detected”, or imply that
-cable presence proves USB transport or that SideRefresh identified the physical
-transport.
+If approved, public copy should say **“with the iPhone connected by USB or by
+a network route already available to Xcode”**. It must not say “USB detected”,
+“USB route detected”, or imply that SideRefresh identified or enforces the
+physical transport. If only one condition completes the final-archive matrix,
+the public wording must be narrowed to that condition.
 
 ## Why this wording and boundary
 
@@ -42,25 +47,27 @@ evidence. A route claim therefore requires external evidence and/or a future
 transport guard; command success alone is insufficient.
 Apple also documents that Xcode uses a network-based interface for devices
 attached by USB ([TN3158](https://developer.apple.com/documentation/technotes/tn3158-resolving-xcode-15-device-connection-issues)).
-The observable product boundary is therefore the cable-present operating
-envelope, not a transport-detection result.
+The observable product boundary is therefore the Xcode/CoreDevice reachable
+operating envelope, not a transport-detection result.
 
 This is the narrowest honest first-release boundary: existing real-device
 sample evidence was collected with a cable attached ([implementation status](../STATUS.md#verified-scope)),
 while the release matrix requires evidence from the exact final archive and
-exact device/toolchain. That sample does not prove detected USB transport.
-Personal Team profiles and
-registered devices expire after seven days, so renewal still requires a build,
-sign, and install cycle ([Apple Developer account overview](https://developer.apple.com/help/account/basics/about-your-developer-account)).
+exact device/toolchain for every advertised operating condition. That sample
+does not prove detected USB transport or a local-network route. Personal Team
+profiles and registered devices expire after seven days, so renewal still
+requires a build, sign, and install cycle ([Apple Developer account overview](https://developer.apple.com/help/account/basics/about-your-developer-account)).
 
 ## Deferred and experimental routes
 
-- Same-local-network CoreDevice is deferred. It may be advertised only after a
-  separate exact-final-archive run proves that route on a real device, with its
-  own route descriptor and evidence; cable-route evidence does not transfer.
+- Same-local-network CoreDevice is a candidate supported operating condition,
+  not a passed route. It may be advertised only after a separate
+  exact-final-archive run proves that route on a real device, with its own route
+  descriptor and evidence; cable-route evidence does not transfer.
 - Tailscale, Tailnet, direct-IP, and pure-cellular operation are omitted from
-  first-release claims. They are not alternate interpretations of the cabled
-  route.
+  first-release claims. Tailscale may still perform its experimental peer and
+  address preflight, but it does not create or prove the Xcode/CoreDevice
+  connection.
 - The current UI still exposes some local-network, Tailscale/Tailnet, and
   direct-IP controls. This proposal does not claim those controls have already
   moved to **Experimental** Diagnostics; their visible controls and copy must
@@ -94,4 +101,8 @@ route claims still require external evidence and/or a future transport guard.
 - [Apple TN3158: Resolving Xcode 15 device connection issues](https://developer.apple.com/documentation/technotes/tn3158-resolving-xcode-15-device-connection-issues)
 - [Project connection-path terminology](../research/renewal-connection-path-terminology.md)
 
-Human decision needed: confirm this single cable-present operating-envelope claim for the first release and defer LAN, direct-IP, Tailnet, Tailscale, and pure-cellular claims until separate evidence exists.
+Human decision needed: confirm whether the first release advertises both USB
+and separately verified same-local-network CoreDevice operation under this
+reachable operating envelope, or narrows the wording to one condition. In
+either case, keep Tailscale, direct-IP, and pure-cellular renewal outside the
+stable claim until their own transport and lifecycle evidence exists.
