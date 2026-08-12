@@ -3,7 +3,7 @@
 > Status: `pending human confirmation`.
 >
 > This is read-only candidate evidence from the tuple recorded in
-> [Wayfinder issue #28](https://github.com/recrack/SideRefresh/issues/28). It
+> The Wayfinder device-baseline decision. It
 > is not a passed acceptance-matrix case, does not establish a support claim,
 > and does not authorize publication.
 
