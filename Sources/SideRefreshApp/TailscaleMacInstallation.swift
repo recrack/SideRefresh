@@ -7,24 +7,15 @@ enum TailscaleMacInstallation {
         string: "https://tailscale.com/download/mac"
     )!
 
-    private static let bundleIdentifiers = [
-        "io.tailscale.ipn.macsys",
-        "io.tailscale.ipn.macos",
-    ]
-
     static var applicationURLs: [URL] {
-        bundleIdentifiers.flatMap {
-            NSWorkspace.shared.urlsForApplications(
-                withBundleIdentifier: $0
-            )
-        }
+        TailscaleExecutableLocator.installedApplicationURLs
     }
 
     static var isApplicationInstalled: Bool {
         !applicationURLs.isEmpty
     }
 
-    static func executableCandidates(
+    static func availableExecutableURLs(
         preferredPath: String?
     ) -> [URL] {
         let preferred = preferredPath.flatMap { path -> URL? in
@@ -36,21 +27,8 @@ enum TailscaleMacInstallation {
             }
             return URL(fileURLWithPath: trimmed)
         }
-        let candidates = [preferred].compactMap { $0 }
-            + TailscaleExecutableLocator.standardCandidateURLs
-        var seenPaths = Set<String>()
-        return candidates.filter {
-            seenPaths.insert($0.standardizedFileURL.path).inserted
-        }
-    }
-
-    static func availableExecutableURLs(
-        preferredPath: String?
-    ) -> [URL] {
-        TailscaleExecutableLocator(
-            candidateURLs: executableCandidates(
-                preferredPath: preferredPath
-            )
-        ).availableExecutableURLs()
+        return TailscaleExecutableLocator().availableExecutableURLs(
+            preferredExecutableURL: preferred
+        )
     }
 }

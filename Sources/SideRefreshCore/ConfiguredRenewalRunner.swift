@@ -1,19 +1,22 @@
 import Foundation
 
 public struct ConfiguredRenewalRunner: Sendable {
+    private let executableLocator: TailscaleExecutableLocator?
     private let readTailnetStatus:
         @Sendable (URL) throws -> TailnetSnapshot
 
     public init() {
-        readTailnetStatus = {
+        self.init {
             try TailscaleStatusReader().read(executableURL: $0)
         }
     }
 
     init(
+        executableLocator: TailscaleExecutableLocator? = nil,
         readTailnetStatus:
             @escaping @Sendable (URL) throws -> TailnetSnapshot
     ) {
+        self.executableLocator = executableLocator
         self.readTailnetStatus = readTailnetStatus
     }
 
@@ -97,9 +100,11 @@ public struct ConfiguredRenewalRunner: Sendable {
             )
         )
         do {
-            let snapshot = try readTailnetStatus(
-                URL(fileURLWithPath: target.tailscaleExecutable)
-            )
+            let savedExecutableURL = URL(fileURLWithPath: target.tailscaleExecutable)
+            let executableURL = (executableLocator ?? TailscaleExecutableLocator())
+                .firstAvailableExecutableURL(preferredExecutableURL: savedExecutableURL)
+                ?? savedExecutableURL
+            let snapshot = try readTailnetStatus(executableURL)
             _ = try target.resolve(in: snapshot)
             progress?(
                 .progress(
